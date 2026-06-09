@@ -1,0 +1,2005 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkmating Alzheimer's | South Carolina</title>
+    <meta name="description" content="A South Carolina student-led nonprofit using chess to fight Alzheimer's disease through volunteering, community tournaments, and Clemson University research.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Nunito:wght@300;400;500;600;700&family=Caveat:wght@400;600&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --forest-green: #9C91FF;
+            --forest-green-light: #b5adff;
+            --forest-green-dark: #7b6fe0;
+            --soft-gold: #E0DDFF;
+            --warm-white: #ffffff;
+            --dusty-rose: #d4d0ff;
+            --warm-cream: #f0eeff;
+            --text-dark: #1a1a1a;
+            --text-light: #666;
+            --border-color: #d4d0ff;
+        }
+
+        body {
+            font-family: 'Nunito', sans-serif;
+            background-color: var(--warm-white);
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Cormorant Garamond', serif;
+        }
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 1rem;
+            }
+        }
+
+        /* ─── NAV ─── */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 50;
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border-color);
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+
+        .nav-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 4rem;
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .nav-logo-icon {
+            font-size: 1.5rem;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .nav-logo-text h1 {
+            font-size: 1.125rem;
+            font-weight: bold;
+            color: var(--forest-green);
+            line-height: 1.2;
+            margin: 0;
+        }
+
+        .nav-logo-text p {
+            font-size: 0.75rem;
+            color: #999;
+            letter-spacing: 0.05em;
+            margin: 0;
+        }
+
+        .nav-links {
+            display: none;
+            align-items: center;
+            gap: 1.5rem;
+            font-size: 0.875rem;
+            font-weight: 500;
+        }
+
+        @media (min-width: 768px) {
+            .nav-links {
+                display: flex;
+            }
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--forest-green);
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--forest-green-dark);
+        }
+
+        .nav-donate {
+            padding: 0.5rem 1rem;
+            border-radius: 9999px;
+            background-color: var(--forest-green);
+            color: white;
+            text-decoration: none;
+            font-size: 0.875rem;
+            font-weight: 600;
+            transition: opacity 0.3s;
+        }
+
+        .nav-donate:hover {
+            opacity: 0.9;
+        }
+
+        /* ─── HERO ─── */
+        .hero {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            overflow: hidden;
+            margin-top: 4rem;
+        }
+
+        .hero-bg {
+            position: absolute;
+            inset: 0;
+            background-image: url('https://d2xsxph8kpxj0f.cloudfront.net/310519663690815908/ffxcJVUEswbsb5WMy3KiS4/hero_banner-JAiUs8XFthNmBaXHTXsVYa.webp');
+            background-size: cover;
+            background-position: center;
+            z-index: 1;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to right, rgba(156,145,255,0.88) 0%, rgba(156,145,255,0.55) 60%, rgba(156,145,255,0.2) 100%);
+            z-index: 2;
+        }
+
+        .hero-texture {
+            position: absolute;
+            inset: 0;
+            background-image: repeating-conic-gradient(rgba(156,145,255,0.05) 0% 25%, transparent 0% 50%);
+            background-size: 40px 40px;
+            z-index: 3;
+            opacity: 0.3;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 10;
+            padding: 3rem 0;
+            max-width: 50%;
+        }
+
+        @media (max-width: 768px) {
+            .hero-content {
+                max-width: 100%;
+            }
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            border-radius: 9999px;
+            background: rgba(224,221,255,0.2);
+            color: var(--soft-gold);
+            border: 1px solid rgba(224,221,255,0.4);
+            font-size: 0.875rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            animation: fadeUp 0.6s cubic-bezier(0.23,1,0.32,1);
+        }
+
+        .hero-title {
+            font-size: 3.5rem;
+            font-weight: bold;
+            line-height: 1.2;
+            color: white;
+            margin-bottom: 1.5rem;
+            animation: fadeUp 0.6s cubic-bezier(0.23,1,0.32,1) 0.1s both;
+        }
+
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2.5rem;
+            }
+        }
+
+        .hero-title em {
+            font-style: italic;
+            color: var(--soft-gold);
+        }
+
+        .hero-description {
+            font-size: 1.125rem;
+            color: rgba(255,255,255,0.85);
+            line-height: 1.6;
+            margin-bottom: 2rem;
+            max-width: 32rem;
+            animation: fadeUp 0.6s cubic-bezier(0.23,1,0.32,1) 0.2s both;
+        }
+
+        .hero-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            animation: fadeUp 0.6s cubic-bezier(0.23,1,0.32,1) 0.3s both;
+        }
+
+        .btn {
+            padding: 0.75rem 1.5rem;
+            border-radius: 9999px;
+            font-weight: 600;
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: all 0.2s;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background-color: var(--soft-gold);
+            color: var(--forest-green);
+        }
+
+        .btn-primary:hover {
+            opacity: 0.9;
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            color: white;
+            border: 2px solid rgba(255,255,255,0.6);
+        }
+
+        .btn-secondary:hover {
+            background-color: rgba(255,255,255,0.1);
+        }
+
+        .btn:active {
+            transform: scale(0.97);
+        }
+
+        .hero-scroll {
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+            color: rgba(255,255,255,0.6);
+            font-size: 0.75rem;
+            z-index: 10;
+        }
+
+        .hero-scroll-line {
+            width: 1px;
+            height: 2rem;
+            background: rgba(255,255,255,0.3);
+            animation: pulse 2s infinite;
+        }
+
+        /* ─── STATS BAR ─── */
+        .stats-bar {
+            background-color: var(--forest-green);
+            padding: 4rem 0;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .stat-card {
+            background: var(--forest-green);
+            color: white;
+            border-radius: 1rem;
+            padding: 2rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .stat-card::before {
+            content: '';
+            position: absolute;
+            top: -30%;
+            right: -20%;
+            width: 60%;
+            height: 60%;
+            background: rgba(224,221,255,0.15);
+            border-radius: 50%;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 20px 40px rgba(156,145,255,0.15);
+        }
+
+        .stat-value {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 3rem;
+            font-weight: bold;
+            color: var(--soft-gold);
+            margin-bottom: 0.5rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .stat-label {
+            font-size: 0.875rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            opacity: 0.8;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* ─── MISSION ─── */
+        .mission {
+            padding: 6rem 0;
+        }
+
+        .mission-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        @media (max-width: 768px) {
+            .mission-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .mission-content h2 {
+            font-size: 3rem;
+            font-weight: bold;
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
+            color: var(--forest-green);
+        }
+
+        .mission-content h2 em {
+            font-style: italic;
+        }
+
+        .mission-content p {
+            font-size: 1.125rem;
+            color: var(--text-light);
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+        }
+
+        .mission-quote {
+            font-family: 'Caveat', cursive;
+            font-size: 1.5rem;
+            line-height: 1.6;
+            padding: 1.5rem;
+            border-radius: 1rem;
+            background: rgba(156,145,255,0.07);
+            border-left: 4px solid var(--soft-gold);
+            color: var(--forest-green);
+            margin-bottom: 2rem;
+        }
+
+        .mission-quote-author {
+            font-family: 'Nunito', sans-serif;
+            font-size: 0.875rem;
+            color: var(--text-light);
+            margin-top: 1rem;
+            font-style: italic;
+        }
+
+        .mission-image {
+            position: relative;
+        }
+
+        .mission-image img {
+            border-radius: 1rem;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+            width: 100%;
+            height: auto;
+        }
+
+        .mission-year-badge {
+            position: absolute;
+            bottom: -1.5rem;
+            left: -1.5rem;
+            background: var(--forest-green);
+            color: white;
+            border-radius: 1rem;
+            padding: 1.25rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            max-width: 220px;
+        }
+
+        .mission-year-badge .year {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2rem;
+            font-weight: bold;
+            color: var(--soft-gold);
+        }
+
+        .mission-year-badge .label {
+            font-size: 0.875rem;
+            margin-top: 0.25rem;
+            opacity: 0.9;
+        }
+
+        .mission-year-badge .location {
+            font-size: 0.75rem;
+            margin-top: 0.5rem;
+            opacity: 0.7;
+        }
+
+        .mission-chess-icon {
+            position: absolute;
+            top: -1rem;
+            right: -1rem;
+            width: 5rem;
+            height: 5rem;
+            border-radius: 50%;
+            background: var(--soft-gold);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+        }
+
+        /* ─── TEAM ─── */
+        .team {
+            background: var(--warm-cream);
+            padding: 6rem 0;
+            clip-path: polygon(0 4%, 100% 0, 100% 96%, 0 100%);
+            margin-top: -3rem;
+            padding-top: 5rem;
+            padding-bottom: 5rem;
+            margin-bottom: -3rem;
+        }
+
+        .team-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .team-header h2 {
+            font-size: 3rem;
+            font-weight: bold;
+            color: var(--forest-green);
+            margin-bottom: 1rem;
+        }
+
+        .team-header p {
+            font-size: 1.125rem;
+            color: var(--text-light);
+            max-width: 42rem;
+            margin: 0 auto;
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .team-card {
+            background: white;
+            border-radius: 1.5rem;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .team-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+
+        .team-card-bar {
+            height: 0.75rem;
+            background: var(--forest-green);
+        }
+
+        .team-card-bar.alt1 {
+            background: var(--soft-gold);
+        }
+
+        .team-card-bar.alt2 {
+            background: #b5adff;
+        }
+
+        .team-card-content {
+            padding: 2rem;
+        }
+
+        .team-card-avatar {
+            width: 4rem;
+            height: 4rem;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+            background: rgba(156,145,255,0.1);
+            color: var(--forest-green);
+            margin-bottom: 1rem;
+        }
+
+        .team-card-avatar.alt1 {
+            background: rgba(224,221,255,0.3);
+        }
+
+        .team-card-avatar.alt2 {
+            background: rgba(181,173,255,0.2);
+        }
+
+        .team-card h3 {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--forest-green);
+            margin-bottom: 0.25rem;
+        }
+
+        .team-card-role {
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: var(--forest-green-dark);
+            margin-bottom: 0.25rem;
+        }
+
+        .team-card-school {
+            font-size: 0.75rem;
+            color: var(--text-light);
+            margin-bottom: 1rem;
+        }
+
+        .team-card-quote {
+            font-family: 'Caveat', cursive;
+            font-size: 1rem;
+            line-height: 1.6;
+            padding: 1rem;
+            border-radius: 0.75rem;
+            background: rgba(156,145,255,0.05);
+            color: var(--forest-green);
+            margin-bottom: 1rem;
+        }
+
+        .team-card-detail {
+            font-size: 0.875rem;
+            color: var(--text-light);
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+
+        .team-card-handle {
+            font-size: 0.75rem;
+            font-family: monospace;
+            color: #b5adff;
+        }
+
+        .team-photo {
+            border-radius: 1rem;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+            position: relative;
+            max-height: 420px;
+        }
+
+        .team-photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .team-photo-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 1.5rem;
+            background: linear-gradient(to top, rgba(156,145,255,0.9), transparent);
+            color: white;
+            font-weight: 600;
+            font-size: 1.125rem;
+        }
+
+        /* ─── VOLUNTEER ─── */
+        .volunteer {
+            padding: 6rem 0;
+        }
+
+        .volunteer-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .volunteer-header h2 {
+            font-size: 3rem;
+            font-weight: bold;
+            color: var(--forest-green);
+            margin-bottom: 1rem;
+        }
+
+        .volunteer-header p {
+            font-size: 1.125rem;
+            color: var(--text-light);
+            max-width: 42rem;
+            margin: 0 auto;
+        }
+
+        .volunteer-roles {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 4rem;
+        }
+
+        .volunteer-role {
+            background: white;
+            border-radius: 1.5rem;
+            padding: 1.5rem;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            border: 2px solid transparent;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .volunteer-role:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+
+        .volunteer-role.active {
+            border-color: var(--forest-green);
+            background: rgba(156,145,255,0.04);
+        }
+
+        .volunteer-role-icon {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .volunteer-role h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.25rem;
+            font-weight: bold;
+            color: var(--forest-green);
+            margin-bottom: 0.5rem;
+        }
+
+        .volunteer-role p {
+            font-size: 0.875rem;
+            color: var(--text-light);
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+
+        .volunteer-role-details {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            font-size: 0.75rem;
+        }
+
+        .volunteer-role-detail {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .volunteer-role-detail strong {
+            color: var(--forest-green);
+        }
+
+        .volunteer-role-detail span {
+            color: var(--text-light);
+        }
+
+        .volunteer-role-cta {
+            display: none;
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid var(--soft-gold);
+        }
+
+        .volunteer-role.active .volunteer-role-cta {
+            display: block;
+        }
+
+        .volunteer-role-cta a {
+            display: block;
+            text-align: center;
+            padding: 0.5rem 1rem;
+            border-radius: 9999px;
+            background: var(--forest-green);
+            color: white;
+            text-decoration: none;
+            font-size: 0.875rem;
+            font-weight: 600;
+            transition: opacity 0.3s;
+        }
+
+        .volunteer-role-cta a:hover {
+            opacity: 0.9;
+        }
+
+        .volunteer-photos {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .volunteer-photo {
+            position: relative;
+            border-radius: 1rem;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            height: 18rem;
+        }
+
+        .volunteer-photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .volunteer-photo-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 1.5rem;
+            background: linear-gradient(to top, rgba(156,145,255,0.8), transparent);
+            color: white;
+            font-weight: 600;
+        }
+
+        /* ─── RESEARCH ─── */
+        .research {
+            background: var(--forest-green);
+            color: white;
+            padding: 6rem 0;
+            clip-path: polygon(0 4%, 100% 0, 100% 96%, 0 100%);
+            margin-top: -3rem;
+            padding-top: 5rem;
+            padding-bottom: 5rem;
+            margin-bottom: -3rem;
+        }
+
+        .research-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .research-header h2 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 3rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+        }
+
+        .research-header h2 em {
+            font-style: italic;
+            color: var(--soft-gold);
+        }
+
+        .research-header p {
+            font-size: 1.125rem;
+            color: rgba(255,255,255,0.7);
+            max-width: 42rem;
+            margin: 0 auto;
+        }
+
+        .research-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 4rem;
+        }
+
+        .research-card {
+            background: rgba(255,255,255,0.08);
+            border: 1px solid rgba(224,221,255,0.3);
+            border-radius: 1rem;
+            padding: 1.5rem;
+            transition: all 0.3s;
+        }
+
+        .research-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+        }
+
+        .research-card-icon {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .research-card h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 0.75rem;
+        }
+
+        .research-card p {
+            font-size: 0.875rem;
+            color: rgba(255,255,255,0.7);
+            line-height: 1.6;
+        }
+
+        .research-study {
+            background: rgba(224,221,255,0.12);
+            border: 1px solid rgba(224,221,255,0.3);
+            border-radius: 1rem;
+            padding: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .research-study-header {
+            display: flex;
+            align-items: flex-start;
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .research-study-badge {
+            width: 4rem;
+            height: 4rem;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+            font-weight: bold;
+            background: var(--soft-gold);
+            color: var(--forest-green);
+            flex-shrink: 0;
+        }
+
+        .research-study-title h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+
+        .research-study-desc {
+            font-size: 0.875rem;
+            color: rgba(255,255,255,0.8);
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+
+        .research-study-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+        }
+
+        .research-study-tag {
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+            background: rgba(224,221,255,0.2);
+            color: var(--soft-gold);
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+
+        .research-finding {
+            background: rgba(255,255,255,0.06);
+            border-radius: 1rem;
+            padding: 1.5rem;
+        }
+
+        .research-finding-header {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .research-finding-header span {
+            font-size: 1.5rem;
+        }
+
+        .research-finding-header strong {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.125rem;
+            font-weight: bold;
+            color: white;
+        }
+
+        .research-finding p {
+            font-size: 1.125rem;
+            color: rgba(255,255,255,0.8);
+            line-height: 1.6;
+        }
+
+        .research-finding em {
+            color: rgba(255,255,255,0.9);
+            font-style: italic;
+        }
+
+        /* ─── IMPACT ─── */
+        .impact {
+            padding: 6rem 0;
+        }
+
+        .impact-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .impact-header h2 {
+            font-size: 3rem;
+            font-weight: bold;
+            color: var(--forest-green);
+            margin-bottom: 1rem;
+        }
+
+        .impact-header p {
+            font-size: 1.125rem;
+            color: var(--text-light);
+            max-width: 42rem;
+            margin: 0 auto;
+        }
+
+        .impact-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 0.5rem;
+            margin-bottom: 2.5rem;
+            flex-wrap: wrap;
+        }
+
+        .impact-tab {
+            padding: 0.5rem 1.25rem;
+            border-radius: 9999px;
+            border: none;
+            font-size: 0.875rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-transform: capitalize;
+        }
+
+        .impact-tab.active {
+            background: var(--forest-green);
+            color: white;
+        }
+
+        .impact-tab:not(.active) {
+            background: rgba(156,145,255,0.08);
+            color: var(--forest-green);
+        }
+
+        .impact-tab:hover {
+            opacity: 0.8;
+        }
+
+        .impact-content {
+            background: white;
+            border-radius: 1rem;
+            padding: 2rem;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            display: none;
+        }
+
+        .impact-content.active {
+            display: block;
+        }
+
+        .impact-chart {
+            position: relative;
+            height: 400px;
+            margin-bottom: 1.5rem;
+        }
+
+        .impact-note {
+            background: rgba(156,145,255,0.06);
+            border-radius: 0.75rem;
+            padding: 1rem;
+            font-size: 0.875rem;
+            color: var(--forest-green);
+        }
+
+        .impact-note strong {
+            font-weight: 600;
+        }
+
+        .timeline {
+            position: relative;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 1px;
+            background: var(--soft-gold);
+            display: none;
+        }
+
+        @media (min-width: 768px) {
+            .timeline::before {
+                display: block;
+            }
+        }
+
+        .timeline-item {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        @media (min-width: 768px) {
+            .timeline-item {
+                flex-direction: row;
+                align-items: center;
+            }
+
+            .timeline-item:nth-child(even) {
+                flex-direction: row-reverse;
+            }
+        }
+
+        .timeline-content {
+            flex: 1;
+        }
+
+        @media (min-width: 768px) {
+            .timeline-content {
+                padding-right: 2rem;
+            }
+
+            .timeline-item:nth-child(even) .timeline-content {
+                padding-right: 0;
+                padding-left: 2rem;
+                text-align: right;
+            }
+        }
+
+        .timeline-card {
+            background: white;
+            border-radius: 1rem;
+            padding: 1.25rem;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            transition: all 0.3s;
+        }
+
+        .timeline-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+
+        .timeline-card h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.25rem;
+            font-weight: bold;
+            color: var(--forest-green);
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-card p {
+            font-size: 0.875rem;
+            color: var(--text-light);
+        }
+
+        .timeline-dot {
+            flex-shrink: 0;
+            width: 3rem;
+            height: 3rem;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.75rem;
+            font-weight: bold;
+            color: white;
+            background: var(--forest-green);
+            border: 3px solid var(--soft-gold);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+            z-index: 10;
+        }
+
+        /* ─── CTA ─── */
+        .cta {
+            background: var(--warm-cream);
+            padding: 6rem 0;
+            clip-path: polygon(0 4%, 100% 0, 100% 100%, 0 100%);
+            margin-top: -3rem;
+            padding-top: 5rem;
+        }
+
+        .cta-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .cta-header h2 {
+            font-size: 3rem;
+            font-weight: bold;
+            color: var(--forest-green);
+            margin-bottom: 1rem;
+        }
+
+        .cta-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .cta-card {
+            background: white;
+            border-radius: 1.5rem;
+            padding: 2rem;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            transition: all 0.3s;
+        }
+
+        .cta-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+
+        .cta-card-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .cta-card h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--forest-green);
+            margin-bottom: 0.75rem;
+        }
+
+        .cta-card p {
+            font-size: 0.875rem;
+            color: var(--text-light);
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+        .cta-card a {
+            display: inline-block;
+            padding: 0.75rem 1.5rem;
+            border-radius: 9999px;
+            background: var(--forest-green);
+            color: white;
+            text-decoration: none;
+            font-size: 0.875rem;
+            font-weight: 600;
+            transition: opacity 0.3s;
+        }
+
+        .cta-card a:hover {
+            opacity: 0.9;
+        }
+
+        /* ─── FOOTER ─── */
+        footer {
+            background: var(--forest-green);
+            color: white;
+            padding: 4rem 0 2rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-section h4 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.25rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+        }
+
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 1rem;
+        }
+
+        .footer-logo-icon {
+            font-size: 2rem;
+        }
+
+        .footer-logo-text h3 {
+            font-size: 1rem;
+            font-weight: bold;
+            line-height: 1.2;
+            margin: 0;
+        }
+
+        .footer-logo-text p {
+            font-size: 0.75rem;
+            color: var(--soft-gold);
+            margin: 0;
+        }
+
+        .footer-section p {
+            font-size: 0.875rem;
+            color: rgba(255,255,255,0.7);
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            font-size: 0.875rem;
+            color: rgba(255,255,255,0.7);
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-section a {
+            color: rgba(255,255,255,0.7);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-section a:hover {
+            color: white;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255,255,255,0.1);
+            padding-top: 2rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            align-items: center;
+            text-align: center;
+        }
+
+        @media (min-width: 768px) {
+            .footer-bottom {
+                flex-direction: row;
+                justify-content: space-between;
+                align-items: center;
+                text-align: left;
+            }
+        }
+
+        .footer-bottom p {
+            font-size: 0.875rem;
+            color: rgba(255,255,255,0.5);
+            margin: 0;
+        }
+
+        .footer-credit {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.875rem;
+            color: rgba(255,255,255,0.5);
+        }
+
+        .footer-credit span {
+            color: var(--soft-gold);
+        }
+
+        /* ─── ANIMATIONS ─── */
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-8px); }
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 1; }
+        }
+
+        /* ─── UTILITIES ─── */
+        .chess-divider {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            color: var(--forest-green);
+            margin-bottom: 1rem;
+            font-size: 0.875rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        .chess-divider::before,
+        .chess-divider::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: linear-gradient(to right, transparent, var(--soft-gold), transparent);
+        }
+
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <!-- NAV -->
+    <nav>
+        <div class="nav-content">
+            <div class="nav-logo">
+                <div class="nav-logo-icon">♟</div>
+                <div class="nav-logo-text">
+                    <h1>Checkmating Alzheimer's</h1>
+                    <p>South Carolina</p>
+                </div>
+            </div>
+            <div class="nav-links">
+                <a href="#mission">Mission</a>
+                <a href="#team">Team</a>
+                <a href="#volunteer">Volunteer</a>
+                <a href="#research">Research</a>
+                <a href="#impact">Impact</a>
+                <a href="https://events.alz.org/event/dowhatyoulove/south-carolina-chapter" target="_blank" class="nav-donate">Donate</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <section class="hero">
+        <div class="hero-bg"></div>
+        <div class="hero-overlay"></div>
+        <div class="hero-texture"></div>
+        <div class="container hero-content">
+            <div class="hero-badge">
+                <span>♟</span> South Carolina Nonprofit
+            </div>
+            <h1 class="hero-title">Every Move<br><em>Matters.</em></h1>
+            <p class="hero-description">
+                Student volunteers from Upstate South Carolina are using the game of chess to fight Alzheimer's disease — through community tournaments, retirement home classes, and groundbreaking Clemson University research.
+            </p>
+            <div class="hero-buttons">
+                <a href="#volunteer" class="btn btn-primary">Volunteer With Us</a>
+                <a href="#mission" class="btn btn-secondary">Learn Our Story</a>
+            </div>
+        </div>
+        <div class="hero-scroll">
+            <span>Scroll to explore</span>
+            <div class="hero-scroll-line"></div>
+        </div>
+    </section>
+
+    <!-- STATS BAR -->
+    <section class="stats-bar">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-value">$3,800</div>
+                    <div class="stat-label">Funds Raised</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">5</div>
+                    <div class="stat-label">Tournaments Hosted</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">60+</div>
+                    <div class="stat-label">Seniors Taught Chess</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">1</div>
+                    <div class="stat-label">Active Clemson Study</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- MISSION -->
+    <section id="mission" class="mission">
+        <div class="container">
+            <div class="mission-grid">
+                <div class="mission-content">
+                    <div class="chess-divider">
+                        <span>Our Mission</span>
+                    </div>
+                    <h2>A Project Rooted<br><em>in Love & Family</em></h2>
+                    <p>
+                        When Caton Tsao watched both of his grandparents lose their memories to Alzheimer's disease, he decided to act. Together with fellow expert chess player Allen Hong, he launched <strong>Checkmating Alzheimer's</strong> — a student-led initiative in Upstate South Carolina that turns a passion for chess into a powerful force against dementia.
+                    </p>
+                    <p>
+                        The project operates on three pillars: <strong>fundraising</strong> through community chess tournaments, <strong>volunteering</strong> by teaching chess at retirement communities, and <strong>research</strong> through a partnership with Clemson University studying chess as a cognitive protective factor.
+                    </p>
+                    <div class="mission-quote">
+                        "Personally, I have witnessed the profound impact of the disease on the patient and the family. With this project, I hoped to help others in my community since I couldn't help my own family member on another continent."
+                        <div class="mission-quote-author">— Caton Tsao, Founder</div>
+                    </div>
+                </div>
+                <div class="mission-image">
+                    <img src="/manus-storage/chess_seniors_a848a3db.jpg" alt="Students teaching chess to seniors at a retirement community">
+                    <div class="mission-year-badge">
+                        <div class="year">2024</div>
+                        <div class="label">Year Founded</div>
+                        <div class="location">Travelers Rest, SC</div>
+                    </div>
+                    <div class="mission-chess-icon">♟</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TEAM -->
+    <section id="team" class="team">
+        <div class="container">
+            <div class="team-header">
+                <div class="chess-divider" style="justify-content: center;">
+                    <span>The Team</span>
+                </div>
+                <h2>The Players Behind<br><em>the Movement</em></h2>
+                <p>Three young chess players from South Carolina who turned personal loss into community action.</p>
+            </div>
+
+            <div class="team-grid">
+                <div class="team-card">
+                    <div class="team-card-bar"></div>
+                    <div class="team-card-content">
+                        <div class="team-card-avatar">C</div>
+                        <h3>Caton Tsao</h3>
+                        <div class="team-card-role">Founder & Lead Organizer</div>
+                        <div class="team-card-school">Travelers Rest High School</div>
+                        <div class="team-card-quote">"I have witnessed the profound impact of the disease. With this project, I hope to help others in my community."</div>
+                        <div class="team-card-detail">Expert chess player whose grandparents battled Alzheimer's. Leads tournament organization, community outreach, and the Clemson research partnership.</div>
+                        <div class="team-card-handle">@catont18</div>
+                    </div>
+                </div>
+
+                <div class="team-card">
+                    <div class="team-card-bar alt1"></div>
+                    <div class="team-card-content">
+                        <div class="team-card-avatar alt1">A</div>
+                        <h3>Allen Hong</h3>
+                        <div class="team-card-role">Co-Founder & Tournament Director</div>
+                        <div class="team-card-school">Travelers Rest High School</div>
+                        <div class="team-card-quote">"Every move on the board is a move toward ending Alzheimer's."</div>
+                        <div class="team-card-detail">Expert chess player and longtime friend of Caton. Co-organized the first fundraising tournaments and helped teach chess to seniors at retirement communities.</div>
+                        <div class="team-card-handle">Co-founder</div>
+                    </div>
+                </div>
+
+                <div class="team-card">
+                    <div class="team-card-bar alt2"></div>
+                    <div class="team-card-content">
+                        <div class="team-card-avatar alt2">A</div>
+                        <h3>Aman Sreshta</h3>
+                        <div class="team-card-role">Research Partner</div>
+                        <div class="team-card-school">Clemson University (Freshman)</div>
+                        <div class="team-card-quote">"Chess engages memory, planning, and visualization — it's a natural fit for cognitive research."</div>
+                        <div class="team-card-detail">Former D.W. Daniel High School chess champion, now a Clemson freshman. Co-proposed the cognitive research study with Dr. Kaileigh Byrne.</div>
+                        <div class="team-card-handle">@amansreshta.06</div>
+                    </div>
+                </div>
+
+                <div class="team-card">
+                    <div class="team-card-bar"></div>
+                    <div class="team-card-content">
+                        <div class="team-card-avatar">N</div>
+                        <h3>Nikolai</h3>
+                        <div class="team-card-role">Team Contributor</div>
+                        <div class="team-card-school">Upstate South Carolina</div>
+                        <div class="team-card-quote">"Supporting the mission to end Alzheimer's through chess and community."</div>
+                        <div class="team-card-detail">Active team member contributing to the Checkmating Alzheimer's initiative through volunteering and community engagement.</div>
+                        <div class="team-card-handle">Team Member</div>
+                    </div>
+                </div>
+
+                <div class="team-card">
+                    <div class="team-card-bar alt1"></div>
+                    <div class="team-card-content">
+                        <div class="team-card-avatar alt1">S</div>
+                        <h3>Shikhar</h3>
+                        <div class="team-card-role">Team Contributor</div>
+                        <div class="team-card-school">Upstate South Carolina</div>
+                        <div class="team-card-quote">"Chess is more than a game—it's a tool for change."</div>
+                        <div class="team-card-detail">Active team member contributing to the Checkmating Alzheimer's initiative through volunteering and community engagement.</div>
+                        <div class="team-card-handle">Team Member</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="team-photo">
+                <img src="/manus-storage/team_check_donation_41d2a3ed.jpg" alt="Caton Tsao and Allen Hong presenting $1,000 donation check to Alzheimer's Association South Carolina">
+                <div class="team-photo-caption">
+                    Caton Tsao & Allen Hong presenting a $1,000 check to the Alzheimer's Association South Carolina — raised through their inaugural chess tournament series.
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- VOLUNTEER -->
+    <section id="volunteer" class="volunteer">
+        <div class="container">
+            <div class="volunteer-header">
+                <div class="chess-divider" style="justify-content: center;">
+                    <span>Get Involved</span>
+                </div>
+                <h2>Make Your Move.<br><em>Volunteer With Us.</em></h2>
+                <p>Whether you play chess or simply care about brain health, there is a role for you in this movement.</p>
+            </div>
+
+            <div class="volunteer-roles">
+                <div class="volunteer-role" onclick="toggleRole(this, 0)">
+                    <div class="volunteer-role-icon">♟</div>
+                    <h3>Tournament Organizer</h3>
+                    <p>Help plan and run chess tournaments that raise funds for the Alzheimer's Association of South Carolina.</p>
+                    <div class="volunteer-role-details">
+                        <div class="volunteer-role-detail"><strong>Time:</strong> <span>4–8 hrs/event</span></div>
+                        <div class="volunteer-role-detail"><strong>Skills:</strong> <span>Organization, chess knowledge</span></div>
+                    </div>
+                    <div class="volunteer-role-cta">
+                        <a href="https://events.alz.org/event/dowhatyoulove/south-carolina-chapter" target="_blank">Apply Now →</a>
+                    </div>
+                </div>
+
+                <div class="volunteer-role" onclick="toggleRole(this, 1)">
+                    <div class="volunteer-role-icon">♜</div>
+                    <h3>Chess Instructor</h3>
+                    <p>Volunteer at local retirement communities to teach chess to seniors, promoting cognitive health through gameplay.</p>
+                    <div class="volunteer-role-details">
+                        <div class="volunteer-role-detail"><strong>Time:</strong> <span>2 hrs/week</span></div>
+                        <div class="volunteer-role-detail"><strong>Skills:</strong> <span>Patience, chess skills</span></div>
+                    </div>
+                    <div class="volunteer-role-cta">
+                        <a href="https://events.alz.org/event/dowhatyoulove/south-carolina-chapter" target="_blank">Apply Now →</a>
+                    </div>
+                </div>
+
+                <div class="volunteer-role" onclick="toggleRole(this, 2)">
+                    <div class="volunteer-role-icon">♝</div>
+                    <h3>Research Assistant</h3>
+                    <p>Support the ongoing Clemson University cognitive study by helping recruit participants aged 65+ and coordinating sessions.</p>
+                    <div class="volunteer-role-details">
+                        <div class="volunteer-role-detail"><strong>Time:</strong> <span>Flexible</span></div>
+                        <div class="volunteer-role-detail"><strong>Skills:</strong> <span>Communication, research interest</span></div>
+                    </div>
+                    <div class="volunteer-role-cta">
+                        <a href="https://events.alz.org/event/dowhatyoulove/south-carolina-chapter" target="_blank">Apply Now →</a>
+                    </div>
+                </div>
+
+                <div class="volunteer-role" onclick="toggleRole(this, 3)">
+                    <div class="volunteer-role-icon">♞</div>
+                    <h3>Outreach & Awareness</h3>
+                    <p>Spread the word through schools, chess clubs, and community organizations across the Upstate and Midlands of SC.</p>
+                    <div class="volunteer-role-details">
+                        <div class="volunteer-role-detail"><strong>Time:</strong> <span>Flexible</span></div>
+                        <div class="volunteer-role-detail"><strong>Skills:</strong> <span>Communication, social media</span></div>
+                    </div>
+                    <div class="volunteer-role-cta">
+                        <a href="https://events.alz.org/event/dowhatyoulove/south-carolina-chapter" target="_blank">Apply Now →</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="volunteer-photos">
+                <div class="volunteer-photo">
+                    <img src="/manus-storage/chess_seniors2_6d3168d1.jpg" alt="Volunteers teaching chess to seniors">
+                    <div class="volunteer-photo-caption">Chess classes at local retirement communities — promoting brain health one move at a time.</div>
+                </div>
+                <div class="volunteer-photo">
+                    <img src="/manus-storage/seniors_chess_b941ef55.jpg" alt="Seniors playing chess">
+                    <div class="volunteer-photo-caption">Research shows challenging your mind may lower the risk of cognitive decline and Alzheimer's.</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- RESEARCH -->
+    <section id="research" class="research">
+        <div class="container">
+            <div class="research-header">
+                <div class="chess-divider" style="justify-content: center; color: var(--soft-gold);">
+                    <span>Science & Research</span>
+                </div>
+                <h2>Chess & the Brain:<br><em>The Research</em></h2>
+                <p>Partnering with Clemson University to study whether chess can protect against cognitive decline.</p>
+            </div>
+
+            <div class="research-grid">
+                <div class="research-card">
+                    <div class="research-card-icon">🧠</div>
+                    <h3>Hippocampus</h3>
+                    <p>Chess engages the hippocampus for memory formation and recall — the same region most affected by Alzheimer's.</p>
+                </div>
+                <div class="research-card">
+                    <div class="research-card-icon">🎯</div>
+                    <h3>Prefrontal Cortex</h3>
+                    <p>Planning moves ahead activates the prefrontal cortex, strengthening executive function and strategic thinking.</p>
+                </div>
+                <div class="research-card">
+                    <div class="research-card-icon">👁</div>
+                    <h3>Occipital Lobe</h3>
+                    <p>Visualizing board positions before moving engages the occipital lobe, training spatial reasoning and pattern recognition.</p>
+                </div>
+            </div>
+
+            <div class="research-study">
+                <div class="research-study-header">
+                    <div class="research-study-badge">CU</div>
+                    <div class="research-study-title">
+                        <h3>Clemson University Cognitive Study</h3>
+                    </div>
+                </div>
+                <div class="research-study-desc">
+                    Caton Tsao and Aman Sreshta proposed a cross-sectional research study to <strong>Dr. Kaileigh Byrne</strong>, Associate Professor of Cognitive Psychology at Clemson University. The study compares cognitive function in adults aged 65+ who have played chess for years versus those who have not — aiming to produce publishable, peer-reviewed findings.
+                </div>
+                <div class="research-study-tags">
+                    <span class="research-study-tag">Recruiting: Ages 65+</span>
+                    <span class="research-study-tag">Contact: decisionlab@clemson.edu</span>
+                    <span class="research-study-tag">Cross-sectional design</span>
+                </div>
+            </div>
+
+            <div class="research-finding">
+                <div class="research-finding-header">
+                    <span>📊</span>
+                    <strong>Research Finding</strong>
+                </div>
+                <p>
+                    A 2019 NIH study found that chess practice can be considered a <strong>protective factor against dementia</strong> and cognitive decline in older adults, particularly through the enhancement of cognitive reserve. Yet Dr. Byrne notes: <em>"Surprisingly, there is almost no work specifically on chess, and it is surprising because it engages so many different cognitive functions."</em>
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- IMPACT -->
+    <section id="impact" class="impact">
+        <div class="container">
+            <div class="impact-header">
+                <div class="chess-divider" style="justify-content: center;">
+                    <span>Impact & Data</span>
+                </div>
+                <h2>Measuring the<br><em>Movement's Impact</em></h2>
+                <p>Explore the data behind Checkmating Alzheimer's — track fundraising progress, understand volunteer trends, and easily save or share these results.</p>
+            </div>
+
+            <div class="impact-tabs">
+                <button class="impact-tab active" onclick="switchTab(event, 'timeline')">Event Timeline</button>
+                <button class="impact-tab" onclick="switchTab(event, 'fundraising')">Fundraising</button>
+                <button class="impact-tab" onclick="switchTab(event, 'impact')">Impact Breakdown</button>
+            </div>
+
+            <!-- Timeline Tab -->
+            <div id="timeline" class="impact-content active">
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-content">
+                            <div class="timeline-card">
+                                <h3>Project Founded</h3>
+                                <p>Caton Tsao & Allen Hong launch Checkmating Alzheimer's</p>
+                            </div>
+                        </div>
+                        <div class="timeline-dot">24</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-content">
+                            <div class="timeline-card">
+                                <h3>First Tournament</h3>
+                                <p>Benefit Scholastic at Travelers Rest HS raises $1,000</p>
+                            </div>
+                        </div>
+                        <div class="timeline-dot">01</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-content">
+                            <div class="timeline-card">
+                                <h3>International Chess Day</h3>
+                                <p>Alzheimer's Association SC spotlights the project</p>
+                            </div>
+                        </div>
+                        <div class="timeline-dot">07</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-content">
+                            <div class="timeline-card">
+                                <h3>Clemson Partnership</h3>
+                                <p>Caton & Aman Sreshta partner with Dr. Kaileigh Byrne for cognitive research</p>
+                            </div>
+                        </div>
+                        <div class="timeline-dot">12</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-content">
+                            <div class="timeline-card">
+                                <h3>Second Tournament</h3>
+                                <p>16 scholars compete at Travelers Rest HS</p>
+                            </div>
+                        </div>
+                        <div class="timeline-dot">02</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-content">
+                            <div class="timeline-card">
+                                <h3>National Recognition</h3>
+                                <p>Alzheimer's Association national blog features the project</p>
+                            </div>
+                        </div>
+                        <div class="timeline-dot">03</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Fundraising Tab -->
+            <div id="fundraising" class="impact-content">
+                <h3 style="margin-bottom: 1.5rem; font-family: 'Cormorant Garamond', serif; font-size: 1.5rem; font-weight: bold; color: var(--forest-green);">Funds Raised Per Event</h3>
+                <div class="impact-chart">
+                    <canvas id="fundraisingChart"></canvas>
+                </div>
+                <div class="impact-note">
+                    <strong>Note:</strong> Fundraising figures are estimated based on available public reporting. The January 2025 tournament officially raised $1,000 for The Longest Day / Do What You Love to End ALZ campaign.
+                </div>
+            </div>
+
+            <!-- Impact Tab -->
+            <div id="impact" class="impact-content">
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;">
+                    <div>
+                        <h3 style="margin-bottom: 1.5rem; font-family: 'Cormorant Garamond', serif; font-size: 1.5rem; font-weight: bold; color: var(--forest-green);">Impact Breakdown</h3>
+                        <div class="impact-chart">
+                            <canvas id="impactChart"></canvas>
+                        </div>
+                    </div>
+                    <div>
+                        <h3 style="margin-bottom: 1.5rem; font-family: 'Cormorant Garamond', serif; font-size: 1.5rem; font-weight: bold; color: var(--forest-green);">Participants Per Event</h3>
+                        <div class="impact-chart">
+                            <canvas id="participantsChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta">
+        <div class="container">
+            <div class="cta-header">
+                <h2>How You Can Help<br><em>End Alzheimer's</em></h2>
+            </div>
+            <div class="cta-grid">
+                <div class="cta-card">
+                    <div class="cta-card-icon">♟</div>
+                    <h3>Donate</h3>
+                    <p>Support the Alzheimer's Association South Carolina through the Do What You Love to End ALZ campaign.</p>
+                    <a href="https://events.alz.org/event/dowhatyoulove/south-carolina-chapter" target="_blank">Donate Now</a>
+                </div>
+                <div class="cta-card">
+                    <div class="cta-card-icon">♜</div>
+                    <h3>Volunteer</h3>
+                    <p>Join the team as a chess instructor, tournament volunteer, or outreach ambassador across Upstate SC.</p>
+                    <a href="https://www.alz.org/sc" target="_blank">Get Involved</a>
+                </div>
+                <div class="cta-card">
+                    <div class="cta-card-icon">♝</div>
+                    <h3>Participate in Research</h3>
+                    <p>Adults 65+ who play chess (or don't) are needed for the Clemson University cognitive study.</p>
+                    <a href="mailto:decisionlab@clemson.edu">Contact Clemson</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-logo">
+                        <div class="footer-logo-icon">♟</div>
+                        <div class="footer-logo-text">
+                            <h3>Checkmating Alzheimer's</h3>
+                            <p>South Carolina</p>
+                        </div>
+                    </div>
+                    <p>A student-led nonprofit using chess to fight Alzheimer's disease through community action, fundraising, and scientific research.</p>
+                    <div style="font-size: 0.75rem; color: var(--soft-gold);">@checkmatingalzheimers</div>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="#mission">Our Mission</a></li>
+                        <li><a href="#team">The Team</a></li>
+                        <li><a href="#volunteer">Volunteer</a></li>
+                        <li><a href="#research">Research</a></li>
+                        <li><a href="#impact">Impact Data</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Partners</h4>
+                    <ul>
+                        <li>Alzheimer's Association — SC Chapter</li>
+                        <li>Clemson University (Dr. Kaileigh Byrne)</li>
+                        <li>Travelers Rest High School Chess Club</li>
+                        <li>D.W. Daniel High School Chess Club</li>
+                        <li>Columbia Chess Club</li>
+                        <li>SC Chess Association</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2026 Checkmating Alzheimer's. All proceeds benefit the Alzheimer's Association South Carolina.</p>
+                <div class="footer-credit">
+                    <span>Made with</span>
+                    <span>♥</span>
+                    <span>in Upstate South Carolina</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Tab switching
+        function switchTab(e, tabName) {
+            const tabs = document.querySelectorAll('.impact-tab');
+            const contents = document.querySelectorAll('.impact-content');
+
+            tabs.forEach(tab => tab.classList.remove('active'));
+            contents.forEach(content => content.classList.remove('active'));
+
+            e.target.classList.add('active');
+            document.getElementById(tabName).classList.add('active');
+
+            // Initialize charts if needed
+            if (tabName === 'fundraising') {
+                initFundraisingChart();
+            } else if (tabName === 'impact') {
+                initImpactCharts();
+            }
+        }
+
+        // Volunteer role toggle
+        function toggleRole(element, index) {
+            const roles = document.querySelectorAll('.volunteer-role');
+            roles.forEach(role => role.classList.remove('active'));
+            element.classList.add('active');
+        }
+
+        // Chart initialization
+        let chartsInitialized = false;
+
+        function initFundraisingChart() {
+            if (chartsInitialized) return;
+            const ctx = document.getElementById('fundraisingChart');
+            if (!ctx) return;
+
+            new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['Jan 2025', 'Jul 2025', 'Dec 2025', 'Feb 2026', 'Mar 2026'],
+                    datasets: [{
+                        label: 'Funds Raised',
+                        data: [1000, 500, 800, 600, 900],
+                        backgroundColor: '#9C91FF',
+                        borderRadius: 6
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { display: false }
+                    },
+                    scales: {
+                        y: {
+                            ticks: { callback: value => '$' + value }
+                        }
+                    }
+                }
+            });
+            chartsInitialized = true;
+        }
+
+        function initImpactCharts() {
+            const impactCtx = document.getElementById('impactChart');
+            const participantsCtx = document.getElementById('participantsChart');
+
+            if (impactCtx) {
+                new Chart(impactCtx, {
+                    type: 'doughnut',
+                    data: {
+                        labels: ['Funds Raised', 'Seniors Taught', 'Tournaments', 'Partner Clubs'],
+                        datasets: [{
+                            data: [3800, 60, 5, 8],
+                            backgroundColor: ['#9C91FF', '#E0DDFF', '#b5adff', '#d4d0ff']
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            legend: { position: 'bottom' }
+                        }
+                    }
+                });
+            }
+
+            if (participantsCtx) {
+                new Chart(participantsCtx, {
+                    type: 'line',
+                    data: {
+                        labels: ['Jan 2025', 'Jul 2025', 'Dec 2025', 'Feb 2026', 'Mar 2026'],
+                        datasets: [{
+                            label: 'Participants',
+                            data: [16, 30, 24, 16, 40],
+                            borderColor: '#9C91FF',
+                            backgroundColor: 'rgba(156, 145, 255, 0.1)',
+                            borderWidth: 3,
+                            pointBackgroundColor: '#E0DDFF',
+                            pointRadius: 5,
+                            tension: 0.4
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            legend: { display: false }
+                        }
+                    }
+                });
+            }
+        }
+
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
