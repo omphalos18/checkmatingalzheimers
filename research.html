@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Research — Checkmating Alzheimer's</title>
+  <meta name="description" content="The science behind chess and Alzheimer's prevention — and our Clemson University research partnership.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    .research-bg { background: var(--purple-pale); }
+    /* Two-col intro */
+    .intro-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; }
+    .intro-text h2 { margin-bottom: 1rem; }
+    .intro-text p  { margin-bottom: 0.9rem; font-size: 1rem; }
+    /* Brain regions grid */
+    .brain-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 0.85rem; margin-top: 1.5rem; }
+    .brain-card {
+      background: #fff; border: 1.5px solid var(--border); border-radius: var(--radius-sm);
+      padding: 1.1rem 1.1rem 1rem;
+    }
+    .brain-card-label {
+      font-size: 0.7rem; font-weight: 800; text-transform: uppercase;
+      letter-spacing: 0.08em; color: var(--purple-dark); margin-bottom: 0.3rem;
+    }
+    .brain-card h3 { font-size: 0.95rem; margin-bottom: 0.25rem; }
+    .brain-card p  { font-size: 0.82rem; color: var(--text-light); line-height: 1.55; }
+    /* Clemson partnership card */
+    .partner-card {
+      background: #fff; border-radius: var(--radius); padding: 2rem;
+      box-shadow: var(--shadow); border: 1.5px solid var(--border);
+    }
+    .partner-header {
+      display: flex; align-items: center; gap: 0.9rem;
+      margin-bottom: 1.5rem; padding-bottom: 1.25rem; border-bottom: 1.5px solid var(--border);
+    }
+    .cu-badge {
+      width: 52px; height: 52px; border-radius: 12px; flex-shrink: 0;
+      background: linear-gradient(135deg, #F66733, #522D80);
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 900; font-size: 0.85rem; color: #fff; text-align: center; line-height: 1.2;
+    }
+    .partner-header div strong { display: block; font-size: 1rem; color: var(--text-dark); }
+    .partner-header div span  { font-size: 0.82rem; color: var(--text-light); }
+    .partner-detail { display: flex; gap: 0.75rem; margin-bottom: 1rem; align-items: flex-start; }
+    .pd-icon {
+      width: 34px; height: 34px; border-radius: 9px; background: var(--purple-pale);
+      display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 2px;
+    }
+    .pd-icon svg { width: 16px; height: 16px; color: var(--purple-dark); }
+    .partner-detail p { font-size: 0.9rem; color: var(--text-body); }
+    .partner-detail strong { color: var(--text-dark); }
+    .partner-cta {
+      background: var(--purple-pale); border-radius: var(--radius-sm);
+      padding: 1.1rem 1.25rem; margin-top: 1.25rem;
+    }
+    .partner-cta p { font-size: 0.85rem; color: var(--text-body); margin-bottom: 0.35rem; }
+    .partner-cta a { font-weight: 800; color: var(--purple-dark); font-size: 0.9rem; }
+    /* Why it matters section */
+    .why-section { background: #fff; }
+    .why-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.5rem; }
+    .why-card {
+      background: var(--purple-pale); border-radius: var(--radius); padding: 1.75rem;
+      border: 1.5px solid var(--border);
+    }
+    .why-card h3 { margin-bottom: 0.55rem; font-size: 1rem; }
+    .why-card p  { font-size: 0.88rem; color: var(--text-light); line-height: 1.6; }
+    /* Quote strip */
+    .quote-strip {
+      background: linear-gradient(135deg, var(--purple-dark), var(--purple-deep));
+      padding: 64px 0; text-align: center;
+    }
+    .quote-strip blockquote {
+      font-size: clamp(1.1rem, 2.5vw, 1.5rem); font-style: italic; color: #fff;
+      max-width: 680px; margin: 0 auto 1.25rem; line-height: 1.65;
+    }
+    .quote-strip cite { font-size: 0.85rem; color: rgba(255,255,255,0.65); font-style: normal; font-weight: 700; }
+    @media (max-width: 820px) {
+      .intro-grid { grid-template-columns: 1fr; }
+      .brain-grid { grid-template-columns: 1fr; }
+      .why-grid   { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <a href="#main" class="skip">Skip to main content</a>
+
+  <nav>
+    <div class="container">
+      <div class="nav-inner">
+        <a href="index.html" class="nav-brand" aria-label="Home">
+          <img src="brand_assets/finalized.png" alt="Logo">
+          <div class="nav-brand-text">Checkmating<br><span>Alzheimer's</span></div>
+        </a>
+        <div class="nav-links">
+          <a href="story.html">Our Story</a>
+          <a href="programs.html">What We Do</a>
+          <a href="research.html" class="active">Research</a>
+          <a href="team.html">Our Team</a>
+          <a href="involved.html">Get Involved</a>
+        </div>
+        <a href="involved.html" class="btn btn-primary nav-cta" style="font-size:0.85rem;padding:0.6rem 1.3rem;">Join Us</a>
+        <button class="hamburger" id="nav-toggle" aria-label="Toggle menu" aria-expanded="false">
+          <svg id="ham-open"  width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+          <svg id="ham-close" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="display:none"><path d="M6 18L18 6M6 6l12 12"/></svg>
+        </button>
+      </div>
+    </div>
+    <div class="mobile-menu" id="mobile-nav">
+      <a href="story.html">Our Story</a>
+      <a href="programs.html">What We Do</a>
+      <a href="research.html" class="active">Research</a>
+      <a href="team.html">Our Team</a>
+      <a href="involved.html">Get Involved</a>
+      <a href="involved.html" class="btn btn-primary">Join Us</a>
+    </div>
+  </nav>
+
+  <main id="main">
+
+    <header class="page-hero">
+      <div class="page-hero-content reveal">
+        <div class="tag">The Science</div>
+        <h1>Why chess?<br>Here's what research shows.</h1>
+        <p>Chess is one of the most cognitively demanding games in the world — and science is beginning to show it may be one of the most powerful tools we have against Alzheimer's.</p>
+      </div>
+    </header>
+
+    <!-- Brain science + Clemson card -->
+    <section class="research-bg">
+      <div class="container">
+        <div class="intro-grid">
+
+          <div class="reveal">
+            <div class="tag">Brain Science</div>
+            <h2>Chess activates the exact regions Alzheimer's attacks.</h2>
+            <p>Alzheimer's disease progressively damages the hippocampus, prefrontal cortex, and other brain regions responsible for memory, planning, and spatial reasoning. Chess — uniquely among games — demands intense, sustained activity across all of these regions simultaneously.</p>
+            <p>This isn't a coincidence. Researchers believe that regularly challenging these specific brain systems may build what neuroscientists call <strong>cognitive reserve</strong> — a kind of mental resilience that can delay or reduce the effects of cognitive decline, even as physical changes occur in the brain.</p>
+            <p>Dr. Kaileigh Byrne of Clemson University, who is leading our research study, notes that <em>"there is almost no work specifically on chess"</em> despite its remarkable engagement of multiple cognitive functions. We're working to change that.</p>
+
+            <div class="brain-grid">
+              <div class="brain-card">
+                <div class="brain-card-label">Hippocampus</div>
+                <h3>Memory</h3>
+                <p>Remembering piece positions, past moves, and learned patterns. The hippocampus is among the first regions damaged by Alzheimer's.</p>
+              </div>
+              <div class="brain-card">
+                <div class="brain-card-label">Prefrontal Cortex</div>
+                <h3>Planning &amp; Strategy</h3>
+                <p>Thinking multiple moves ahead, evaluating consequences, and managing complex decisions all activate this critical region.</p>
+              </div>
+              <div class="brain-card">
+                <div class="brain-card-label">Occipital Lobe</div>
+                <h3>Visualization</h3>
+                <p>Mentally rotating pieces and visualizing future board states engages the brain's visual processing centers intensely.</p>
+              </div>
+              <div class="brain-card">
+                <div class="brain-card-label">Cerebellum</div>
+                <h3>Coordination</h3>
+                <p>Even the physical act of playing — moving pieces, managing a clock — engages fine motor coordination and attention.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="reveal d1">
+            <div class="tag">Our Research Partner</div>
+            <div class="partner-card">
+              <div class="partner-header">
+                <div class="cu-badge">CU</div>
+                <div>
+                  <strong>Clemson University</strong>
+                  <span>Cognitive Psychology · Decision Lab</span>
+                </div>
+              </div>
+
+              <div class="partner-detail">
+                <div class="pd-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
+                <p><strong>Lead Researcher:</strong> Dr. Kaileigh Byrne, associate professor of cognitive psychology at Clemson University.</p>
+              </div>
+
+              <div class="partner-detail">
+                <div class="pd-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg></div>
+                <p><strong>Study Type:</strong> Cross-sectional study comparing long-time chess players with non-players or infrequent players, both aged 65 and older.</p>
+              </div>
+
+              <div class="partner-detail">
+                <div class="pd-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></div>
+                <p><strong>Research Goal:</strong> Determine which brain regions activate during chess play, and whether long-term chess experience correlates with reduced cognitive decline markers.</p>
+              </div>
+
+              <div class="partner-detail">
+                <div class="pd-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg></div>
+                <p><strong>Status:</strong> Actively recruiting participants — launched 2024 and ongoing.</p>
+              </div>
+
+              <div class="partner-cta">
+                <p>Adults 65+ interested in participating can contact:</p>
+                <a href="mailto:decisionlab@clemson.edu">decisionlab@clemson.edu &rarr;</a>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Quote strip -->
+    <section class="quote-strip">
+      <div class="container reveal">
+        <blockquote>"There is almost no work specifically on chess, despite its engagement of multiple cognitive functions simultaneously. This research is long overdue."</blockquote>
+        <cite>— Dr. Kaileigh Byrne, Associate Professor of Cognitive Psychology, Clemson University</cite>
+      </div>
+    </section>
+
+    <!-- Why it matters -->
+    <section class="why-section">
+      <div class="container">
+        <div class="section-header reveal">
+          <div class="tag">Why It Matters</div>
+          <h2>The bigger picture.</h2>
+          <p>Alzheimer's is a crisis affecting millions of families. Community-driven research like ours can shift what's possible.</p>
+        </div>
+        <div class="why-grid">
+          <div class="why-card reveal">
+            <div class="card-icon icon-purple" style="margin-bottom:1rem;">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
+            </div>
+            <h3>6.9 million Americans</h3>
+            <p>Currently living with Alzheimer's disease — a number projected to nearly double by 2060 without new interventions or preventive approaches.</p>
+          </div>
+          <div class="why-card reveal d1">
+            <div class="card-icon icon-gold" style="margin-bottom:1rem;">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>
+            </div>
+            <h3>No cure exists yet</h3>
+            <p>There is currently no approved cure for Alzheimer's. Prevention, early detection, and cognitive reserve-building activities like chess are among our most powerful tools.</p>
+          </div>
+          <div class="why-card reveal d2">
+            <div class="card-icon icon-mint" style="margin-bottom:1rem;">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            </div>
+            <h3>Community as a solution</h3>
+            <p>Social connection and mental engagement together are among the strongest protective factors identified in Alzheimer's research. Chess delivers both in one activity.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="nl-strip">
+      <div class="container reveal">
+        <div class="tag" style="background:rgba(255,255,255,0.18);color:#fff;">Stay Connected</div>
+        <h2>Follow the research.</h2>
+        <p>We'll share updates on the Clemson study and new findings as they emerge.</p>
+        <form class="nl-form" onsubmit="handleNL(event)" novalidate>
+          <label for="nl-email" style="position:absolute;width:1px;height:1px;overflow:hidden;">Email</label>
+          <input id="nl-email" type="email" placeholder="Your email address" required autocomplete="email">
+          <button type="submit">Subscribe</button>
+        </form>
+        <p class="nl-success" id="nl-success" role="status">You're in! ♟</p>
+        <p class="nl-note">No spam. Unsubscribe anytime.</p>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand-col">
+          <img src="brand_assets/finalized.png" alt="Logo">
+          <strong>Checkmating Alzheimer's</strong>
+          <p>A youth-led community initiative from Upstate South Carolina using chess to fight Alzheimer's.</p>
+          <div class="footer-social">
+            <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
+            <a href="#" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg></a>
+            <a href="mailto:articulatedesigners@gmail.com" aria-label="Email"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg></a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h4>Initiative</h4>
+          <ul>
+            <li><a href="story.html">Our Story</a></li>
+            <li><a href="programs.html">What We Do</a></li>
+            <li><a href="research.html">The Research</a></li>
+            <li><a href="team.html">Our Team</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Participate</h4>
+          <ul>
+            <li><a href="involved.html">Play a Tournament</a></li>
+            <li><a href="involved.html">Volunteer</a></li>
+            <li><a href="involved.html">Donate</a></li>
+            <li><a href="mailto:articulatedesigners@gmail.com">Contact Us</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>&copy; 2026 Checkmating Alzheimer's · Upstate South Carolina</span>
+        <span>Founded by Caton Tsao &amp; Allen Hong</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="nav.js"></script>
+  <script>
+    function handleNL(e) {
+      e.preventDefault();
+      document.getElementById('nl-success').style.display = 'block';
+      e.target.querySelector('input').value = '';
+      e.target.querySelector('button').textContent = 'Subscribed!';
+      e.target.querySelector('button').disabled = true;
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>What We Do — Checkmating Alzheimer's</title>
+  <meta name="description" content="Community tournaments, chess classes for seniors, and university research — here's how Checkmating Alzheimer's uses chess to fight back.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    .programs-section { background: var(--purple-pale); }
+    /* Program feature row */
+    .program-row {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center;
+      padding: 64px 0; border-bottom: 1.5px solid var(--border);
+    }
+    .program-row:last-child { border-bottom: none; padding-bottom: 0; }
+    .program-row.flip { direction: rtl; }
+    .program-row.flip > * { direction: ltr; }
+    .program-num {
+      font-size: 5rem; font-weight: 900; line-height: 1;
+      color: var(--purple-mist); margin-bottom: 0.25rem; font-family: 'Nunito', sans-serif;
+    }
+    .program-text h2 { margin-bottom: 0.85rem; font-size: clamp(1.4rem, 3vw, 2rem); }
+    .program-text p  { margin-bottom: 0.9rem; font-size: 0.98rem; color: var(--text-body); }
+    .program-list    { list-style: none; margin-bottom: 1.5rem; display: flex; flex-direction: column; gap: 0.5rem; }
+    .program-list li {
+      display: flex; align-items: flex-start; gap: 0.6rem;
+      font-size: 0.9rem; color: var(--text-body);
+    }
+    .program-list li::before { content: '♟'; color: var(--purple); flex-shrink: 0; }
+    /* Visual panel */
+    .program-visual {
+      background: #fff; border-radius: var(--radius); padding: 2.5rem;
+      border: 1.5px solid var(--border); box-shadow: var(--shadow);
+      display: flex; flex-direction: column; gap: 1rem;
+    }
+    .pv-icon {
+      width: 64px; height: 64px; border-radius: 16px;
+      display: flex; align-items: center; justify-content: center; margin-bottom: 0.5rem;
+    }
+    .pv-icon svg { width: 30px; height: 30px; }
+    .pv-stat-row { display: flex; gap: 1rem; flex-wrap: wrap; }
+    .pv-stat {
+      flex: 1; min-width: 80px; background: var(--purple-pale);
+      border-radius: var(--radius-sm); padding: 0.85rem 1rem; text-align: center;
+    }
+    .pv-stat-num   { font-size: 1.6rem; font-weight: 900; color: var(--purple-dark); line-height: 1; }
+    .pv-stat-label { font-size: 0.75rem; color: var(--text-light); margin-top: 0.2rem; }
+    .pv-divider { border: none; border-top: 1.5px solid var(--border); }
+    .pv-detail { display: flex; align-items: flex-start; gap: 0.65rem; }
+    .pv-detail-icon {
+      width: 30px; height: 30px; border-radius: 8px; background: var(--purple-pale);
+      display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 2px;
+    }
+    .pv-detail-icon svg { width: 14px; height: 14px; color: var(--purple-dark); }
+    .pv-detail p { font-size: 0.86rem; color: var(--text-body); }
+    .pv-detail strong { color: var(--text-dark); }
+    /* Impact bar  */
+    .impact-callout {
+      background: linear-gradient(135deg, var(--purple-dark), var(--purple-deep));
+      border-radius: var(--radius); padding: 2rem; color: #fff; margin-top: 1.5rem;
+    }
+    .impact-callout h3 { color: #fff; margin-bottom: 0.5rem; font-size: 1rem; }
+    .impact-callout p  { color: rgba(255,255,255,0.72); font-size: 0.9rem; }
+    @media (max-width: 820px) {
+      .program-row, .program-row.flip { grid-template-columns: 1fr; direction: ltr; }
+    }
+  </style>
+</head>
+<body>
+  <a href="#main" class="skip">Skip to main content</a>
+
+  <nav>
+    <div class="container">
+      <div class="nav-inner">
+        <a href="index.html" class="nav-brand" aria-label="Home">
+          <img src="brand_assets/finalized.png" alt="Logo">
+          <div class="nav-brand-text">Checkmating<br><span>Alzheimer's</span></div>
+        </a>
+        <div class="nav-links">
+          <a href="story.html">Our Story</a>
+          <a href="programs.html" class="active">What We Do</a>
+          <a href="research.html">Research</a>
+          <a href="team.html">Our Team</a>
+          <a href="involved.html">Get Involved</a>
+        </div>
+        <a href="involved.html" class="btn btn-primary nav-cta" style="font-size:0.85rem;padding:0.6rem 1.3rem;">Join Us</a>
+        <button class="hamburger" id="nav-toggle" aria-label="Toggle menu" aria-expanded="false">
+          <svg id="ham-open"  width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+          <svg id="ham-close" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="display:none"><path d="M6 18L18 6M6 6l12 12"/></svg>
+        </button>
+      </div>
+    </div>
+    <div class="mobile-menu" id="mobile-nav">
+      <a href="story.html">Our Story</a>
+      <a href="programs.html" class="active">What We Do</a>
+      <a href="research.html">Research</a>
+      <a href="team.html">Our Team</a>
+      <a href="involved.html">Get Involved</a>
+      <a href="involved.html" class="btn btn-primary">Join Us</a>
+    </div>
+  </nav>
+
+  <main id="main">
+
+    <header class="page-hero">
+      <div class="page-hero-content reveal">
+        <div class="tag">What We Do</div>
+        <h1>Three ways chess<br>fights back.</h1>
+        <p>From community fundraising to senior outreach to university research — here's how we're turning chess into a weapon against Alzheimer's.</p>
+      </div>
+    </header>
+
+    <section class="programs-section">
+      <div class="container">
+
+        <!-- Program 1: Tournaments -->
+        <div class="program-row reveal">
+          <div class="program-text">
+            <div class="program-num">01</div>
+            <div class="tag">Community Events</div>
+            <h2>Chess Tournaments for a Cause</h2>
+            <p>We partner with chess clubs across Upstate and Midlands South Carolina to host fundraising tournaments for the Alzheimer's Association's <em>#TheLongestDay</em> campaign.</p>
+            <p>Every tournament is open to all skill levels — from complete beginners to experienced competitors. The entry fee goes directly to Alzheimer's research and awareness. You play the game you love. The cause gets funded. Everyone wins.</p>
+            <ul class="program-list">
+              <li>All skill levels welcome — beginners to expert</li>
+              <li>Multiple cities across Upstate and Midlands SC</li>
+              <li>Entry fees go to the Alzheimer's Association</li>
+              <li>Hosted in partnership with community chess clubs</li>
+              <li>"Do What You Love to End Alz" fundraiser series</li>
+            </ul>
+            <a href="involved.html" class="btn btn-primary">Find a Tournament</a>
+          </div>
+          <div class="program-visual reveal d1">
+            <div class="pv-icon icon-purple">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 22H5v-2h14v2zM13 2c-2.21 0-4.5 1.77-4.5 4.5 0 1.54.79 2.89 2 3.72V13l-3 2v2h9v-2l-3-2V10.22c1.21-.83 2-2.18 2-3.72C15.5 3.77 15.21 2 13 2z"/></svg>
+            </div>
+            <div class="pv-stat-row">
+              <div class="pv-stat">
+                <div class="pv-stat-num">$1K+</div>
+                <div class="pv-stat-label">Raised total</div>
+              </div>
+              <div class="pv-stat">
+                <div class="pv-stat-num">SC</div>
+                <div class="pv-stat-label">Upstate + Midlands</div>
+              </div>
+            </div>
+            <hr class="pv-divider">
+            <div class="pv-detail">
+              <div class="pv-detail-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg></div>
+              <p><strong>All skill levels welcome.</strong> You don't need to be a strong player — just bring your love of the game and a desire to make a difference.</p>
+            </div>
+            <div class="pv-detail">
+              <div class="pv-detail-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg></div>
+              <p><strong>Sign up for tournament alerts.</strong> We announce new events via our newsletter — join below to be the first to know.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Program 2: Senior Classes -->
+        <div class="program-row flip reveal">
+          <div class="program-text">
+            <div class="program-num">02</div>
+            <div class="tag">Senior Outreach</div>
+            <h2>Chess Classes at Retirement Communities</h2>
+            <p>We visit local retirement communities to teach chess directly to seniors — bringing cognitive stimulation, social connection, and real joy to the people most at risk for Alzheimer's.</p>
+            <p>Research shows that challenging the mind through games like chess may help build cognitive reserve — a kind of mental resilience against decline. Our classes are free, welcoming, and designed for absolute beginners.</p>
+            <ul class="program-list">
+              <li>Free chess instruction for seniors</li>
+              <li>Visits to local retirement communities</li>
+              <li>No prior chess experience needed</li>
+              <li>Focus on cognitive engagement and social connection</li>
+              <li>Taught directly by our student volunteers</li>
+            </ul>
+            <a href="involved.html" class="btn btn-primary">Volunteer to Teach</a>
+          </div>
+          <div class="program-visual reveal d1">
+            <div class="pv-icon icon-mint">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>
+            </div>
+            <div class="pv-stat-row">
+              <div class="pv-stat">
+                <div class="pv-stat-num">65+</div>
+                <div class="pv-stat-label">Age group served</div>
+              </div>
+              <div class="pv-stat">
+                <div class="pv-stat-num">Free</div>
+                <div class="pv-stat-label">Always</div>
+              </div>
+            </div>
+            <hr class="pv-divider">
+            <div class="pv-detail">
+              <div class="pv-detail-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg></div>
+              <p><strong>Cognitive benefits are real.</strong> Chess activates memory, planning, and visualization — the exact functions most threatened by Alzheimer's disease.</p>
+            </div>
+            <div class="pv-detail">
+              <div class="pv-detail-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg></div>
+              <p><strong>More than a game.</strong> Our visits reduce social isolation — a leading risk factor for cognitive decline in older adults.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Program 3: Research -->
+        <div class="program-row reveal">
+          <div class="program-text">
+            <div class="program-num">03</div>
+            <div class="tag">University Research</div>
+            <h2>Clemson University Research Study</h2>
+            <p>Caton Tsao and Aman Sreshta proposed a formal research study to Dr. Kaileigh Byrne at Clemson University — investigating whether chess gameplay can help prevent Alzheimer's and dementia.</p>
+            <p>Dr. Byrne notes that "there is almost no work specifically on chess," despite its engagement of multiple cognitive functions simultaneously. Our community is helping change that through real scientific study.</p>
+            <ul class="program-list">
+              <li>Cross-sectional study comparing chess players vs. non-players (65+)</li>
+              <li>Examining hippocampus, prefrontal cortex &amp; occipital lobe activation</li>
+              <li>Led by Dr. Kaileigh Byrne, cognitive psychology professor at Clemson</li>
+              <li>Actively recruiting participants aged 65 and older</li>
+              <li>Contact: decisionlab@clemson.edu to participate</li>
+            </ul>
+            <a href="research.html" class="btn btn-primary">See the Science</a>
+          </div>
+          <div class="program-visual reveal d1">
+            <div class="pv-icon icon-gold">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            </div>
+            <div class="pv-stat-row">
+              <div class="pv-stat">
+                <div class="pv-stat-num">2024</div>
+                <div class="pv-stat-label">Study launched</div>
+              </div>
+              <div class="pv-stat">
+                <div class="pv-stat-num">CU</div>
+                <div class="pv-stat-label">Clemson University</div>
+              </div>
+            </div>
+            <hr class="pv-divider">
+            <div class="pv-detail">
+              <div class="pv-detail-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></div>
+              <p><strong>Looking for participants.</strong> If you are 65 or older — whether you've played chess for years or never at all — you may be eligible to participate.</p>
+            </div>
+            <div class="impact-callout">
+              <h3>Want to participate?</h3>
+              <p>Contact the Clemson Decision Lab at <strong style="color:#fff;">decisionlab@clemson.edu</strong> to learn more about joining the study.</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <section class="nl-strip">
+      <div class="container reveal">
+        <div class="tag" style="background:rgba(255,255,255,0.18);color:#fff;">Stay Updated</div>
+        <h2>Get event updates.</h2>
+        <p>Be the first to hear about upcoming tournaments, workshops, and volunteer opportunities.</p>
+        <form class="nl-form" onsubmit="handleNL(event)" novalidate>
+          <label for="nl-email" style="position:absolute;width:1px;height:1px;overflow:hidden;">Email</label>
+          <input id="nl-email" type="email" placeholder="Your email address" required autocomplete="email">
+          <button type="submit">Subscribe</button>
+        </form>
+        <p class="nl-success" id="nl-success" role="status">You're in! ♟</p>
+        <p class="nl-note">No spam. Unsubscribe anytime.</p>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand-col">
+          <img src="brand_assets/finalized.png" alt="Logo">
+          <strong>Checkmating Alzheimer's</strong>
+          <p>A youth-led community initiative from Upstate South Carolina using chess to fight Alzheimer's.</p>
+          <div class="footer-social">
+            <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
+            <a href="#" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg></a>
+            <a href="mailto:articulatedesigners@gmail.com" aria-label="Email"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg></a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h4>Initiative</h4>
+          <ul>
+            <li><a href="story.html">Our Story</a></li>
+            <li><a href="programs.html">What We Do</a></li>
+            <li><a href="research.html">The Research</a></li>
+            <li><a href="team.html">Our Team</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Participate</h4>
+          <ul>
+            <li><a href="involved.html">Play a Tournament</a></li>
+            <li><a href="involved.html">Volunteer</a></li>
+            <li><a href="involved.html">Donate</a></li>
+            <li><a href="mailto:articulatedesigners@gmail.com">Contact Us</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>&copy; 2026 Checkmating Alzheimer's · Upstate South Carolina</span>
+        <span>Founded by Caton Tsao &amp; Allen Hong</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="nav.js"></script>
+  <script>
+    function handleNL(e) {
+      e.preventDefault();
+      document.getElementById('nl-success').style.display = 'block';
+      e.target.querySelector('input').value = '';
+      e.target.querySelector('button').textContent = 'Subscribed!';
+      e.target.querySelector('button').disabled = true;
+    }
+  </script>
+</body>
+</html>
