@@ -1,9 +1,9 @@
-/* Shared nav behaviour — included on every page */
+/* Shared nav behaviour — included on every inner page */
 (function () {
-  const toggle   = document.getElementById('nav-toggle');
-  const menu     = document.getElementById('mobile-nav');
-  const hamOpen  = document.getElementById('ham-open');
-  const hamClose = document.getElementById('ham-close');
+  const toggle   = document.getElementById('nt');
+  const menu     = document.getElementById('mn');
+  const hamOpen  = document.getElementById('io');
+  const hamClose = document.getElementById('ic');
 
   if (toggle && menu) {
     toggle.addEventListener('click', () => {

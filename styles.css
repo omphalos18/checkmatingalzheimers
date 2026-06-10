@@ -154,67 +154,52 @@ section { padding: 80px 0; }
 }
 
 /* ══════════════════════════════════
-   NAVIGATION
+   NAVIGATION — matches homepage exactly
 ══════════════════════════════════ */
-nav {
+.snav {
   position: sticky; top: 0; z-index: 100;
   background: rgba(255,255,255,.96);
   backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
   border-bottom: 1px solid var(--border);
 }
-.nav-inner {
+.nwrap {
+  max-width: 1280px; margin: 0 auto;
+  padding: 0 clamp(1.5rem,5vw,4.5rem);
   display: flex; align-items: center; justify-content: space-between;
-  height: 62px; gap: 1rem;
+  height: 62px; gap: 2rem;
 }
-.nav-brand { display: flex; align-items: center; gap: .6rem; flex-shrink: 0; }
-.nav-brand img { height: 28px; width: 28px; }
-.nav-brand-text {
-  font-family: 'Plus Jakarta Sans', system-ui, sans-serif; font-weight: 700; font-size: .88rem;
-  line-height: 1.2; color: var(--ink);
-}
-.nav-brand-text span { color: var(--acc); }
-.nav-links {
-  display: flex; align-items: center; gap: 2rem;
-  font-size: .825rem; font-weight: 500; color: var(--ink-2);
-}
-.nav-links a { transition: color .15s; }
-.nav-links a:hover { color: var(--ink); }
-.nav-links a.active { color: var(--ink); font-weight: 600; }
-.nav-cta {
+.nlogo { display: flex; align-items: center; gap: .65rem; flex-shrink: 0; }
+.nlogo img { height: 28px; width: 28px; }
+.nlogt { font-size: .88rem; font-weight: 700; line-height: 1.25; color: var(--ink); letter-spacing: -.01em; }
+.nlogt span { color: var(--acc); }
+.nlinks { display: flex; gap: 2rem; font-size: .825rem; font-weight: 500; color: var(--ink-2); }
+.nlinks a { transition: color .15s; }
+.nlinks a:hover, .nlinks a.active { color: var(--ink); }
+.ncta {
+  display: inline-flex; align-items: center; gap: .3rem;
   font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
-  font-size: .8rem; font-weight: 700;
-  padding: .52rem 1.25rem; border: none;
-  background: var(--ink); color: var(--white);
-  border-radius: var(--radius);
-  cursor: pointer; transition: background .18s, transform .15s;
-  letter-spacing: .01em;
+  font-size: .8rem; font-weight: 700; letter-spacing: .01em;
+  padding: .52rem 1.25rem; background: var(--ink); color: #fff;
+  border-radius: var(--radius); border: none;
+  cursor: pointer; transition: background .18s, transform .18s;
+  white-space: nowrap;
 }
-.nav-cta:hover { background: var(--acc); transform: translateY(-1px); }
-.hamburger {
-  display: none; background: none; border: none;
-  cursor: pointer; padding: .3rem; color: var(--ink);
-}
-.mobile-menu {
-  display: none; flex-direction: column;
-  background: var(--bg); border-top: 1px solid var(--border);
-}
-.mobile-menu a {
-  display: block; padding: .75rem 1.5rem;
+.ncta:hover { background: var(--acc); transform: translateY(-1px); }
+.nham { display: none; background: none; border: none; cursor: pointer; padding: .3rem; color: var(--ink); }
+.mmenu { display: none; flex-direction: column; background: var(--bg); border-top: 1px solid var(--border); }
+.mmenu.open { display: flex; }
+.mmenu a {
+  display: block; padding: .8rem clamp(1.5rem,5vw,4.5rem);
   font-size: .95rem; font-weight: 500; color: var(--ink-2);
   border-bottom: 1px solid var(--border); transition: color .15s;
 }
-.mobile-menu a:hover { color: var(--ink); }
-.mobile-menu a.active { color: var(--acc); font-weight: 600; }
-.mobile-menu .btn {
-  margin: .75rem 1.5rem 1rem;
-  display: block; text-align: center; justify-content: center;
-  border-radius: var(--radius);
+.mmenu a:hover, .mmenu a.active { color: var(--ink); }
+.mmenu .mcta {
+  margin: .75rem clamp(1.5rem,5vw,4.5rem) 1rem; display: block; text-align: center;
+  padding: .8rem; background: var(--ink); color: #fff; font-weight: 700;
+  font-size: .9rem; border-radius: var(--radius);
 }
-.mobile-menu.open { display: flex; }
-@media (max-width: 820px) {
-  .nav-links, .nav-cta { display: none; }
-  .hamburger { display: block; }
-}
+@media (max-width: 820px) { .nlinks, .ncta { display: none; } .nham { display: block; } }
 
 /* ══════════════════════════════════
    FOOTER — LIGHT / WHITE
