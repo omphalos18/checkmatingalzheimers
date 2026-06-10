@@ -84,7 +84,7 @@ section { padding: 80px 0; }
   letter-spacing: .005em;
 }
 .btn-primary {
-  background: var(--ink); color: #fff; border-color: var(--ink);
+  background: var(--acc); color: #fff; border-color: var(--acc);
 }
 .btn-primary:hover { background: var(--acc); border-color: var(--acc); transform: translateY(-1px); }
 .btn-outline {
@@ -179,7 +179,7 @@ section { padding: 80px 0; }
   display: inline-flex; align-items: center; gap: .3rem;
   font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
   font-size: .8rem; font-weight: 700; letter-spacing: .01em;
-  padding: .52rem 1.25rem; background: var(--ink); color: #fff;
+  padding: .52rem 1.25rem; background: var(--acc); color: #fff;
   border-radius: var(--radius); border: none;
   cursor: pointer; transition: background .18s, transform .18s;
   white-space: nowrap;
@@ -196,7 +196,7 @@ section { padding: 80px 0; }
 .mmenu a:hover, .mmenu a.active { color: var(--ink); }
 .mmenu .mcta {
   margin: .75rem clamp(1.5rem,5vw,4.5rem) 1rem; display: block; text-align: center;
-  padding: .8rem; background: var(--ink); color: #fff; font-weight: 700;
+  padding: .8rem; background: var(--acc); color: #fff; font-weight: 700;
   font-size: .9rem; border-radius: var(--radius);
 }
 @media (max-width: 820px) { .nlinks, .ncta { display: none; } .nham { display: block; } }
@@ -290,7 +290,7 @@ footer {
 .nl-form input:focus { background: #fff; }
 .nl-form button {
   font-family: 'Plus Jakarta Sans', system-ui, sans-serif; font-weight: 700; font-size: .8rem;
-  padding: .8rem 1.4rem; background: var(--ink); color: #fff;
+  padding: .8rem 1.4rem; background: var(--acc); color: #fff;
   border: none; cursor: pointer; transition: background .18s; white-space: nowrap;
 }
 .nl-form button:hover { background: var(--acc); }
