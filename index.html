@@ -441,7 +441,7 @@
 <div class="stats-wrap">
   <div class="stats-row">
     <div class="sc rv">
-      <div class="sc-n ac counter" data-t="1000" data-pre="$" data-suf="+">$0</div>
+      <div class="sc-n ac counter" data-t="2510.64" data-pre="$" data-suf="">$0</div>
       <div class="sc-l">Raised for Alzheimer's Association</div>
     </div>
     <div class="sc rv d1">
@@ -454,7 +454,7 @@
     </div>
     <div class="sc rv d3">
       <div class="sc-n">2024</div>
-      <div class="sc-l">Clemson research study launched</div>
+      <div class="sc-l">Year the project was founded</div>
     </div>
   </div>
 </div>
@@ -738,7 +738,8 @@ const co=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting&&!e.tar
 document.querySelectorAll('.counter').forEach(el=>co.observe(el));
 function count(el){
   const t=+el.dataset.t,pre=el.dataset.pre||'',suf=el.dataset.suf||'',dur=1400,s=performance.now(),ease=p=>1-Math.pow(1-p,3);
-  (function f(now){const p=Math.min((now-s)/dur,1);el.textContent=pre+Math.floor(ease(p)*t).toLocaleString()+suf;if(p<1)requestAnimationFrame(f);})(s);
+  const dec=el.dataset.t.includes('.')?el.dataset.t.split('.')[1].length:0;
+  (function f(now){const p=Math.min((now-s)/dur,1);const v=ease(p)*t;el.textContent=pre+(p>=1&&dec?t.toFixed(dec):Math.floor(v).toLocaleString())+suf;if(p<1)requestAnimationFrame(f);})(s);
 }
 
 /* ── Newsletter ── */
