@@ -7,8 +7,8 @@
 
 /* ── Tokens ── */
 :root {
-  --bg:         #ffffff;
-  --surface:    #e0ddff;
+  --bg:         #e0ddff;
+  --surface:    #ffffff;
   --surface2:   #cac4fe;
   --ink:        #111111;
   --ink-2:      #444444;
@@ -20,8 +20,8 @@
   --accdim:     rgba(156,145,255,.15);
 
   /* Legacy aliases */
-  --paper:        #ffffff;
-  --paper-warm:   #e0ddff;
+  --paper:        #e0ddff;
+  --paper-warm:   #ffffff;
   --rule:         #cac4fe;
   --accent:       #9c91ff;
   --accent-lt:    #e0ddff;
@@ -124,7 +124,7 @@ section { padding: 80px 0; }
 
 /* ── Card ── */
 .card {
-  background: var(--bg); border: 1px solid var(--border);
+  background: #fff; border: 1px solid var(--border);
   border-radius: var(--radius);
   padding: 2rem; transition: box-shadow .2s, transform .2s;
 }
@@ -284,10 +284,10 @@ footer {
   flex: 1; min-width: 180px;
   padding: .8rem 1.1rem; border: none;
   font-family: 'Plus Jakarta Sans', system-ui, sans-serif; font-size: .875rem;
-  background: var(--bg); color: var(--ink); outline: none;
+  background: #fff; color: var(--ink); outline: none;
 }
 .nl-form input::placeholder { color: var(--ink-3); }
-.nl-form input:focus { background: var(--surface); }
+.nl-form input:focus { background: #fff; }
 .nl-form button {
   font-family: 'Plus Jakarta Sans', system-ui, sans-serif; font-weight: 700; font-size: .8rem;
   padding: .8rem 1.4rem; background: var(--ink); color: #fff;
