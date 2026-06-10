@@ -461,7 +461,7 @@
 <!-- PARTNER STRIP -->
 <div class="pstrip" aria-label="Supported by and as seen in">
   <div class="pstrip-inner">
-    <span class="pstrip-label">Recognized by</span>
+    <span class="pstrip-label">Partners</span>
     <div class="pstrip-scroll">
       <div class="pstrip-track" id="pt"></div>
     </div>
@@ -696,19 +696,19 @@ mn.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{mn.classList
 
 /* ── Partner scroll strip ── */
 const PARTNERS=[
-  { name:'Alzheimer\'s Association', sub:'#TheLongestDay' },
-  { name:'Clemson University',       sub:'Decision Lab' },
-  { name:'Fox Carolina News',        sub:'Press Coverage' },
-  { name:'D.W. Daniel High School',  sub:'Upstate SC' },
-  { name:'ChessBase',                sub:'International' },
-  { name:'Alzheimer\'s Association', sub:'South Carolina Chapter' },
-  { name:'Clemson Decision Lab',     sub:'Dr. Kaileigh Byrne' },
+  'Columbia Chess Club',
+  'Greenville Chess Club',
+  'Clemson University Chess Club',
+  'Furman University Chess Club',
+  'Alzheimer\'s Association',
+  'SC Chess Association',
 ];
 (()=>{
   const t=document.getElementById('pt');
+  const shuffled=[...PARTNERS].sort(()=>Math.random()-.5);
   let h='';
-  for(let c=0;c<2;c++) PARTNERS.forEach(p=>{
-    h+=`<span class="pitem"><span class="pdot"></span>${p.name}</span>`;
+  for(let c=0;c<2;c++) shuffled.forEach(name=>{
+    h+=`<span class="pitem"><span class="pdot"></span>${name}</span>`;
   });
   t.innerHTML=h;
 })();
