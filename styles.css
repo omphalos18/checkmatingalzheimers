@@ -7,8 +7,8 @@
 
 /* ── Tokens ── */
 :root {
-  --bg:         #e0ddff;
-  --surface:    #ffffff;
+  --bg:         #ffffff;
+  --surface:    #e0ddff;
   --surface2:   #cac4fe;
   --ink:        #111111;
   --ink-2:      #444444;
@@ -20,8 +20,8 @@
   --accdim:     rgba(156,145,255,.15);
 
   /* Legacy aliases */
-  --paper:        #e0ddff;
-  --paper-warm:   #ffffff;
+  --paper:        #ffffff;
+  --paper-warm:   #e0ddff;
   --rule:         #cac4fe;
   --accent:       #9c91ff;
   --accent-lt:    #e0ddff;
