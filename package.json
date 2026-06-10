@@ -1,0 +1,23 @@
+{
+  "name": "checkmatingalzheimers",
+  "version": "1.0.0",
+  "description": "This is the main Github repository for the \"Checkmating Alzheimer's\" group.",
+  "main": "nav.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/omphalos18/checkmatingalzheimers.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/omphalos18/checkmatingalzheimers/issues"
+  },
+  "homepage": "https://github.com/omphalos18/checkmatingalzheimers#readme",
+  "dependencies": {
+    "@vercel/speed-insights": "^2.0.0"
+  }
+}
