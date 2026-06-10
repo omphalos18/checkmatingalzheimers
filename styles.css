@@ -7,38 +7,37 @@
 
 /* ── Tokens ── */
 :root {
-  /* Core — Dedalus Labs inspired */
   --bg:         #ffffff;
-  --surface:    #fafafa;
-  --surface2:   #f5f5f5;
-  --ink:        #1e1b4b;   /* deep indigo — warm, not cold black */
-  --ink-2:      #525c69;
-  --ink-3:      #9ca3af;
-  --border:     #e5e5e5;
-  --acc:        #928be0;   /* Dedalus primary-hover */
-  --acc2:       #aaa5e6;   /* Dedalus primary */
-  --acclt:      #dcd7ff;   /* Dedalus brand-lavender */
-  --accdim:     rgba(170,165,230,.12);
+  --surface:    #e0ddff;
+  --surface2:   #cac4fe;
+  --ink:        #111111;
+  --ink-2:      #444444;
+  --ink-3:      #777777;
+  --border:     #cac4fe;
+  --acc:        #9c91ff;
+  --acc2:       #cac4fe;
+  --acclt:      #e0ddff;
+  --accdim:     rgba(156,145,255,.15);
 
-  /* Legacy aliases — inner-page style blocks may use these */
+  /* Legacy aliases */
   --paper:        #ffffff;
-  --paper-warm:   #fafafa;
-  --rule:         #e5e5e5;
-  --accent:       #928be0;
-  --accent-lt:    #dcd7ff;
+  --paper-warm:   #e0ddff;
+  --rule:         #cac4fe;
+  --accent:       #9c91ff;
+  --accent-lt:    #e0ddff;
   --white:        #fff;
-  --purple:       #928be0;
-  --purple-dark:  #7a73d4;
-  --purple-deep:  #6b64c8;
-  --purple-light: #b3aeec;
-  --purple-pale:  #f0eeff;
-  --purple-mist:  #dcd7ff;
-  --purple-soft:  #f0eeff;
-  --text-dark:    #1e1b4b;
-  --text-body:    #525c69;
-  --text-light:   #9ca3af;
-  --shadow:       0 1px 4px rgba(30,27,75,.06);
-  --shadow-hover: 0 6px 24px rgba(30,27,75,.1);
+  --purple:       #9c91ff;
+  --purple-dark:  #7a70ff;
+  --purple-deep:  #6b5eff;
+  --purple-light: #cac4fe;
+  --purple-pale:  #e0ddff;
+  --purple-mist:  #e0ddff;
+  --purple-soft:  #e0ddff;
+  --text-dark:    #111111;
+  --text-body:    #444444;
+  --text-light:   #777777;
+  --shadow:       0 1px 4px rgba(0,0,0,.06);
+  --shadow-hover: 0 6px 24px rgba(0,0,0,.1);
   --radius:       8px;
   --radius-sm:    5px;
   --radius-pill:  999px;
