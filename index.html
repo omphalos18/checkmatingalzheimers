@@ -3,357 +3,100 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Checkmating Alzheimer's</title>
-  <meta name="description" content="A student-led initiative from Upstate South Carolina using chess to fight Alzheimer's disease.">
+  <title>Checkmating Alzheimer's — Chess Against Alzheimer's</title>
+  <meta name="description" content="A youth-led initiative using chess to fight Alzheimer's — community tournaments, senior outreach, and university research, from South Carolina outward.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
   <style>
-    /* ═══ DESIGN TOKENS ═══ */
-    :root {
-      --bg:        #ffffff;
-      --surface:   #e0ddff;
-      --surface2:  #cac4fe;
-      --ink:       #111111;
-      --ink2:      #444444;
-      --ink3:      #777777;
-      --border:    #cac4fe;
-      --acc:       #9c91ff;
-      --acc2:      #cac4fe;
-      --acclt:     #e0ddff;
-      --accdim:    rgba(156,145,255,.15);
-      --f: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
-      --ease: cubic-bezier(.4,0,.2,1);
-      --r: 8px; --rl: 14px; --rp: 100vw;
+    /* ── Home hero ── */
+    .home-hero {
+      background:
+        radial-gradient(1000px 500px at 12% -12%, var(--wash-65), transparent 65%),
+        radial-gradient(800px 460px at 92% 4%, var(--wash-40), transparent 60%),
+        var(--bg);
+      border-bottom: 1px solid var(--border-soft);
+      padding: clamp(5rem, 10vw, 8.5rem) 0 clamp(4.5rem, 8vw, 7rem);
+      text-align: center;
     }
-    *,*::before,*::after { box-sizing:border-box; margin:0; padding:0; }
-    html { font-size:16px; scroll-behavior:smooth; scrollbar-width:thin; scrollbar-color:rgba(156,145,255,.4) transparent; overflow-y:scroll; }
-    body { font-family:var(--f); background:var(--bg); color:var(--ink); line-height:1.6; -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale; overflow-x:hidden; padding-top:62px; }
-    img { display:block; max-width:100%; }
-    a   { color:inherit; text-decoration:none; }
-    *:focus-visible { outline:2px solid var(--acc); outline-offset:3px; }
-    ::selection { background:var(--acclt); color:var(--ink); }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: .55rem;
+      font-size: .74rem; font-weight: 700; color: var(--acc-ink);
+      background: #fff; border: 1px solid var(--border-soft);
+      padding: .42rem 1.1rem; border-radius: var(--rp);
+      box-shadow: var(--shadow); margin-bottom: 1.9rem;
+    }
+    .hero-badge .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--acc); }
+    .home-hero h1 {
+      font-size: clamp(3rem, 7vw, 5.4rem);
+      font-weight: 800; letter-spacing: -.045em; line-height: 1.04;
+      max-width: 17ch; margin: 0 auto 1.5rem;
+    }
+    .home-hero h1 em {
+      font-style: italic; font-weight: 300;
+      background: linear-gradient(120deg, var(--acc-ink), var(--acc));
+      -webkit-background-clip: text; background-clip: text;
+      -webkit-text-fill-color: transparent; color: transparent;
+    }
+    .home-hero .lead { margin: 0 auto 2.4rem; text-align: center; max-width: 56ch; }
+    .hero-actions { display: flex; gap: .8rem; justify-content: center; flex-wrap: wrap; margin-bottom: 2.6rem; }
 
-    .skip { position:absolute; top:-100%; left:1rem; background:var(--acc); color:#fff; padding:.4rem .9rem; font-size:.8rem; font-weight:600; z-index:9999; border-radius:0 0 var(--r) var(--r); }
-    .skip:focus { top:0; }
-
-    /* ═══ NAVIGATION ═══ */
-    .snav {
-      position:fixed; top:0; left:0; right:0; z-index:90;
-      background:rgba(255,255,255,.96); backdrop-filter:blur(20px);
-      border-bottom:1px solid var(--border);
-    }
-    .nwrap {
-      max-width:1280px; margin:0 auto;
-      padding:0 clamp(1.5rem,5vw,4.5rem);
-      display:flex; align-items:center; justify-content:space-between;
-      height:62px; gap:2rem;
-    }
-    .nlogo { display:flex; align-items:center; gap:.65rem; flex-shrink:0; }
-    .nlogo img { height:40px; width:40px; }
-    .nlogt { font-size:1.1rem; font-weight:700; line-height:1.2; color:var(--ink); letter-spacing:-.02em; }
-    .nlogt span { color:var(--acc); }
-    .nlinks { display:flex; gap:2rem; font-size:.95rem; font-weight:500; color:var(--ink); }
-    .nlinks a { transition:color .15s; }
-    .nlinks a:hover,.nlinks a.active { color:var(--acc); }
-    .ncta {
-      display:inline-flex; align-items:center; gap:.3rem;
-      font-size:.8rem; font-weight:700; letter-spacing:.01em;
-      padding:.52rem 1.25rem; background:var(--acc); color:#fff;
-      border-radius:var(--r); transition:background .18s,transform .18s;
-    }
-    .ncta:hover { background:var(--acc); transform:translateY(-1px); }
-    .nham { display:none; background:none; border:none; cursor:pointer; padding:.3rem; color:var(--ink); }
-    .mmenu { display:none; flex-direction:column; background:var(--bg); border-top:1px solid var(--border); }
-    .mmenu.open { display:flex; }
-    .mmenu a { display:block; padding:.8rem clamp(1.5rem,5vw,4.5rem); font-size:.95rem; font-weight:500; color:var(--ink2); border-bottom:1px solid var(--border); transition:color .15s; }
-    .mmenu a:hover { color:var(--ink); }
-    .mmenu .mcta { margin:.75rem clamp(1.5rem,5vw,4.5rem) 1rem; display:block; text-align:center; padding:.8rem; background:var(--acc); color:#fff; font-weight:700; font-size:.9rem; border-radius:var(--r); }
-    @media (max-width:820px) { .nlinks,.ncta{display:none;} .nham{display:block;} }
-
-    /* ═══ PARTNER STRIP ═══ */
-    .pstrip {
-      border-bottom:1px solid var(--border);
-      padding:1.25rem 0;
-      overflow:hidden; position:relative;
-    }
-    .pstrip-inner {
-      display:flex; align-items:center; gap:0;
-      max-width:1280px; margin:0 auto;
-      padding:0 clamp(1.5rem,5vw,4.5rem);
-    }
+    /* ── Partner marquee ── */
+    .pstrip { padding: 1.4rem 0; border-bottom: 1px solid var(--border-soft); overflow: hidden; }
+    .pstrip-inner { display: flex; align-items: center; max-width: 1280px; margin: 0 auto; padding: 0 clamp(1.5rem, 5vw, 3.5rem); }
     .pstrip-label {
-      flex-shrink:0; font-size:.68rem; font-weight:700; letter-spacing:.1em;
-      text-transform:uppercase; color:var(--ink3); white-space:nowrap;
-      padding-right:2rem; border-right:1px solid var(--border); margin-right:2rem;
+      flex-shrink: 0; font-size: .68rem; font-weight: 700; letter-spacing: .14em;
+      text-transform: uppercase; color: var(--ink-3); white-space: nowrap;
+      padding-right: 2rem; border-right: 1px solid var(--border-soft); margin-right: 2rem;
     }
     .pstrip-scroll {
-      overflow:hidden; flex:1; position:relative;
-      mask:linear-gradient(to right, transparent, black 8%, black 92%, transparent);
-      -webkit-mask:linear-gradient(to right, transparent, black 8%, black 92%, transparent);
+      overflow: hidden; flex: 1;
+      mask: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
+      -webkit-mask: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
     }
-    .pstrip-track {
-      display:inline-flex; align-items:center; gap:0; white-space:nowrap;
-      animation:pscroll 30s linear infinite;
-    }
-    .pstrip:hover .pstrip-track { animation-play-state:paused; }
-    .pitem {
-      display:inline-flex; align-items:center; gap:.7rem;
-      padding:0 3.5rem; font-size:.95rem; font-weight:600;
-      color:var(--ink2); transition:color .2s;
-    }
-    .pitem img { height:22px; width:auto; border-radius:4px; flex-shrink:0; opacity:.85; }
-    .pitem:hover { color:var(--acc); }
-    .pdot { width:4px; height:4px; border-radius:50%; background:var(--border); flex-shrink:0; }
-    @keyframes pscroll { from{transform:translateX(0)} to{transform:translateX(-50%)} }
+    .pstrip-track { display: inline-flex; align-items: center; white-space: nowrap; animation: pscroll 32s linear infinite; }
+    .pstrip:hover .pstrip-track { animation-play-state: paused; }
+    .pitem { display: inline-flex; align-items: center; gap: .7rem; padding: 0 3.25rem; font-size: .95rem; font-weight: 600; color: var(--ink-2); transition: color .2s; }
+    .pitem:hover { color: var(--acc-ink); }
+    .pitem img { height: 22px; width: auto; border-radius: 4px; flex-shrink: 0; opacity: .9; }
+    .pdot { width: 4px; height: 4px; border-radius: 50%; background: var(--border); flex-shrink: 0; }
+    @keyframes pscroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
 
-    /* ═══ HERO ═══ */
-    .hero {
-      max-width:1280px; margin:0 auto;
-      padding:clamp(5.5rem,10vw,9rem) clamp(1.5rem,5vw,4.5rem) clamp(4rem,8vw,7rem);
-    }
-    .hero-tag {
-      display:inline-flex; align-items:center; gap:.55rem;
-      font-size:.7rem; font-weight:700; letter-spacing:.1em; text-transform:uppercase;
-      color:var(--acc); margin-bottom:2rem;
-    }
-    .hero-tag::before { content:''; width:18px; height:1.5px; background:var(--acc); }
-    .hero h1 {
-      font-size:clamp(3.25rem,7vw,6rem);
-      font-weight:300; line-height:1.05; letter-spacing:-.04em;
-      color:var(--ink); margin-bottom:0; max-width:14ch;
-    }
-    .hero h1 strong { font-weight:800; display:block; }
-    .hero h1 .hl {
-      font-style:italic; font-weight:300;
-      background:linear-gradient(135deg,var(--acc),var(--acc2));
-      -webkit-background-clip:text; -webkit-text-fill-color:transparent;
-      background-clip:text;
-    }
-    .hero-divider { width:100%; height:1px; background:var(--border); margin:2.5rem 0; }
-    .hero-lower {
-      display:grid; grid-template-columns:1fr 1fr; gap:clamp(2rem,5vw,6rem);
-      align-items:start;
-    }
-    .hero-desc {
-      font-size:clamp(.975rem,1.2vw,1.075rem); font-weight:400;
-      color:var(--ink2); line-height:1.75; margin-bottom:2rem;
-    }
-    .hero-acts { display:flex; flex-wrap:wrap; gap:.65rem; margin-bottom:2rem; }
-    .btn-primary {
-      display:inline-flex; align-items:center; gap:.35rem;
-      font-family:var(--f); font-size:.85rem; font-weight:700;
-      padding:.78rem 1.65rem; background:var(--acc); color:#fff;
-      border-radius:var(--r); border:1.5px solid var(--acc);
-      cursor:pointer; transition:background .18s,transform .15s;
-    }
-    .btn-primary:hover { background:var(--acc); border-color:var(--acc); transform:translateY(-1px); }
-    .btn-ghost {
-      display:inline-flex; align-items:center; gap:.35rem;
-      font-family:var(--f); font-size:.85rem; font-weight:500;
-      padding:.78rem 1.65rem; background:transparent; color:var(--ink);
-      border-radius:var(--r); border:1.5px solid var(--border);
-      cursor:pointer; transition:border-color .18s,color .18s;
-    }
-    .btn-ghost:hover { border-color:rgba(30,27,75,.3); }
-    .hero-meta { display:flex; flex-direction:column; gap:.4rem; }
-    .hero-meta-item {
-      display:flex; align-items:center; gap:.65rem;
-      font-size:.75rem; font-weight:500; color:var(--ink3);
-    }
-    .hero-meta-item::before { content:''; width:16px; height:1px; background:var(--border); flex-shrink:0; }
-    /* Hero right: quote card */
-    .hquote-card {
-      background:var(--surface); border:1px solid var(--border);
-      border-radius:var(--rl); padding:2rem;
-    }
-    .hquote-mark { font-size:2.5rem; line-height:1; color:var(--acclt); font-weight:800; margin-bottom:.5rem; }
-    .hquote-text { font-size:.975rem; font-weight:400; font-style:italic; color:var(--ink2); line-height:1.7; margin-bottom:1.25rem; }
-    .hquote-author {
-      display:flex; align-items:center; gap:.75rem;
-    }
-    .hq-avatar {
-      width:36px; height:36px; border-radius:50%; background:var(--acclt);
-      display:flex; align-items:center; justify-content:center;
-      font-size:.75rem; font-weight:800; color:var(--acc); flex-shrink:0;
-    }
-    .hq-name { font-size:.8rem; font-weight:700; color:var(--ink); }
-    .hq-role { font-size:.72rem; color:var(--ink3); }
-    @media (max-width:820px) {
-      .hero-lower { grid-template-columns:1fr; }
-      .hquote-card { display:none; }
-    }
+    /* ── Mission ── */
+    .mission-grid { display: grid; grid-template-columns: 1.05fr 1fr; gap: clamp(2.5rem, 6vw, 6rem); align-items: center; }
+    .mission-grid h2 { font-size: clamp(1.9rem, 3.8vw, 2.9rem); margin-bottom: 0; }
+    .mission-copy p { margin-bottom: 1.1rem; font-size: 1rem; line-height: 1.8; }
+    .mission-link { display: inline-flex; align-items: center; gap: .4rem; font-weight: 700; font-size: .9rem; color: var(--acc-ink); margin-top: .4rem; transition: gap .2s; }
+    .mission-link:hover { gap: .7rem; }
+    @media (max-width: 820px) { .mission-grid { grid-template-columns: 1fr; } }
 
-    /* ═══ STATS ═══ */
-    .stats-wrap { border-top:1px solid var(--border); border-bottom:1px solid var(--border); }
-    .stats-row {
-      max-width:1280px; margin:0 auto;
-      padding:0 clamp(1.5rem,5vw,4.5rem);
-      display:grid; grid-template-columns:repeat(4,1fr);
-    }
-    .sc {
-      padding:clamp(1.75rem,3vw,2.75rem) 0;
-      border-right:1px solid var(--border);
-    }
-    .sc:last-child { border-right:none; }
-    .sc:not(:first-child) { padding-left:clamp(1.5rem,3vw,3rem); }
-    .sc-n {
-      font-size:clamp(2rem,3.5vw,3rem); font-weight:800;
-      color:var(--ink); letter-spacing:-.04em; line-height:1; margin-bottom:.4rem;
-    }
-    .sc-n.ac { color:var(--acc); }
-    .sc-l { font-size:.78rem; font-weight:500; color:var(--ink3); }
-    @media (max-width:760px) {
-      .stats-row { grid-template-columns:repeat(2,1fr); }
-      .sc:nth-child(2) { border-right:none; }
-      .sc:nth-child(n+3) { border-top:1px solid var(--border); }
-    }
+    /* ── Program cards ── */
+    .prog-card { display: flex; flex-direction: column; }
+    .prog-card h3 { font-size: 1.2rem; margin-bottom: .7rem; }
+    .prog-card p { font-size: .92rem; color: var(--ink-2); line-height: 1.7; flex: 1; }
+    .prog-link { display: inline-flex; align-items: center; gap: .4rem; font-weight: 700; font-size: .85rem; color: var(--acc-ink); margin-top: 1.4rem; }
 
-    /* ═══ MISSION ═══ */
-    .mission-wrap { border-bottom:1px solid var(--border); }
-    .mission-in {
-      max-width:1280px; margin:0 auto;
-      padding:clamp(4.5rem,8vw,8rem) clamp(1.5rem,5vw,4.5rem);
-      display:grid; grid-template-columns:1fr 1.6fr; gap:clamp(3rem,7vw,7rem); align-items:start;
-    }
-    .m-pull {
-      font-size:clamp(1.05rem,1.8vw,1.45rem); font-weight:300; line-height:1.6;
-      color:var(--ink); letter-spacing:-.01em;
-      border-left:2px solid var(--acc); padding-left:1.5rem;
-    }
-    .m-pull em { font-style:italic; }
-    .m-cite { display:block; margin-top:1.25rem; padding-left:1.5rem; font-size:.67rem; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--ink3); }
-    .m-text h2 { font-size:clamp(1.4rem,2.5vw,2rem); font-weight:700; letter-spacing:-.025em; margin-bottom:1.2rem; color:var(--ink); }
-    .m-text p  { font-size:.96rem; color:var(--ink2); line-height:1.8; margin-bottom:.85rem; }
-    .m-chips { display:flex; flex-wrap:wrap; gap:.4rem; margin-top:1.5rem; }
-    .chip { display:inline-block; font-size:.66rem; font-weight:700; letter-spacing:.08em; text-transform:uppercase; padding:.28rem .85rem; background:var(--acclt); color:var(--acc); border-radius:var(--rp); border:1px solid var(--border); }
-    @media (max-width:820px) { .mission-in { grid-template-columns:1fr; gap:2.5rem; } }
+    /* ── Research feature ── */
+    .research-card { background: #fff; border: 1px solid var(--border-soft); border-radius: var(--rl); padding: 2.25rem; box-shadow: var(--shadow-2); }
+    .rc-head { display: flex; align-items: center; gap: 1rem; padding-bottom: 1.4rem; margin-bottom: 1.4rem; border-bottom: 1px solid var(--border-soft); }
+    .rc-badge { width: 52px; height: 52px; border-radius: 14px; background: var(--wash); display: flex; align-items: center; justify-content: center; font-weight: 800; color: var(--acc-ink); flex-shrink: 0; }
+    .rc-head strong { display: block; font-size: 1.02rem; }
+    .rc-head span { font-size: .8rem; color: var(--ink-3); }
+    .rc-quote { font-style: italic; font-size: .95rem; color: var(--ink-2); line-height: 1.75; margin-bottom: 1rem; }
+    .rc-cite { font-size: .78rem; font-weight: 700; color: var(--ink-3); }
 
-    /* ═══ NEWS ═══ */
-    .news-wrap { background:var(--surface); border-top:1px solid var(--border); border-bottom:1px solid var(--border); }
-    .news-in { max-width:1280px; margin:0 auto; padding:clamp(4.5rem,8vw,8rem) clamp(1.5rem,5vw,4.5rem); }
-    .sec-head { display:flex; align-items:baseline; gap:1.25rem; margin-bottom:2.75rem; }
-    .sec-head h2 { font-size:clamp(.95rem,1.3vw,1.15rem); font-weight:700; letter-spacing:-.005em; white-space:nowrap; color:var(--ink); }
-    .sec-hr { flex:1; height:1px; background:var(--border); }
-    .sec-a { font-size:.72rem; font-weight:700; color:var(--acc); letter-spacing:.06em; text-transform:uppercase; white-space:nowrap; }
+    /* ── Press ── */
+    .press-card { display: flex; flex-direction: column; }
+    .press-src { font-size: .68rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--acc-ink); margin-bottom: .8rem; }
+    .press-card h3 { font-size: 1.05rem; line-height: 1.4; margin-bottom: .6rem; }
+    .press-card p { font-size: .88rem; color: var(--ink-3); line-height: 1.65; flex: 1; }
+    .press-date { margin-top: 1.2rem; font-size: .74rem; color: var(--ink-3); font-weight: 600; }
 
-    .nsl { display:none; }
-    .nsl.on { display:grid; grid-template-columns:1.45fr 1fr; gap:2px; background:var(--border); border-radius:var(--rl); overflow:hidden; }
-    .nsfeat { background:var(--bg); cursor:pointer; transition:opacity .2s; }
-    .nsfeat:hover { opacity:.94; }
-    .nsimg { width:100%; aspect-ratio:16/9; overflow:hidden; }
-    .nsph { width:100%; height:100%; display:flex; align-items:center; justify-content:center; }
-    .nsbody { padding:1.75rem 2rem 2.25rem; }
-    .nssrc { font-size:.65rem; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:var(--acc); margin-bottom:.65rem; }
-    .nstit { font-size:clamp(1rem,1.6vw,1.35rem); font-weight:700; letter-spacing:-.02em; color:var(--ink); line-height:1.3; margin-bottom:.85rem; }
-    .nsexc { font-size:.875rem; color:var(--ink2); line-height:1.7; }
-    .nsdate { font-size:.7rem; color:var(--ink3); margin-top:1rem; font-weight:500; }
-    .nsside { background:var(--bg); display:flex; flex-direction:column; gap:2px; }
-    .nsitem { background:var(--bg); flex:1; display:grid; grid-template-columns:100px 1fr; overflow:hidden; cursor:pointer; transition:opacity .2s; }
-    .nsitem:hover { opacity:.9; }
-    .nssi .nsph { aspect-ratio:1; }
-    .nssb { padding:1.1rem 1.25rem 1.25rem; }
-    .nssb .nstit { font-size:.92rem; display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden; }
-    .nssb .nsexc { font-size:.8rem; display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden; }
-    .ns-ctrl { display:flex; align-items:center; gap:.75rem; margin-top:1.25rem; }
-    .ns-dot { width:6px; height:6px; border-radius:3px; background:var(--border); border:none; cursor:pointer; transition:background .15s,width .25s; }
-    .ns-dot.on { background:var(--acc); width:20px; }
-    .ns-arr { width:34px; height:34px; border-radius:50%; border:1.5px solid var(--border); background:transparent; display:flex; align-items:center; justify-content:center; cursor:pointer; color:var(--ink); transition:border-color .15s; }
-    .ns-arr:hover { border-color:rgba(30,27,75,.3); }
-    .ns-arr svg { width:13px; height:13px; }
-    .ns-cnt { font-size:.7rem; font-weight:700; color:var(--ink3); margin-left:auto; letter-spacing:.03em; }
-    @media (max-width:820px) {
-      .nsl.on { grid-template-columns:1fr; }
-      .nsitem { grid-template-columns:80px 1fr; }
-    }
-
-    /* ═══ PROGRAMS ═══ */
-    .progs-wrap { border-bottom:1px solid var(--border); }
-    .progs-in { max-width:1280px; margin:0 auto; padding:clamp(4.5rem,8vw,8rem) clamp(1.5rem,5vw,4.5rem); }
-    .pgrid { display:grid; grid-template-columns:repeat(3,1fr); }
-    .pg { padding:0 clamp(2rem,3.5vw,3rem) 0 0; border-right:1px solid var(--border); }
-    .pg:nth-child(2) { padding-left:clamp(2rem,3.5vw,3rem); }
-    .pg:last-child   { border-right:none; padding-right:0; padding-left:clamp(2rem,3.5vw,3rem); }
-    .pgnum { font-size:5rem; font-weight:800; color:rgba(30,27,75,.05); line-height:1; letter-spacing:-.06em; margin-bottom:.35rem; }
-    .pg h3 { font-size:1.1rem; font-weight:700; letter-spacing:-.015em; margin-bottom:.65rem; color:var(--ink); }
-    .pg p  { font-size:.875rem; color:var(--ink2); line-height:1.75; margin-bottom:1.25rem; }
-    .pglnk { font-size:.68rem; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--acc); display:inline-flex; align-items:center; gap:.35rem; transition:gap .2s; }
-    .pglnk:hover { gap:.6rem; }
-    @media (max-width:820px) {
-      .pgrid { grid-template-columns:1fr; }
-      .pg { border-right:none; border-bottom:1px solid var(--border); padding:1.75rem 0; }
-      .pg:last-child { border-bottom:none; }
-      .pg:nth-child(2) { padding-left:0; }
-    }
-
-    /* ═══ CTA BAND ═══ */
-    .cta-band { background:#fff; border-top:1px solid var(--border); border-bottom:1px solid var(--border); }
-    .cta-in {
-      max-width:1280px; margin:0 auto;
-      padding:clamp(4rem,7vw,7rem) clamp(1.5rem,5vw,4.5rem);
-      display:flex; align-items:center; justify-content:space-between;
-      gap:3rem; flex-wrap:wrap;
-    }
-    .cta-in h2 { font-size:clamp(1.75rem,4vw,3rem); font-weight:300; color:var(--ink); letter-spacing:-.03em; line-height:1.15; }
-    .cta-in h2 strong { font-weight:800; display:block; }
-    .cta-in p { margin-top:.65rem; font-size:.88rem; color:var(--ink2); }
-    .btn-acc {
-      display:inline-flex; align-items:center; gap:.4rem;
-      font-family:var(--f); font-size:.875rem; font-weight:700;
-      padding:.9rem 2rem; background:var(--acc); color:#fff;
-      border-radius:var(--r); border:none; cursor:pointer; white-space:nowrap;
-      transition:background .18s,transform .15s;
-    }
-    .btn-acc:hover { background:#7a73d4; transform:translateY(-1px); }
-
-    /* ═══ NEWSLETTER ═══ */
-    .nl-wrap { background:var(--surface); border-top:1px solid var(--border); border-bottom:1px solid var(--border); }
-    .nl-in { max-width:560px; margin:0 auto; text-align:center; padding:clamp(4rem,7vw,7rem) clamp(1.5rem,5vw,4.5rem); }
-    .nl-in h2 { font-size:clamp(1.35rem,2.5vw,1.9rem); font-weight:700; letter-spacing:-.025em; margin-bottom:.6rem; color:var(--ink); }
-    .nl-in p  { font-size:.93rem; color:var(--ink2); margin-bottom:2rem; }
-    .nl-form { display:flex; max-width:400px; margin:0 auto; box-shadow:0 1px 3px rgba(30,27,75,.07); border-radius:calc(var(--r) + 1px); overflow:hidden; border:1.5px solid var(--border); }
-    .nl-form input { flex:1; font-family:var(--f); font-size:.875rem; padding:.8rem 1rem; border:none; background:#fff; color:var(--ink); outline:none; }
-    .nl-form input::placeholder { color:var(--ink3); }
-    .nl-form button { font-family:var(--f); font-size:.8rem; font-weight:700; padding:.8rem 1.35rem; background:var(--acc); color:#fff; border:none; cursor:pointer; transition:background .18s; white-space:nowrap; }
-    .nl-form button:hover { background:var(--acc); }
-    .nl-ok   { display:none; font-size:.875rem; font-weight:700; color:var(--acc); margin-top:.9rem; }
-    .nl-fine { font-size:.68rem; color:var(--ink3); margin-top:.55rem; }
-
-    /* ═══ FOOTER — WHITE ═══ */
-    .sfoot {
-      background:var(--bg);
-      border-top:1px solid var(--border);
-    }
-    .ft-top {
-      max-width:1280px; margin:0 auto;
-      padding:clamp(3rem,5vw,5rem) clamp(1.5rem,5vw,4.5rem) clamp(2rem,4vw,4rem);
-      display:grid; grid-template-columns:2fr 1fr 1fr 1fr; gap:3rem;
-      border-bottom:1px solid var(--border);
-    }
-    .ft-brand img { height:28px; margin-bottom:.9rem; }
-    .ft-brand p { font-size:.82rem; color:var(--ink3); line-height:1.65; max-width:230px; margin-bottom:1.25rem; }
-    .ftsoc { display:flex; gap:.45rem; }
-    .ftsoc a { width:30px; height:30px; border-radius:50%; border:1.5px solid var(--border); display:flex; align-items:center; justify-content:center; transition:border-color .15s,background .15s; }
-    .ftsoc a:hover { border-color:var(--acc); background:var(--accdim); }
-    .ftsoc svg { width:13px; height:13px; color:var(--ink2); }
-    .ft-col h4 { font-size:.66rem; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--ink3); margin-bottom:.9rem; }
-    .ft-col ul { list-style:none; display:flex; flex-direction:column; gap:.5rem; }
-    .ft-col ul li a { font-size:.82rem; color:var(--ink3); transition:color .15s; }
-    .ft-col ul li a:hover { color:var(--ink); }
-    .ft-btm {
-      max-width:1280px; margin:0 auto;
-      padding:1.25rem clamp(1.5rem,5vw,4.5rem);
-      display:flex; justify-content:space-between; flex-wrap:wrap;
-      gap:.4rem; font-size:.7rem; color:var(--ink3);
-    }
-    @media (max-width:820px) { .ft-top { grid-template-columns:1fr 1fr; gap:2rem; } }
-    @media (max-width:480px) { .ft-top { grid-template-columns:1fr; } }
-
-    /* ═══ REVEAL ═══ */
-    .rv { opacity:0; transform:translateY(14px); transition:opacity .6s var(--ease),transform .6s var(--ease); }
-    .rv.in { opacity:1; transform:none; }
-    .d1 { transition-delay:.07s; } .d2 { transition-delay:.14s; } .d3 { transition-delay:.21s; }
-    @media (prefers-reduced-motion:reduce) { .rv { opacity:1; transform:none; transition:none; } }
+    /* ── Founder quote ── */
+    .founder-quote { max-width: 780px; margin: 0 auto; text-align: center; }
+    .founder-quote blockquote { font-size: clamp(1.25rem, 2.8vw, 1.8rem); font-weight: 500; letter-spacing: -.02em; line-height: 1.55; color: var(--ink); margin-bottom: 1.75rem; }
+    .founder-quote blockquote em { color: var(--acc-ink); font-style: normal; }
   </style>
   <script type="module">
     import { inject } from 'https://cdn.jsdelivr.net/npm/@vercel/speed-insights/+esm';
@@ -361,392 +104,338 @@
   </script>
 </head>
 <body>
-<a href="#main" class="skip">Skip to content</a>
+  <a href="#main" class="skip">Skip to main content</a>
 
-<!-- NAV -->
-<nav class="snav" role="navigation" aria-label="Primary">
-  <div class="nwrap">
-    <a href="index.html" class="nlogo" aria-label="Checkmating Alzheimer's">
-      <img src="brand_assets/finalized.png" alt="">
-      <div class="nlogt">Checkmating <span>Alzheimer's</span></div>
-    </a>
-    <div class="nlinks">
+  <nav class="snav" role="navigation" aria-label="Primary">
+    <div class="nwrap">
+      <a href="index.html" class="nlogo" aria-label="Checkmating Alzheimer's">
+        <img src="brand_assets/finalized.png" alt="">
+        <div class="nlogt">Checkmating <span>Alzheimer's</span></div>
+      </a>
+      <div class="nlinks">
+        <a href="story.html">Our Story</a>
+        <a href="programs.html">What We Do</a>
+        <a href="research.html">Research</a>
+        <a href="team.html">Our Team</a>
+        <a href="events.html">Events</a>
+        <a href="involved.html">Get Involved</a>
+      </div>
+      <a href="involved.html" class="ncta">Join Us</a>
+      <button class="nham" id="nt" aria-label="Menu" aria-expanded="false">
+        <svg id="io" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+        <svg id="ic" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:none"><path d="M6 18L18 6M6 6l12 12"/></svg>
+      </button>
+    </div>
+    <div class="mmenu" id="mn">
       <a href="story.html">Our Story</a>
       <a href="programs.html">What We Do</a>
       <a href="research.html">Research</a>
       <a href="team.html">Our Team</a>
       <a href="events.html">Events</a>
       <a href="involved.html">Get Involved</a>
+      <a href="involved.html" class="mcta">Join Us</a>
     </div>
-    <a href="involved.html" class="ncta">Join Us</a>
-    <button class="nham" id="nt" aria-label="Menu" aria-expanded="false">
-      <svg id="io" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
-      <svg id="ic" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:none"><path d="M6 18L18 6M6 6l12 12"/></svg>
-    </button>
-  </div>
-  <div class="mmenu" id="mn">
-    <a href="story.html">Our Story</a>
-    <a href="programs.html">What We Do</a>
-    <a href="research.html">Research</a>
-    <a href="team.html">Our Team</a>
-    <a href="events.html">Events</a>
-    <a href="involved.html">Get Involved</a>
-    <a href="involved.html" class="mcta">Join Us</a>
-  </div>
-</nav>
+  </nav>
 
-<main id="main">
+  <main id="main">
 
-<!-- HERO -->
-<section class="hero" aria-label="Introduction">
-  <div class="rv">
-    <div class="hero-tag">Upstate South Carolina &nbsp;·&nbsp; Youth-Led Initiative</div>
-    <h1>
-      Chess is our
-      <strong>move</strong>
-      against <span class="hl">Alzheimer's.</span>
-    </h1>
-  </div>
-
-  <div class="hero-divider rv d1"></div>
-
-  <div class="hero-lower rv d1">
-    <div>
-      <p class="hero-desc">
-        Founded by two high school chess players — Caton Tsao and Allen Hong — Checkmating Alzheimer's uses the power of chess to protect minds, build community, and advance university research on Alzheimer's disease.
-      </p>
-      <div class="hero-acts">
-        <a href="involved.html" class="btn-primary">Get Involved</a>
-        <a href="story.html" class="btn-ghost">Our Story &nbsp;→</a>
-      </div>
-      <div class="hero-meta">
-        <div class="hero-meta-item">D.W. Daniel High School, Upstate SC</div>
-        <div class="hero-meta-item">Clemson University Research Partnership</div>
-        <div class="hero-meta-item">Alzheimer's Association #TheLongestDay</div>
-      </div>
-    </div>
-
-    <div class="hquote-card rv d2">
-      <div class="hquote-mark">"</div>
-      <p class="hquote-text">I have witnessed the profound impact of Alzheimer's on the patient and the family. With this project, I hoped to help others in my community.</p>
-      <div class="hquote-author">
-        <div class="hq-avatar">CT</div>
-        <div>
-          <div class="hq-name">Caton Tsao</div>
-          <div class="hq-role">Co-founder, Checkmating Alzheimer's</div>
+    <!-- HERO -->
+    <header class="home-hero" aria-label="Introduction">
+      <div class="container">
+        <div class="reveal">
+          <div class="hero-badge"><span class="dot"></span> Youth-led initiative · South Carolina &amp; growing</div>
+          <h1>Chess is our move against <em>Alzheimer's.</em></h1>
+          <p class="lead">We're a student-founded movement using the world's oldest strategy game to protect minds — through community tournaments, free chess programs for seniors, and formal university research.</p>
+          <div class="hero-actions">
+            <a href="involved.html" class="btn btn-primary btn-lg">Get Involved</a>
+            <a href="story.html" class="btn btn-outline btn-lg">Our Story &rarr;</a>
+          </div>
+          <div class="hero-meta-row">
+            <span class="meta-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg> Alzheimer's Association partner</span>
+            <span class="meta-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg> Clemson University research study</span>
+            <span class="meta-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg> USCF-rated tournaments</span>
+          </div>
         </div>
       </div>
-    </div>
-  </div>
-</section>
+    </header>
 
-<!-- STATS -->
-<div class="stats-wrap">
-  <div class="stats-row">
-    <div class="sc rv">
-      <div class="sc-n ac counter" data-t="2510.64" data-pre="$" data-suf="">$0</div>
-      <div class="sc-l">Raised for Alzheimer's Association</div>
-    </div>
-    <div class="sc rv d1">
-      <div class="sc-n counter" data-t="48" data-suf="+">0</div>
-      <div class="sc-l">Tournaments &amp; events across SC</div>
-    </div>
-    <div class="sc rv d2">
-      <div class="sc-n">65+</div>
-      <div class="sc-l">Seniors taught chess</div>
-    </div>
-    <div class="sc rv d3">
-      <div class="sc-n">2024</div>
-      <div class="sc-l">Year the project was founded</div>
-    </div>
-  </div>
-</div>
-
-<!-- PARTNER STRIP -->
-<div class="pstrip" aria-label="Supported by and as seen in">
-  <div class="pstrip-inner">
-    <span class="pstrip-label">Partners</span>
-    <div class="pstrip-scroll">
-      <div class="pstrip-track" id="pt"></div>
-    </div>
-  </div>
-</div>
-
-<!-- MISSION -->
-<section class="mission-wrap" aria-labelledby="mh">
-  <div class="mission-in">
-    <div class="rv">
-      <div class="m-pull">
-        <em>"I have witnessed the profound impact of Alzheimer's on the patient and the family. With this project, I hoped to help others in my community."</em>
-        <cite class="m-cite">— Caton Tsao, Co-founder · Checkmating Alzheimer's</cite>
-      </div>
-    </div>
-    <div class="rv d1">
-      <div class="m-text">
-        <h2 id="mh">A personal story turned into community action.</h2>
-        <p>When Caton Tsao's grandparents developed Alzheimer's disease and could no longer recognize him, he felt powerless. He and expert-level chess player Allen Hong decided to fight back with what they knew — chess.</p>
-        <p>What started as two students hosting local tournaments has grown into a multi-city initiative with a formal research partnership at Clemson University, investigating whether chess can scientifically reduce cognitive decline.</p>
-        <div class="m-chips">
-          <span class="chip">South Carolina</span>
-          <span class="chip">Student-Led</span>
-          <span class="chip">Alzheimer's Awareness</span>
-          <span class="chip">Clemson Research</span>
+    <!-- STATS -->
+    <div class="statband" aria-label="Impact statistics">
+      <div class="statband-in">
+        <div class="stat reveal">
+          <div class="stat-n ac counter" data-t="2510.64" data-pre="$">$0</div>
+          <div class="stat-l">Raised for the Alzheimer's Association</div>
         </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- NEWS -->
-<section class="news-wrap" aria-labelledby="nh">
-  <div class="news-in">
-    <div class="sec-head">
-      <h2 id="nh">In the News</h2>
-      <div class="sec-hr"></div>
-      <a href="programs.html" class="sec-a">All Updates</a>
-    </div>
-
-    <!-- Slide 0 -->
-    <div class="nsl on" id="s0">
-      <div class="nsfeat">
-        <div class="nsimg"><div class="nsph" style="background:#f0eeff"><svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="#928be0" stroke-width=".8" opacity=".5"><path d="M19 22H5v-2h14v2zM13 2c-2.21 0-4.5 1.77-4.5 4.5 0 1.54.79 2.89 2 3.72V13l-3 2v2h9v-2l-3-2V10.22c1.21-.83 2-2.18 2-3.72C15.5 3.77 15.21 2 13 2z"/></svg></div></div>
-        <div class="nsbody">
-          <div class="nssrc">Fox Carolina · Dec 3, 2025</div>
-          <div class="nstit">Upstate Chess Players Team with Clemson to Study Game's Potential Against Alzheimer's</div>
-          <div class="nsexc">Caton Tsao and Aman Sreshta proposed a cross-sectional research study to Dr. Kaileigh Byrne at Clemson University, examining which brain regions activate during chess and whether regular play correlates with reduced cognitive decline.</div>
-          <div class="nsdate">foxcarolina.com</div>
+        <div class="stat reveal d1">
+          <div class="stat-n counter" data-t="48" data-suf="+">0</div>
+          <div class="stat-l">Tournaments &amp; events across South Carolina</div>
         </div>
-      </div>
-      <div class="nsside">
-        <div class="nsitem">
-          <div class="nssi"><div class="nsph" style="background:#f0fdf4"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="1.2" opacity=".45"><path d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg></div></div>
-          <div class="nssb"><div class="nssrc">Alzheimer's Association SC · Jul 2025</div><div class="nstit">Upstate Students Aim to "Checkmate Alzheimer's"</div><div class="nsexc">Caton and Allen host tournaments raising $1,000 for #TheLongestDay.</div></div>
+        <div class="stat reveal d2">
+          <div class="stat-n counter" data-t="65" data-suf="+">0</div>
+          <div class="stat-l">Seniors taught chess at retirement communities</div>
         </div>
-        <div class="nsitem">
-          <div class="nssi"><div class="nsph" style="background:#fefce8"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#ca8a04" stroke-width="1.2" opacity=".45"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg></div></div>
-          <div class="nssb"><div class="nssrc">ChessBase · 2021</div><div class="nstit">Checkmating Alzheimer's Disease</div><div class="nsexc">International coverage linking chess to cognitive health and Alzheimer's prevention.</div></div>
+        <div class="stat reveal d3">
+          <div class="stat-n">2024</div>
+          <div class="stat-l">Year the initiative was founded</div>
         </div>
       </div>
     </div>
 
-    <!-- Slide 1 -->
-    <div class="nsl" id="s1">
-      <div class="nsfeat">
-        <div class="nsimg"><div class="nsph" style="background:#f0fdf4"><svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width=".8" opacity=".5"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/></svg></div></div>
-        <div class="nsbody">
-          <div class="nssrc">Alzheimer's Association SC · 2025</div>
-          <div class="nstit">Chess Classes at Retirement Communities Bring Joy — and Science</div>
-          <div class="nsexc">Volunteers visit retirement communities across Upstate South Carolina to teach chess to seniors, bringing cognitive engagement proven to build mental resilience against Alzheimer's disease.</div>
-          <div class="nsdate">alz.org/sc</div>
-        </div>
-      </div>
-      <div class="nsside">
-        <div class="nsitem">
-          <div class="nssi"><div class="nsph" style="background:#faf5ff"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#7c3aed" stroke-width="1.2" opacity=".45"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></div></div>
-          <div class="nssb"><div class="nssrc">Clemson University · 2024</div><div class="nstit">Decision Lab Launches Chess Cognitive Study</div><div class="nsexc">Dr. Byrne's lab begins recruiting adults 65+ for the chess and cognitive decline study.</div></div>
-        </div>
-        <div class="nsitem">
-          <div class="nssi"><div class="nsph" style="background:#fff7ed"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#c2410c" stroke-width="1.2" opacity=".45"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></div></div>
-          <div class="nssb"><div class="nssrc">D.W. Daniel HS · 2023</div><div class="nstit">Championship Team Turns Passion Into Advocacy</div><div class="nsexc">Chess players channel competitive success into Alzheimer's community service.</div></div>
+    <!-- PARTNERS -->
+    <div class="pstrip" aria-label="Partners">
+      <div class="pstrip-inner">
+        <span class="pstrip-label">Partners</span>
+        <div class="pstrip-scroll">
+          <div class="pstrip-track" id="pt"></div>
         </div>
       </div>
     </div>
 
-    <!-- Slide 2 -->
-    <div class="nsl" id="s2">
-      <div class="nsfeat">
-        <div class="nsimg"><div class="nsph" style="background:#fdf4ff"><svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="#9333ea" stroke-width=".8" opacity=".5"><path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg></div></div>
-        <div class="nsbody">
-          <div class="nssrc">Checkmating Alzheimer's · Spring 2026</div>
-          <div class="nstit">Spring Championship Draws 120+ Players Across Four Cities</div>
-          <div class="nsexc">The annual flagship tournament united chess players and Alzheimer's advocates across four South Carolina cities. All proceeds went directly to the Alzheimer's Association's "Do What You Love to End Alz" campaign.</div>
-          <div class="nsdate">checkmatingalzheimers.org</div>
+    <!-- MISSION -->
+    <section class="section" aria-labelledby="mh">
+      <div class="container">
+        <div class="mission-grid">
+          <div class="reveal">
+            <div class="eyebrow">Our Mission</div>
+            <h2 id="mh">A personal story, turned into a movement anyone can join.</h2>
+          </div>
+          <div class="mission-copy reveal d1">
+            <p>When co-founder Caton Tsao's grandparents developed Alzheimer's and could no longer recognize him, he and expert-level chess player Allen Hong decided to fight back with what they knew best — chess.</p>
+            <p>What began as two students hosting local fundraising tournaments has grown into a multi-city initiative with a formal research partnership at Clemson University, investigating whether chess can scientifically reduce cognitive decline.</p>
+            <a href="story.html" class="mission-link">Read the full story <span aria-hidden="true">&rarr;</span></a>
+          </div>
         </div>
       </div>
-      <div class="nsside">
-        <div class="nsitem">
-          <div class="nssi"><div class="nsph" style="background:#f0fdf4"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="1.2" opacity=".45"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div></div>
-          <div class="nssb"><div class="nssrc">Chess.com · 2025</div><div class="nstit">Checkmating Alzheimer's Goes Global</div><div class="nsexc">The global chess community discusses the Upstate SC initiative and cognitive health.</div></div>
+    </section>
+
+    <!-- PROGRAMS -->
+    <section class="section section-wash" aria-labelledby="ph">
+      <div class="container">
+        <div class="section-head center reveal">
+          <div class="eyebrow">What We Do</div>
+          <h2 id="ph">Three ways chess fights back.</h2>
+          <p>From community fundraising to senior outreach to university research — every program moves the mission forward.</p>
         </div>
-        <div class="nsitem">
-          <div class="nssi"><div class="nsph" style="background:#fef2f2"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#dc2626" stroke-width="1.2" opacity=".45"><path d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg></div></div>
-          <div class="nssb"><div class="nssrc">Community Podcast · 2024</div><div class="nstit">Chess as Cognitive Engagement for Alzheimer's</div><div class="nsexc">A podcast explores chess as social and cognitive engagement for those at risk.</div></div>
+        <div class="grid-3">
+          <a href="programs.html" class="card prog-card reveal">
+            <div class="num-ghost">01</div>
+            <h3>Tournaments for a Cause</h3>
+            <p>USCF-rated tournaments across South Carolina where every entry fee goes to the Alzheimer's Association's #TheLongestDay campaign. All skill levels welcome.</p>
+            <span class="prog-link">Explore tournaments &rarr;</span>
+          </a>
+          <a href="programs.html" class="card prog-card reveal d1">
+            <div class="num-ghost">02</div>
+            <h3>Chess for Seniors</h3>
+            <p>Free weekly chess classes at retirement communities — bringing cognitive stimulation and genuine social connection to the people most at risk.</p>
+            <span class="prog-link">See senior outreach &rarr;</span>
+          </a>
+          <a href="research.html" class="card prog-card reveal d2">
+            <div class="num-ghost">03</div>
+            <h3>University Research</h3>
+            <p>A formal study at Clemson University investigating whether chess activates the exact brain regions Alzheimer's attacks — and whether it builds cognitive reserve.</p>
+            <span class="prog-link">See the science &rarr;</span>
+          </a>
         </div>
       </div>
-    </div>
+    </section>
 
-    <div class="ns-ctrl">
-      <div style="display:flex;gap:.5rem">
-        <button class="ns-dot on" data-s="0" aria-label="Slide 1"></button>
-        <button class="ns-dot" data-s="1" aria-label="Slide 2"></button>
-        <button class="ns-dot" data-s="2" aria-label="Slide 3"></button>
+    <!-- RESEARCH FEATURE -->
+    <section class="section" aria-labelledby="rh">
+      <div class="container">
+        <div class="grid-2" style="align-items:center;">
+          <div class="reveal">
+            <div class="eyebrow">Backed by Research</div>
+            <h2 id="rh">Not just a fundraiser. A scientific study.</h2>
+            <p style="margin:1.1rem 0; font-size:1rem; line-height:1.8;">Together with Dr. Kaileigh Byrne of Clemson University's Decision Lab, we launched a cross-sectional study comparing long-time chess players with non-players aged 65+ — measuring which brain regions chess activates and whether long-term play correlates with reduced cognitive decline.</p>
+            <ul class="check-list">
+              <li>Led by cognitive psychology faculty at Clemson University</li>
+              <li>Actively recruiting participants aged 65 and older</li>
+              <li>Proposed and co-designed by our student founders</li>
+            </ul>
+            <a href="research.html" class="btn btn-primary">Explore the Research</a>
+          </div>
+          <div class="reveal d1">
+            <div class="research-card">
+              <div class="rc-head">
+                <div class="rc-badge">CU</div>
+                <div>
+                  <strong>Clemson University</strong>
+                  <span>Cognitive Psychology · Decision Lab</span>
+                </div>
+              </div>
+              <p class="rc-quote">"There is almost no work specifically on chess, despite its engagement of multiple cognitive functions simultaneously. This research is long overdue."</p>
+              <div class="rc-cite">— Dr. Kaileigh Byrne, Associate Professor of Cognitive Psychology</div>
+            </div>
+          </div>
+        </div>
       </div>
-      <button class="ns-arr" id="sp" aria-label="Previous"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg></button>
-      <button class="ns-arr" id="sn" aria-label="Next"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button>
-      <span class="ns-cnt" id="sc">1 / 3</span>
-    </div>
-  </div>
-</section>
+    </section>
 
-<!-- PROGRAMS -->
-<section class="progs-wrap" aria-labelledby="ph">
-  <div class="progs-in">
-    <div class="sec-head" style="margin-bottom:3.5rem">
-      <h2 id="ph">What We Do</h2>
-      <div class="sec-hr"></div>
-      <a href="programs.html" class="sec-a">All Programs</a>
-    </div>
-    <div class="pgrid">
-      <div class="pg rv">
-        <div class="pgnum">01</div>
-        <h3>Community Tournaments</h3>
-        <p>Chess tournaments across Upstate and Midlands South Carolina, raising funds for the Alzheimer's Association's #TheLongestDay campaign.</p>
-        <a href="programs.html" class="pglnk">Learn more &nbsp;→</a>
+    <!-- PRESS -->
+    <section class="section section-wash" aria-labelledby="nh">
+      <div class="container">
+        <div class="section-head center reveal">
+          <div class="eyebrow">In the News</div>
+          <h2 id="nh">The world is taking notice.</h2>
+        </div>
+        <div class="grid-3">
+          <article class="card press-card reveal">
+            <div class="press-src">Fox Carolina News</div>
+            <h3>Upstate Chess Players Team with Clemson to Study Game's Potential Against Alzheimer's</h3>
+            <p>Caton Tsao and Aman Sreshta proposed a cross-sectional research study to Dr. Kaileigh Byrne at Clemson University, examining which brain regions activate during chess.</p>
+            <div class="press-date">Dec 2025 · foxcarolina.com</div>
+          </article>
+          <article class="card press-card reveal d1">
+            <div class="press-src">Alzheimer's Association SC</div>
+            <h3>Upstate Students Aim to "Checkmate Alzheimer's"</h3>
+            <p>Caton and Allen host community tournaments raising funds for the Association's #TheLongestDay campaign across Upstate and Midlands South Carolina.</p>
+            <div class="press-date">Jul 2025 · alz.org/sc</div>
+          </article>
+          <article class="card press-card reveal d2">
+            <div class="press-src">ChessBase</div>
+            <h3>Checkmating Alzheimer's Disease</h3>
+            <p>International coverage linking chess to cognitive health and Alzheimer's prevention — putting the initiative in front of a worldwide chess audience.</p>
+            <div class="press-date">2021 · chessbase.com</div>
+          </article>
+        </div>
       </div>
-      <div class="pg rv d1">
-        <div class="pgnum">02</div>
-        <h3>Senior Chess Classes</h3>
-        <p>Volunteers visit retirement communities to teach chess to seniors — bringing cognitive stimulation, social connection, and genuine joy.</p>
-        <a href="programs.html" class="pglnk">Learn more &nbsp;→</a>
+    </section>
+
+    <!-- FOUNDER QUOTE -->
+    <section class="section" aria-label="Founder quote">
+      <div class="container">
+        <div class="founder-quote reveal">
+          <div class="eyebrow" style="justify-content:center;">From Our Founder</div>
+          <blockquote>"I have witnessed the profound impact of Alzheimer's on the patient and the family. With this project, I hoped to <em>help others in my community.</em>"</blockquote>
+          <div class="quote-author" style="justify-content:center;">
+            <div class="q-avatar">CT</div>
+            <div class="q-meta" style="text-align:left;">
+              <strong>Caton Tsao</strong>
+              <span>Co-founder, Checkmating Alzheimer's</span>
+            </div>
+          </div>
+        </div>
       </div>
-      <div class="pg rv d2">
-        <div class="pgnum">03</div>
-        <h3>Clemson Research Study</h3>
-        <p>A formal study with Dr. Kaileigh Byrne at Clemson investigating whether chess can scientifically reduce the risk of Alzheimer's and cognitive decline.</p>
-        <a href="research.html" class="pglnk">See the research &nbsp;→</a>
+    </section>
+
+    <!-- CTA -->
+    <section class="section-tight" aria-label="Call to action">
+      <div class="container">
+        <div class="cta-panel reveal">
+          <h2>Your move matters.</h2>
+          <p>Join the students, seniors, and chess players fighting Alzheimer's — wherever you are.</p>
+          <div class="cta-actions">
+            <a href="involved.html" class="btn btn-white btn-lg">Get Involved</a>
+            <a href="events.html" class="btn btn-ghost btn-lg">See Upcoming Events</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- NEWSLETTER -->
+    <section class="nl-strip" aria-labelledby="nlh">
+      <div class="container reveal">
+        <h2 id="nlh">Stay in the loop.</h2>
+        <p class="nl-lead">Tournament dates, research updates, and ways to help — straight to your inbox.</p>
+        <form class="nl-form" onsubmit="nlSub(event)" novalidate>
+          <label for="nle" style="position:absolute;width:1px;height:1px;overflow:hidden">Email</label>
+          <input id="nle" type="email" placeholder="your@email.com" required autocomplete="email">
+          <button type="submit">Subscribe</button>
+        </form>
+        <p class="nl-success" id="nlok" role="status">You're in — talk soon.</p>
+        <p class="nl-note">No spam. Unsubscribe anytime.</p>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand-col">
+          <img src="brand_assets/finalized.png" alt="Checkmating Alzheimer's logo">
+          <strong>Checkmating Alzheimer's</strong>
+          <p>A youth-led initiative using chess to fight Alzheimer's disease — one move at a time.</p>
+          <div class="footer-social">
+            <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
+            <a href="#" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg></a>
+            <a href="mailto:articulatedesigners@gmail.com" aria-label="Email"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg></a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h4>Initiative</h4>
+          <ul>
+            <li><a href="story.html">Our Story</a></li>
+            <li><a href="programs.html">What We Do</a></li>
+            <li><a href="research.html">The Research</a></li>
+            <li><a href="team.html">Our Team</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Participate</h4>
+          <ul>
+            <li><a href="events.html">Events Calendar</a></li>
+            <li><a href="involved.html">Play a Tournament</a></li>
+            <li><a href="involved.html">Volunteer</a></li>
+            <li><a href="involved.html">Donate</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Research</h4>
+          <ul>
+            <li><a href="research.html">Brain Science</a></li>
+            <li><a href="research.html">Clemson Partnership</a></li>
+            <li><a href="mailto:decisionlab@clemson.edu">Study Enrollment</a></li>
+            <li><a href="mailto:articulatedesigners@gmail.com">Contact Us</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>&copy; 2026 Checkmating Alzheimer's · Upstate South Carolina</span>
+        <span>Founded by Caton Tsao &amp; Allen Hong</span>
       </div>
     </div>
-  </div>
-</section>
+  </footer>
 
-<!-- CTA -->
-<section class="cta-band" aria-label="Call to action">
-  <div class="cta-in rv">
-    <div>
-      <h2>Your move<br><strong>matters.</strong></h2>
-      <p>Join hundreds of chess players fighting Alzheimer's across South Carolina.</p>
-    </div>
-    <a href="involved.html" class="btn-acc">Get Involved &nbsp;→</a>
-  </div>
-</section>
+  <script src="nav.js"></script>
+  <script>
+  /* ── Partner marquee ── */
+  const PARTNERS=[
+    { name:'Columbia Chess Club',           logo:null },
+    { name:'Greenville Chess Club',         logo:null },
+    { name:'Clemson University Chess Club', logo:'https://www.google.com/s2/favicons?domain=clemson.edu&sz=64' },
+    { name:'Furman University Chess Club',  logo:'https://www.google.com/s2/favicons?domain=furman.edu&sz=64' },
+    { name:'Alzheimer\'s Association',      logo:'https://www.google.com/s2/favicons?domain=alz.org&sz=64' },
+    { name:'SC Chess Association',          logo:null },
+  ];
+  (()=>{
+    const t=document.getElementById('pt');
+    const shuffled=[...PARTNERS].sort(()=>Math.random()-.5);
+    let h='';
+    for(let c=0;c<2;c++) shuffled.forEach(p=>{
+      const img=p.logo?`<img src="${p.logo}" alt="" onerror="this.style.display='none'">`:'' ;
+      h+=`<span class="pitem"><span class="pdot"></span>${img}${p.name}</span>`;
+    });
+    t.innerHTML=h;
+  })();
 
-<!-- NEWSLETTER -->
-<section class="nl-wrap" aria-labelledby="nlh">
-  <div class="nl-in rv">
-    <h2 id="nlh">Stay in the loop.</h2>
-    <p>Tournament dates, research updates, and ways to help — straight to your inbox.</p>
-    <form class="nl-form" onsubmit="nlSub(event)" novalidate>
-      <label for="nle" style="position:absolute;width:1px;height:1px;overflow:hidden">Email</label>
-      <input id="nle" type="email" placeholder="your@email.com" required autocomplete="email">
-      <button type="submit">Subscribe</button>
-    </form>
-    <p class="nl-ok" id="nlok">You're in — talk soon.</p>
-    <p class="nl-fine">No spam. Unsubscribe anytime.</p>
-  </div>
-</section>
+  /* ── Counters ── */
+  const co=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting&&!e.target.dataset.done){e.target.dataset.done=1;count(e.target);}}),{threshold:.6});
+  document.querySelectorAll('.counter').forEach(el=>co.observe(el));
+  function count(el){
+    const t=+el.dataset.t,pre=el.dataset.pre||'',suf=el.dataset.suf||'',dur=1400,s=performance.now(),ease=p=>1-Math.pow(1-p,3);
+    const dec=el.dataset.t.includes('.')?el.dataset.t.split('.')[1].length:0;
+    (function f(now){const p=Math.min((now-s)/dur,1);const v=ease(p)*t;el.textContent=pre+(p>=1&&dec?t.toFixed(dec):Math.floor(v).toLocaleString())+suf;if(p<1)requestAnimationFrame(f);})(s);
+  }
 
-</main>
-
-<!-- FOOTER — WHITE -->
-<footer class="sfoot" role="contentinfo">
-  <div class="ft-top">
-    <div class="ft-brand">
-      <img src="brand_assets/finalized.png" alt="Checkmating Alzheimer's">
-      <p>A youth-led initiative from Upstate South Carolina using chess to fight Alzheimer's disease — one move at a time.</p>
-      <div class="ftsoc">
-        <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
-        <a href="#" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg></a>
-        <a href="mailto:articulatedesigners@gmail.com" aria-label="Email"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg></a>
-      </div>
-    </div>
-    <div class="ft-col">
-      <h4>Initiative</h4>
-      <ul>
-        <li><a href="story.html">Our Story</a></li>
-        <li><a href="programs.html">What We Do</a></li>
-        <li><a href="research.html">The Research</a></li>
-        <li><a href="team.html">Our Team</a></li>
-      </ul>
-    </div>
-    <div class="ft-col">
-      <h4>Participate</h4>
-      <ul>
-        <li><a href="involved.html">Play a Tournament</a></li>
-        <li><a href="involved.html">Volunteer</a></li>
-        <li><a href="involved.html">Donate</a></li>
-        <li><a href="involved.html">Contact Us</a></li>
-      </ul>
-    </div>
-    <div class="ft-col">
-      <h4>Research</h4>
-      <ul>
-        <li><a href="research.html">Brain Science</a></li>
-        <li><a href="research.html">Clemson Partnership</a></li>
-        <li><a href="mailto:decisionlab@clemson.edu">Study Enrollment</a></li>
-      </ul>
-    </div>
-  </div>
-  <div class="ft-btm">
-    <span>&copy; 2026 Checkmating Alzheimer's · Upstate South Carolina</span>
-    <span>Founded by Caton Tsao &amp; Allen Hong</span>
-  </div>
-</footer>
-
-<script>
-/* ── Mobile nav ── */
-const nt=document.getElementById('nt'),mn=document.getElementById('mn'),io=document.getElementById('io'),ic=document.getElementById('ic');
-nt.addEventListener('click',()=>{const o=mn.classList.toggle('open');nt.setAttribute('aria-expanded',o);io.style.display=o?'none':'';ic.style.display=o?'':'none';});
-mn.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{mn.classList.remove('open');nt.setAttribute('aria-expanded',false);io.style.display='';ic.style.display='none';}));
-
-/* ── Partner scroll strip ── */
-const PARTNERS=[
-  { name:'Columbia Chess Club',           logo:null },
-  { name:'Greenville Chess Club',         logo:null },
-  { name:'Clemson University Chess Club', logo:'https://www.google.com/s2/favicons?domain=clemson.edu&sz=64' },
-  { name:'Furman University Chess Club',  logo:'https://www.google.com/s2/favicons?domain=furman.edu&sz=64' },
-  { name:'Alzheimer\'s Association',      logo:'https://www.google.com/s2/favicons?domain=alz.org&sz=64' },
-  { name:'SC Chess Association',          logo:null },
-];
-(()=>{
-  const t=document.getElementById('pt');
-  const shuffled=[...PARTNERS].sort(()=>Math.random()-.5);
-  let h='';
-  for(let c=0;c<2;c++) shuffled.forEach(p=>{
-    const img=p.logo?`<img src="${p.logo}" alt="" onerror="this.style.display='none'">`:'' ;
-    h+=`<span class="pitem"><span class="pdot"></span>${img}${p.name}</span>`;
-  });
-  t.innerHTML=h;
-})();
-
-/* ── News slideshow ── */
-let cur=0;const T=3;
-function go(n){
-  document.getElementById('s'+cur).classList.remove('on');
-  document.querySelectorAll('.ns-dot')[cur].classList.remove('on');
-  cur=(n+T)%T;
-  document.getElementById('s'+cur).classList.add('on');
-  document.querySelectorAll('.ns-dot')[cur].classList.add('on');
-  document.getElementById('sc').textContent=(cur+1)+' / '+T;
-}
-document.getElementById('sn').addEventListener('click',()=>go(cur+1));
-document.getElementById('sp').addEventListener('click',()=>go(cur-1));
-document.querySelectorAll('.ns-dot').forEach(d=>d.addEventListener('click',()=>go(+d.dataset.s)));
-
-/* ── Scroll reveal ── */
-const ro=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('in');}),{threshold:.08,rootMargin:'0px 0px -16px 0px'});
-document.querySelectorAll('.rv').forEach(el=>ro.observe(el));
-
-/* ── Counters ── */
-const co=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting&&!e.target.dataset.done){e.target.dataset.done=1;count(e.target);}}),{threshold:.6});
-document.querySelectorAll('.counter').forEach(el=>co.observe(el));
-function count(el){
-  const t=+el.dataset.t,pre=el.dataset.pre||'',suf=el.dataset.suf||'',dur=1400,s=performance.now(),ease=p=>1-Math.pow(1-p,3);
-  const dec=el.dataset.t.includes('.')?el.dataset.t.split('.')[1].length:0;
-  (function f(now){const p=Math.min((now-s)/dur,1);const v=ease(p)*t;el.textContent=pre+(p>=1&&dec?t.toFixed(dec):Math.floor(v).toLocaleString())+suf;if(p<1)requestAnimationFrame(f);})(s);
-}
-
-/* ── Newsletter ── */
-function nlSub(e){e.preventDefault();document.getElementById('nlok').style.display='block';e.target.querySelector('input').value='';const b=e.target.querySelector('button');b.textContent='Subscribed';b.disabled=true;}
-</script>
+  /* ── Newsletter ── */
+  function nlSub(e){
+    e.preventDefault();
+    document.getElementById('nlok').style.display='block';
+    e.target.querySelector('input').value='';
+    const b=e.target.querySelector('button');
+    b.textContent='Subscribed!'; b.disabled=true;
+  }
+  </script>
 </body>
 </html>
