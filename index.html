@@ -87,11 +87,16 @@
     .rc-cite { font-size: .78rem; font-weight: 700; color: var(--ink-3); }
 
     /* ── Press ── */
-    .press-card { display: flex; flex-direction: column; }
+    .press-card { display: flex; flex-direction: column; padding: 0; overflow: hidden; }
+    .press-img-wrap { overflow: hidden; }
+    .press-img-wrap img { display: block; width: 100%; height: 190px; object-fit: cover; transition: transform .5s var(--ease); }
+    .press-card:hover .press-img-wrap img { transform: scale(1.06); }
+    .press-body { padding: 1.6rem 1.75rem 1.85rem; display: flex; flex-direction: column; flex: 1; }
     .press-src { font-size: .68rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--acc-ink); margin-bottom: .8rem; }
     .press-card h3 { font-size: 1.05rem; line-height: 1.4; margin-bottom: .6rem; }
     .press-card p { font-size: .88rem; color: var(--ink-3); line-height: 1.65; flex: 1; }
     .press-date { margin-top: 1.2rem; font-size: .74rem; color: var(--ink-3); font-weight: 600; }
+    .press-grid-2 { grid-template-columns: repeat(2, 1fr); max-width: 780px; margin: 0 auto; }
 
     /* ── Founder quote ── */
     .founder-quote { max-width: 780px; margin: 0 auto; text-align: center; }
@@ -280,27 +285,27 @@
       <div class="container">
         <div class="section-head center reveal">
           <div class="eyebrow">In the News</div>
-          <h2 id="nh">The world is taking notice.</h2>
+          <h2 id="nh">A bit of the coverage so far.</h2>
         </div>
-        <div class="grid-3">
-          <article class="card press-card reveal">
-            <div class="press-src">Fox Carolina News</div>
-            <h3>Upstate Chess Players Team with Clemson to Study Game's Potential Against Alzheimer's</h3>
-            <p>Caton Tsao and Aman Sreshta proposed a cross-sectional research study to Dr. Kaileigh Byrne at Clemson University, examining which brain regions activate during chess.</p>
-            <div class="press-date">Dec 2025 · foxcarolina.com</div>
-          </article>
-          <article class="card press-card reveal d1">
-            <div class="press-src">Alzheimer's Association SC</div>
-            <h3>Upstate Students Aim to "Checkmate Alzheimer's"</h3>
-            <p>Caton and Allen host community tournaments raising funds for the Association's #TheLongestDay campaign across Upstate and Midlands South Carolina.</p>
-            <div class="press-date">Jul 2025 · alz.org/sc</div>
-          </article>
-          <article class="card press-card reveal d2">
-            <div class="press-src">ChessBase</div>
-            <h3>Checkmating Alzheimer's Disease</h3>
-            <p>International coverage linking chess to cognitive health and Alzheimer's prevention, putting the initiative in front of chess players worldwide.</p>
-            <div class="press-date">2021 · chessbase.com</div>
-          </article>
+        <div class="grid-3 press-grid-2">
+          <a href="https://www.foxcarolina.com/2025/12/03/upstate-chess-players-team-with-clemson-study-games-potential-against-alzheimers/" target="_blank" rel="noopener" class="card press-card reveal">
+            <div class="press-img-wrap"><img src="images/senior-chess-volunteers.jpg" alt="Students and seniors playing chess together across several boards" loading="lazy" width="1600" height="1373"></div>
+            <div class="press-body">
+              <div class="press-src">Fox Carolina News</div>
+              <h3>Upstate Chess Players Team with Clemson to Study Game's Potential Against Alzheimer's</h3>
+              <p>Caton Tsao and Aman Sreshta proposed a cross-sectional research study to Dr. Kaileigh Byrne at Clemson University, examining which brain regions activate during chess.</p>
+              <div class="press-date">Dec 2025 · foxcarolina.com</div>
+            </div>
+          </a>
+          <a href="https://www.alz.org/sc/blog/checkmatealzheimers" target="_blank" rel="noopener" class="card press-card reveal d1">
+            <div class="press-img-wrap"><img src="images/fundraiser-check-presentation.jpg" alt="Co-founders Caton Tsao and Allen Hong presenting a fundraising check to the Alzheimer's Association" loading="lazy" width="1600" height="1200"></div>
+            <div class="press-body">
+              <div class="press-src">Alzheimer's Association SC</div>
+              <h3>Upstate Students Aim to "Checkmate Alzheimer's"</h3>
+              <p>Caton and Allen host community tournaments raising funds for the Association's #TheLongestDay campaign across Upstate and Midlands South Carolina.</p>
+              <div class="press-date">Jul 2025 · alz.org/sc</div>
+            </div>
+          </a>
         </div>
       </div>
     </section>
