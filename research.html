@@ -38,6 +38,13 @@
     .partner-cta a { font-weight: 800; color: var(--acc-ink); font-size: .92rem; }
     .why-card h3 { margin: 1.1rem 0 .55rem; font-size: 1.05rem; }
     .why-card p { font-size: .9rem; color: var(--ink-3); line-height: 1.7; }
+    .disclaimer-box {
+      max-width: 760px; margin: 0 auto; padding: 1.1rem 1.5rem;
+      background: var(--wash-40); border: 1px solid var(--border-soft);
+      border-radius: var(--r); text-align: center;
+    }
+    .disclaimer-box p { font-size: .8rem; color: var(--ink-3); line-height: 1.6; margin: 0; }
+    .disclaimer-box strong { color: var(--ink-2); }
     @media (max-width: 640px) { .brain-grid { grid-template-columns: 1fr; } }
   </style>
   <script type="module">
@@ -213,6 +220,15 @@
       </div>
     </section>
 
+    <!-- Disclaimer -->
+    <section class="section-tight">
+      <div class="container">
+        <div class="disclaimer-box reveal">
+          <p><strong>Notice:</strong> The information and research presented on this site are for educational and awareness purposes only. Checkmating Alzheimer's does not provide medical diagnoses, advice, or clinical treatment options.</p>
+        </div>
+      </div>
+    </section>
+
     <section class="nl-strip">
       <div class="container reveal">
         <h2>Follow along.</h2>
@@ -271,7 +287,11 @@
         </div>
       </div>
       <div class="footer-bottom">
-        <span>&copy; 2026 Checkmating Alzheimer's · Upstate South Carolina</span>
+        <span>&copy; 2026 Checkmating Alzheimer's. All rights reserved.</span>
+        <div class="footer-legal-links">
+          <a href="/privacy">Privacy Policy</a>
+          <a href="/terms">Terms of Use</a>
+        </div>
         <span>Founded by Caton Tsao &amp; Allen Hong</span>
       </div>
     </div>
