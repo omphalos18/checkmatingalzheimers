@@ -293,19 +293,6 @@
       </div>
     </section>
 
-    <section class="nl-strip">
-      <div class="container reveal">
-        <h2>Stay in the loop.</h2>
-        <p class="nl-lead">Get event announcements, research updates, and volunteer opportunities delivered to your inbox.</p>
-        <form class="nl-form" onsubmit="handleNL(event)" novalidate>
-          <input id="nl-email" type="email" placeholder="Your email address" required autocomplete="email" aria-label="Email">
-          <button type="submit">Subscribe Free</button>
-        </form>
-        <p class="nl-success" id="nl-success" role="status">You're in. Talk soon.</p>
-        <p class="nl-note">No spam. Unsubscribe anytime.</p>
-      </div>
-    </section>
-
   </main>
 
   <footer>
@@ -362,15 +349,6 @@
 
   <script src="nav.js"></script>
   <script>
-    /* ── Newsletter ── */
-    function handleNL(e) {
-      e.preventDefault();
-      document.getElementById('nl-success').style.display = 'block';
-      e.target.querySelector('input').value = '';
-      e.target.querySelector('button').textContent = 'Subscribed!';
-      e.target.querySelector('button').disabled = true;
-    }
-
     /* ── Contact form ── */
     function handleContact(e) {
       e.preventDefault();

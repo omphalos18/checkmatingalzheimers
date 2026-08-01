@@ -365,21 +365,6 @@
       </div>
     </section>
 
-    <!-- NEWSLETTER -->
-    <section class="nl-strip" aria-labelledby="nlh">
-      <div class="container reveal">
-        <h2 id="nlh">Stay in the loop.</h2>
-        <p class="nl-lead">Tournament dates, research updates, and ways to help, straight to your inbox.</p>
-        <form class="nl-form" onsubmit="nlSub(event)" novalidate>
-          <label for="nle" style="position:absolute;width:1px;height:1px;overflow:hidden">Email</label>
-          <input id="nle" type="email" placeholder="your@email.com" required autocomplete="email">
-          <button type="submit">Subscribe</button>
-        </form>
-        <p class="nl-success" id="nlok" role="status">You're in. Talk soon.</p>
-        <p class="nl-note">No spam. Unsubscribe anytime.</p>
-      </div>
-    </section>
-
   </main>
 
   <footer>
@@ -463,15 +448,6 @@
     const t=+el.dataset.t,pre=el.dataset.pre||'',suf=el.dataset.suf||'',dur=1400,s=performance.now(),ease=p=>1-Math.pow(1-p,3);
     const dec=el.dataset.t.includes('.')?el.dataset.t.split('.')[1].length:0;
     (function f(now){const p=Math.min((now-s)/dur,1);const v=ease(p)*t;el.textContent=pre+(p>=1&&dec?t.toFixed(dec):Math.floor(v).toLocaleString())+suf;if(p<1)requestAnimationFrame(f);})(s);
-  }
-
-  /* ── Newsletter ── */
-  function nlSub(e){
-    e.preventDefault();
-    document.getElementById('nlok').style.display='block';
-    e.target.querySelector('input').value='';
-    const b=e.target.querySelector('button');
-    b.textContent='Subscribed!'; b.disabled=true;
   }
   </script>
 </body>

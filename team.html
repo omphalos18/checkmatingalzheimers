@@ -184,20 +184,6 @@
       </div>
     </section>
 
-    <section class="nl-strip">
-      <div class="container reveal">
-        <h2>Follow our journey.</h2>
-        <p class="nl-lead">Get updates straight from the team on events, research, and how to join.</p>
-        <form class="nl-form" onsubmit="handleNL(event)" novalidate>
-          <label for="nl-email" style="position:absolute;width:1px;height:1px;overflow:hidden;">Email</label>
-          <input id="nl-email" type="email" placeholder="Your email address" required autocomplete="email">
-          <button type="submit">Subscribe</button>
-        </form>
-        <p class="nl-success" id="nl-success" role="status">You're in. Talk soon.</p>
-        <p class="nl-note">No spam. Unsubscribe anytime.</p>
-      </div>
-    </section>
-
   </main>
 
   <footer>
@@ -253,14 +239,5 @@
   </footer>
 
   <script src="nav.js"></script>
-  <script>
-    function handleNL(e) {
-      e.preventDefault();
-      document.getElementById('nl-success').style.display = 'block';
-      e.target.querySelector('input').value = '';
-      e.target.querySelector('button').textContent = 'Subscribed!';
-      e.target.querySelector('button').disabled = true;
-    }
-  </script>
 </body>
 </html>
