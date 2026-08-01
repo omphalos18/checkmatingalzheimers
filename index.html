@@ -98,6 +98,14 @@
     .founder-quote { max-width: 780px; margin: 0 auto; text-align: center; }
     .founder-quote blockquote { font-size: clamp(1.25rem, 2.8vw, 1.8rem); font-weight: 500; letter-spacing: -.02em; line-height: 1.55; color: var(--ink); margin-bottom: 1.75rem; }
     .founder-quote blockquote em { color: var(--acc-ink); font-style: normal; }
+
+    /* ── Supporters strip ── */
+    .supporters-row { text-align: center; max-width: 760px; margin: 0 auto; }
+    .supporters-row .eyebrow { justify-content: center; }
+    .supporters-row h2 { margin-bottom: 1.75rem; }
+    .supporters-logos { display: flex; flex-wrap: wrap; justify-content: center; gap: .8rem 1.6rem; margin-bottom: 2.2rem; }
+    .slogo { display: inline-flex; align-items: center; gap: .55rem; font-size: .92rem; font-weight: 600; color: var(--ink-2); }
+    .slogo img { width: 22px; height: 22px; border-radius: 5px; flex-shrink: 0; opacity: .9; }
   </style>
   <script type="module">
     import { inject } from 'https://cdn.jsdelivr.net/npm/@vercel/speed-insights/+esm';
@@ -119,6 +127,7 @@
         <a href="/research">Research</a>
         <a href="/team">Our Team</a>
         <a href="/events">Events</a>
+        <a href="/sponsors">Sponsors</a>
         <a href="/involved">Get Involved</a>
       </div>
       <a href="/involved" class="ncta">Join Us</a>
@@ -133,6 +142,7 @@
       <a href="/research">Research</a>
       <a href="/team">Our Team</a>
       <a href="/events">Events</a>
+      <a href="/sponsors">Sponsors</a>
       <a href="/involved">Get Involved</a>
       <a href="/involved" class="mcta">Join Us</a>
     </div>
@@ -343,6 +353,25 @@
       </div>
     </section>
 
+    <!-- SUPPORTERS -->
+    <section class="section-tight section-wash" aria-labelledby="sph">
+      <div class="container">
+        <div class="supporters-row reveal">
+          <div class="eyebrow">Supporters &amp; Partners</div>
+          <h2 id="sph">Backed by our community.</h2>
+          <div class="supporters-logos">
+            <span class="slogo"><img src="https://www.google.com/s2/favicons?domain=alz.org&#38;sz=64" alt="" loading="lazy">Alzheimer's Association</span>
+            <span class="slogo"><img src="https://www.google.com/s2/favicons?domain=clemson.edu&#38;sz=64" alt="" loading="lazy">Clemson University Chess Club</span>
+            <span class="slogo"><img src="https://www.google.com/s2/favicons?domain=furman.edu&#38;sz=64" alt="" loading="lazy">Furman University Chess Club</span>
+            <span class="slogo"><img src="https://www.google.com/s2/favicons?domain=scchess.org&#38;sz=64" alt="" loading="lazy">SC Chess Association</span>
+            <span class="slogo"><img src="https://www.google.com/s2/favicons?domain=columbiachess.org&#38;sz=64" alt="" loading="lazy">Columbia Chess Club</span>
+            <span class="slogo"><img src="https://www.google.com/s2/favicons?domain=greenvillechessclub.org&#38;sz=64" alt="" loading="lazy">Greenville Chess Club</span>
+          </div>
+          <a href="/sponsors" class="btn btn-primary">Partner With Us</a>
+        </div>
+      </div>
+    </section>
+
   </main>
 
   <footer>
@@ -374,6 +403,7 @@
             <li><a href="/involved">Play a Tournament</a></li>
             <li><a href="/involved">Volunteer</a></li>
             <li><a href="/involved">Donate</a></li>
+            <li><a href="/sponsors">Become a Sponsor</a></li>
           </ul>
         </div>
         <div class="footer-col">
@@ -399,12 +429,12 @@
   <script>
   /* ── Partner marquee ── */
   const PARTNERS=[
-    { name:'Columbia Chess Club',           logo:null },
-    { name:'Greenville Chess Club',         logo:null },
+    { name:'Columbia Chess Club',           logo:'https://www.google.com/s2/favicons?domain=columbiachess.org&sz=64' },
+    { name:'Greenville Chess Club',         logo:'https://www.google.com/s2/favicons?domain=greenvillechessclub.org&sz=64' },
     { name:'Clemson University Chess Club', logo:'https://www.google.com/s2/favicons?domain=clemson.edu&sz=64' },
     { name:'Furman University Chess Club',  logo:'https://www.google.com/s2/favicons?domain=furman.edu&sz=64' },
     { name:'Alzheimer\'s Association',      logo:'https://www.google.com/s2/favicons?domain=alz.org&sz=64' },
-    { name:'SC Chess Association',          logo:null },
+    { name:'SC Chess Association',          logo:'https://www.google.com/s2/favicons?domain=scchess.org&sz=64' },
   ];
   (()=>{
     const t=document.getElementById('pt');
