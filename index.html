@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Checkmating Alzheimer's | Chess Against Alzheimer's</title>
-  <meta name="description" content="A youth-led initiative using chess to fight Alzheimer's, through community tournaments, senior outreach, and an ongoing research collaboration, starting in South Carolina.">
+  <meta name="description" content="A youth-led initiative using chess to fight Alzheimer's, through community tournaments and senior outreach, starting in South Carolina.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
@@ -76,15 +76,12 @@
     .prog-card h3 { font-size: 1.2rem; margin-bottom: .7rem; }
     .prog-card p { font-size: .92rem; color: var(--ink-2); line-height: 1.7; flex: 1; }
     .prog-link { display: inline-flex; align-items: center; gap: .4rem; font-weight: 700; font-size: .85rem; color: var(--acc-ink); margin-top: 1.4rem; }
+    .prog-grid-2 { grid-template-columns: repeat(2, 1fr); max-width: 780px; margin: 0 auto; }
+    @media (max-width: 640px) { .prog-grid-2 { grid-template-columns: 1fr; } }
 
-    /* ── Research feature ── */
-    .research-card { background: #fff; border: 1px solid var(--border-soft); border-radius: var(--rl); padding: 2.25rem; box-shadow: var(--shadow-2); }
-    .rc-head { display: flex; align-items: center; gap: 1rem; padding-bottom: 1.4rem; margin-bottom: 1.4rem; border-bottom: 1px solid var(--border-soft); }
-    .rc-badge { width: 52px; height: 52px; border-radius: 14px; background: var(--wash); display: flex; align-items: center; justify-content: center; font-weight: 800; color: var(--acc-ink); flex-shrink: 0; }
-    .rc-head strong { display: block; font-size: 1.02rem; }
-    .rc-head span { font-size: .8rem; color: var(--ink-3); }
-    .rc-quote { font-style: italic; font-size: .95rem; color: var(--ink-2); line-height: 1.75; margin-bottom: 1rem; }
-    .rc-cite { font-size: .78rem; font-weight: 700; color: var(--ink-3); }
+    /* ── Research footnote ── */
+    .research-footnote { max-width: 640px; margin: 0 auto; text-align: center; font-size: .85rem; color: var(--ink-3); line-height: 1.7; }
+    .research-footnote a { color: var(--acc-ink); font-weight: 700; }
 
     /* ── Press ── */
     .press-card { display: flex; flex-direction: column; padding: 0; overflow: hidden; }
@@ -150,14 +147,13 @@
         <div class="reveal">
           <div class="hero-badge"><span class="dot"></span> Youth-led initiative · South Carolina &amp; growing</div>
           <h1>Chess is our move against <em>Alzheimer's.</em></h1>
-          <p class="lead">We're a student-founded movement using the world's oldest strategy game to protect minds, through community tournaments, free chess programs for seniors, and an ongoing research collaboration with Clemson University.</p>
+          <p class="lead">We're a student-founded movement using the world's oldest strategy game to protect minds, through community tournaments and free chess programs for seniors.</p>
           <div class="hero-actions">
             <a href="/involved" class="btn btn-primary btn-lg">Get Involved</a>
             <a href="/story" class="btn btn-outline btn-lg">Our Story &rarr;</a>
           </div>
           <div class="hero-meta-row">
             <span class="meta-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg> Alzheimer's Association partner</span>
-            <span class="meta-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg> Research collaboration with Clemson</span>
             <span class="meta-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg> USCF-rated tournaments</span>
           </div>
         </div>
@@ -210,7 +206,7 @@
           </div>
           <div class="mission-copy reveal d1">
             <p>After seeing how Alzheimer's affected his own family, co-founder Caton Tsao and fellow chess player Allen Hong turned to something they already knew well, chess, as a way to support cognitive health and bring people together.</p>
-            <p>What began as two students hosting local fundraising tournaments has grown into a multi-city initiative, including an ongoing research collaboration Caton and Aman started with Clemson University to explore whether chess might help support brain health as people age.</p>
+            <p>What began as two students hosting local fundraising tournaments has grown into a multi-city initiative reaching more players and more communities every season.</p>
             <a href="/story" class="mission-link">Read the full story <span aria-hidden="true">&rarr;</span></a>
           </div>
         </div>
@@ -222,10 +218,10 @@
       <div class="container">
         <div class="section-head center reveal">
           <div class="eyebrow">What We Do</div>
-          <h2 id="ph">Three ways chess fights back.</h2>
-          <p>From community fundraising to senior outreach to an ongoing research collaboration, every program moves the mission forward.</p>
+          <h2 id="ph">How chess fights back.</h2>
+          <p>From community fundraising to senior outreach, every program moves the mission forward.</p>
         </div>
-        <div class="grid-3">
+        <div class="grid-3 prog-grid-2">
           <a href="/programs" class="card prog-card reveal">
             <div class="num-ghost">01</div>
             <h3>Tournaments for a Cause</h3>
@@ -238,45 +234,14 @@
             <p>Free weekly chess classes at retirement communities, bringing cognitive stimulation and real social connection to the people most at risk.</p>
             <span class="prog-link">See senior outreach &rarr;</span>
           </a>
-          <a href="/research" class="card prog-card reveal d2">
-            <div class="num-ghost">03</div>
-            <h3>Chess &amp; Brain Health Research</h3>
-            <p>Caton and Aman are working with Clemson University to explore whether chess might help support brain health as people age, and what that could mean for Alzheimer's awareness.</p>
-            <span class="prog-link">See what we're exploring &rarr;</span>
-          </a>
         </div>
       </div>
     </section>
 
-    <!-- RESEARCH FEATURE -->
-    <section class="section" aria-labelledby="rh">
+    <!-- RESEARCH NOTE -->
+    <section class="section-tight" aria-label="Independent research note">
       <div class="container">
-        <div class="grid-2" style="align-items:center;">
-          <div class="reveal">
-            <div class="eyebrow">Research in Progress</div>
-            <h2 id="rh">Also exploring the science, carefully.</h2>
-            <p style="margin:1.1rem 0; font-size:1rem; line-height:1.8;">Caton and Aman have been working with Dr. Kaileigh Byrne of Clemson University's Decision Lab on a cross-sectional comparison of long-time chess players and non-players aged 65+. The idea is to get a better sense of which brain regions are active during chess play, and whether long-term play lines up with fewer markers of cognitive decline. It's early, exploratory work, not a cure or a guarantee.</p>
-            <ul class="check-list">
-              <li>Proposed and led by our student founders, Caton Tsao and Aman Sreshta</li>
-              <li>Guided by faculty at Clemson University's Decision Lab</li>
-              <li>Working on recruiting participants aged 65 and older</li>
-            </ul>
-            <a href="/research" class="btn btn-primary">Explore the Research</a>
-          </div>
-          <div class="reveal d1">
-            <div class="research-card">
-              <div class="rc-head">
-                <div class="rc-badge">CU</div>
-                <div>
-                  <strong>Clemson University</strong>
-                  <span>Cognitive Psychology · Decision Lab</span>
-                </div>
-              </div>
-              <p class="rc-quote">"There is almost no work specifically on chess, despite its engagement of multiple cognitive functions simultaneously. This research is long overdue."</p>
-              <div class="rc-cite">Dr. Kaileigh Byrne, Associate Professor of Cognitive Psychology</div>
-            </div>
-          </div>
-        </div>
+        <p class="research-footnote reveal">Outside of our community events, co-founders Caton and Aman are exploring independent student research around chess and cognitive activity in older adults, inspired by their work at Checkmating Alzheimer's. It's early, informal work, not an official program of the organization. <a href="/research">A bit more detail &rarr;</a></p>
       </div>
     </section>
 
@@ -407,8 +372,7 @@
           <h4>Research</h4>
           <ul>
             <li><a href="/research">Brain Science</a></li>
-            <li><a href="/research">Clemson Partnership</a></li>
-            <li><a href="mailto:decisionlab@clemson.edu">Study Enrollment</a></li>
+            <li><a href="/research">Student Research</a></li>
             <li><a href="mailto:articulatedesigners@gmail.com">Contact Us</a></li>
           </ul>
         </div>
