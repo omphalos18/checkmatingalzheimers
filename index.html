@@ -12,35 +12,37 @@
   <style>
     /* ── Home hero ── */
     .home-hero {
-      background:
-        radial-gradient(1000px 500px at 12% -12%, var(--wash-65), transparent 65%),
-        radial-gradient(800px 460px at 92% 4%, var(--wash-40), transparent 60%),
-        var(--bg);
-      border-bottom: 1px solid var(--border-soft);
-      padding: clamp(5rem, 10vw, 8.5rem) 0 clamp(4.5rem, 8vw, 7rem);
+      position: relative; overflow: hidden;
+      background: radial-gradient(ellipse 130% 90% at 50% -15%, var(--bg-dark-2), var(--bg-dark) 65%);
+      padding: clamp(4.25rem, 8.5vw, 6.75rem) 0 clamp(3.5rem, 7vw, 5.5rem);
       text-align: center;
     }
+    .home-hero::before, .home-hero::after { content: ''; position: absolute; border-radius: 50%; filter: blur(80px); pointer-events: none; }
+    .home-hero::before { width: 600px; height: 600px; top: -280px; left: -180px; background: radial-gradient(circle, var(--glow-1), transparent 70%); }
+    .home-hero::after  { width: 520px; height: 520px; top: -80px; right: -160px; background: radial-gradient(circle, var(--glow-2), transparent 70%); }
+    .home-hero .container { position: relative; z-index: 1; }
     .hero-badge {
       display: inline-flex; align-items: center; gap: .55rem;
-      font-size: .74rem; font-weight: 700; color: var(--acc-ink);
-      background: #fff; border: 1px solid var(--border-soft);
+      font-size: .74rem; font-weight: 700; color: var(--ink-on-dark);
+      background: var(--glass-bg); border: 1px solid var(--glass-border);
+      backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
       padding: .42rem 1.1rem; border-radius: var(--rp);
-      box-shadow: var(--shadow); margin-bottom: 1.9rem;
+      margin-bottom: 1.7rem;
     }
-    .hero-badge .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--acc); }
+    .hero-badge .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--acc); box-shadow: 0 0 8px var(--acc); }
     .home-hero h1 {
-      font-size: clamp(3rem, 7vw, 5.4rem);
+      font-size: clamp(2.75rem, 6.5vw, 5rem);
       font-weight: 800; letter-spacing: -.045em; line-height: 1.04;
-      max-width: 17ch; margin: 0 auto 1.5rem;
+      max-width: 17ch; margin: 0 auto 1.4rem; color: var(--ink-on-dark);
     }
     .home-hero h1 em {
       font-style: italic; font-weight: 300;
-      background: linear-gradient(120deg, var(--acc-ink), var(--acc));
+      background: linear-gradient(120deg, #cdc6ff, var(--acc) 55%, #b7aeff);
       -webkit-background-clip: text; background-clip: text;
       -webkit-text-fill-color: transparent; color: transparent;
     }
-    .home-hero .lead { margin: 0 auto 2.4rem; text-align: center; max-width: 56ch; }
-    .hero-actions { display: flex; gap: .8rem; justify-content: center; flex-wrap: wrap; margin-bottom: 2.6rem; }
+    .home-hero .lead { margin: 0 auto 2.1rem; text-align: center; max-width: 56ch; color: var(--ink-on-dark-2); }
+    .hero-actions { display: flex; gap: .8rem; justify-content: center; flex-wrap: wrap; margin-bottom: 2.3rem; }
 
     /* ── Partner marquee ── */
     .pstrip { padding: 1.4rem 0; border-bottom: 1px solid var(--border-soft); overflow: hidden; }
@@ -67,15 +69,16 @@
     .mission-grid { display: grid; grid-template-columns: 1.05fr 1fr; gap: clamp(2.5rem, 6vw, 6rem); align-items: center; }
     .mission-grid h2 { font-size: clamp(1.9rem, 3.8vw, 2.9rem); margin-bottom: 0; }
     .mission-copy p { margin-bottom: 1.1rem; font-size: 1rem; line-height: 1.8; }
-    .mission-link { display: inline-flex; align-items: center; gap: .4rem; font-weight: 700; font-size: .9rem; color: var(--acc-ink); margin-top: .4rem; transition: gap .2s; }
-    .mission-link:hover { gap: .7rem; }
+    .mission-link { display: inline-flex; align-items: center; gap: .4rem; font-weight: 700; font-size: .9rem; color: var(--acc-ink); margin-top: .4rem; transition: gap .25s var(--ease), color .2s; }
+    .mission-link:hover { gap: .7rem; color: var(--indigo); }
     @media (max-width: 820px) { .mission-grid { grid-template-columns: 1fr; } }
 
     /* ── Program cards ── */
     .prog-card { display: flex; flex-direction: column; }
     .prog-card h3 { font-size: 1.2rem; margin-bottom: .7rem; }
     .prog-card p { font-size: .92rem; color: var(--ink-2); line-height: 1.7; flex: 1; }
-    .prog-link { display: inline-flex; align-items: center; gap: .4rem; font-weight: 700; font-size: .85rem; color: var(--acc-ink); margin-top: 1.4rem; }
+    .prog-link { display: inline-flex; align-items: center; gap: .4rem; font-weight: 700; font-size: .85rem; color: var(--acc-ink); margin-top: 1.4rem; transition: gap .25s var(--ease), color .2s; }
+    .card:hover .prog-link { gap: .65rem; color: var(--indigo); }
     .prog-grid-2 { grid-template-columns: repeat(2, 1fr); max-width: 780px; margin: 0 auto; }
     @media (max-width: 640px) { .prog-grid-2 { grid-template-columns: 1fr; } }
 
@@ -96,15 +99,18 @@
 
     /* ── Founder quote ── */
     .founder-quote { max-width: 780px; margin: 0 auto; text-align: center; }
-    .founder-quote blockquote { font-size: clamp(1.25rem, 2.8vw, 1.8rem); font-weight: 500; letter-spacing: -.02em; line-height: 1.55; color: var(--ink); margin-bottom: 1.75rem; }
-    .founder-quote blockquote em { color: var(--acc-ink); font-style: normal; }
+    .founder-quote blockquote { font-size: clamp(1.25rem, 2.8vw, 1.8rem); font-weight: 500; letter-spacing: -.02em; line-height: 1.55; color: var(--ink-on-dark); margin-bottom: 1.75rem; }
+    .founder-quote blockquote em { color: #cdc6ff; font-style: normal; }
+    .founder-quote .q-meta strong { color: var(--ink-on-dark); }
+    .founder-quote .q-meta span { color: var(--ink-on-dark-3); }
 
     /* ── Supporters strip ── */
     .supporters-row { text-align: center; max-width: 760px; margin: 0 auto; }
     .supporters-row .eyebrow { justify-content: center; }
-    .supporters-row h2 { margin-bottom: 1.75rem; }
-    .supporters-logos { display: flex; flex-wrap: wrap; justify-content: center; gap: .8rem 1.6rem; margin-bottom: 2.2rem; }
-    .slogo { display: inline-flex; align-items: center; gap: .55rem; font-size: .92rem; font-weight: 600; color: var(--ink-2); }
+    .supporters-row h2 { margin-bottom: 1.4rem; }
+    .supporters-logos { display: flex; flex-wrap: wrap; justify-content: center; gap: .8rem 1.6rem; margin-bottom: 2rem; }
+    .slogo { display: inline-flex; align-items: center; gap: .55rem; font-size: .92rem; font-weight: 600; color: var(--ink-2); transition: color .2s, transform .2s var(--ease); }
+    .slogo:hover { color: var(--acc-ink); transform: translateY(-2px); }
     .slogo img { width: 22px; height: 22px; border-radius: 5px; flex-shrink: 0; opacity: .9; }
   </style>
   <script type="module">
@@ -159,7 +165,7 @@
           <p class="lead">We're a student-founded movement using the world's oldest strategy game to protect minds, through community tournaments and free chess programs for seniors.</p>
           <div class="hero-actions">
             <a href="/involved" class="btn btn-primary btn-lg">Get Involved</a>
-            <a href="/story" class="btn btn-outline btn-lg">Our Story &rarr;</a>
+            <a href="/story" class="btn btn-ghost btn-lg">Our Story &rarr;</a>
           </div>
           <div class="hero-meta-row">
             <span class="meta-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg> Alzheimer's Association partner</span>
@@ -323,7 +329,7 @@
     </section>
 
     <!-- FOUNDER QUOTE -->
-    <section class="section" aria-label="Founder quote">
+    <section class="section section-dark" aria-label="Founder quote">
       <div class="container">
         <div class="founder-quote reveal">
           <div class="eyebrow" style="justify-content:center;">From Our Founder</div>

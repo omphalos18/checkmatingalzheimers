@@ -31,4 +31,12 @@
     );
     revealEls.forEach(el => obs.observe(el));
   }
+
+  // Nav goes opaque/frosted after a small scroll
+  const nav = document.querySelector('.snav');
+  if (nav) {
+    const onScroll = () => nav.classList.toggle('scrolled', window.scrollY > 8);
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+  }
 })();
