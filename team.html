@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Our Team | Checkmating Alzheimer's</title>
-  <meta name="description" content="Meet the students behind Checkmating Alzheimer's: our founders, organizers, and academic research partner.">
+  <meta name="description" content="Meet the students behind Checkmating Alzheimer's: our founders, regional officers, and academic research partner.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
@@ -35,6 +35,15 @@
     .advisor-role { font-size: .74rem; font-weight: 700; letter-spacing: .09em; text-transform: uppercase; color: var(--acc-ink); margin-bottom: .8rem; }
     .advisor-card p { font-size: .92rem; color: var(--ink-2); line-height: 1.75; }
     @media (max-width: 620px) { .advisor-card { flex-direction: column; align-items: center; text-align: center; } }
+
+    .officer-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 1.1rem; }
+    .officer-card { text-align: center; padding: 1.75rem 1rem; }
+    .officer-card .team-initial { width: 56px; height: 56px; font-size: 1.05rem; margin-bottom: .8rem; background: var(--acc); }
+    .officer-card h3 { font-size: .98rem; margin-bottom: .3rem; }
+    .officer-card .team-role { margin-bottom: .25rem; }
+    .officer-card .team-school { font-size: .76rem; }
+    @media (max-width: 900px) { .officer-grid { grid-template-columns: repeat(3, 1fr); } }
+    @media (max-width: 560px) { .officer-grid { grid-template-columns: repeat(2, 1fr); } }
   </style>
   <script type="module">
     import { inject } from 'https://cdn.jsdelivr.net/npm/@vercel/speed-insights/+esm';
@@ -83,7 +92,7 @@
       <div class="page-hero-content reveal">
         <div class="eyebrow">Our Team</div>
         <h1>Students making real moves.</h1>
-        <p>We're high school and college students from Upstate South Carolina. We believe that young people, chess, and community can change the story of Alzheimer's.</p>
+        <p>We're high school and college students from across South Carolina. We believe that young people, chess, and community can change the story of Alzheimer's.</p>
       </div>
     </header>
 
@@ -101,12 +110,12 @@
             <div class="team-card-header">
               <div class="team-initial">CT</div>
               <h3>Caton Tsao</h3>
-              <div class="team-role">Co-Founder &amp; Lead Organizer</div>
-              <div class="team-school">D.W. Daniel High School · Upstate SC</div>
+              <div class="team-role">Founder</div>
+              <div class="team-school">D.W. Daniel High School · Central, SC</div>
             </div>
             <div class="team-card-body">
               <p>Caton has been playing chess since childhood, competing in tournaments across South Carolina and achieving expert-level status. When his grandparents developed Alzheimer's and could no longer recognize him during visits, he felt helpless, and decided to turn that heartbreak into action.</p>
-              <p>Caton founded Checkmating Alzheimer's alongside Allen, and later started developing a research collaboration with Clemson University alongside Aman Sreshta. He organizes tournaments, raises funds for the Alzheimer's Association, and leads the initiative's overall direction.</p>
+              <p>Caton founded Checkmating Alzheimer's alongside Allen in 2024, and later started developing a research collaboration with Clemson University alongside Aman Sreshta. He organizes tournaments, raises funds for the Alzheimer's Association, and leads the initiative's overall direction.</p>
               <div class="team-tags">
                 <span class="team-tag">Expert chess player</span>
                 <span class="team-tag">Tournament organizer</span>
@@ -119,12 +128,12 @@
             <div class="team-card-header">
               <div class="team-initial" style="background:var(--acc-ink);">AH</div>
               <h3>Allen Hong</h3>
-              <div class="team-role">Co-Founder &amp; Tournament Director</div>
-              <div class="team-school">Upstate South Carolina</div>
+              <div class="team-role">Founder &middot; Alumni</div>
+              <div class="team-school">Seneca, SC</div>
             </div>
             <div class="team-card-body">
               <p>Allen has been playing chess since childhood alongside Caton, competing at an expert level across the state. When Caton shared his vision for using chess to fight Alzheimer's, Allen was all in from day one.</p>
-              <p>Allen co-founded the initiative and plays a key role in directing and organizing community tournaments across Upstate and Midlands South Carolina, forging partnerships with local chess clubs, and growing the initiative's reach city by city.</p>
+              <p>Allen co-founded the initiative and played a key role in directing and organizing community tournaments across Upstate and Midlands South Carolina, forging partnerships with local chess clubs, and growing the initiative's reach city by city. He now supports the project as an alumni founder.</p>
               <div class="team-tags">
                 <span class="team-tag">Expert chess player</span>
                 <span class="team-tag">Tournament director</span>
@@ -137,20 +146,63 @@
             <div class="team-card-header">
               <div class="team-initial">AS</div>
               <h3>Aman Sreshta</h3>
-              <div class="team-role">Research Liaison</div>
-              <div class="team-school">Clemson University · Freshman</div>
+              <div class="team-role">Co-President</div>
+              <div class="team-school">Clemson University · Fort Mill, SC</div>
             </div>
             <div class="team-card-body">
-              <p>Aman competed on the championship-winning D.W. Daniel High School chess team before beginning his studies at Clemson University. As a freshman at CU, he's been a bridge between the community initiative and the university side of the project.</p>
-              <p>Aman worked with Caton to bring their idea to Dr. Kaileigh Byrne, and the two have been designing the study together and working on bringing in participants. He's the main point of contact between Checkmating Alzheimer's and the university.</p>
+              <p>Aman competed on the championship-winning D.W. Daniel High School chess team before beginning his studies at Clemson University. He's since stepped into a leadership role as Co-President, helping guide the initiative's direction alongside Caton.</p>
+              <p>Aman also worked with Caton to bring their research idea to Dr. Kaileigh Byrne, and the two have been designing the study together and working on bringing in participants. He remains the main point of contact between Checkmating Alzheimer's and Clemson University.</p>
               <div class="team-tags">
                 <span class="team-tag">Clemson University</span>
-                <span class="team-tag">Research co-proposer</span>
+                <span class="team-tag">Co-President</span>
                 <span class="team-tag">D.W. Daniel champion</span>
               </div>
             </div>
           </div>
 
+        </div>
+      </div>
+    </section>
+
+    <!-- Regional Officers -->
+    <section class="section section-feature">
+      <div class="container">
+        <div class="section-head center reveal">
+          <div class="eyebrow">Regional Officers</div>
+          <h2>Growing the initiative, city by city.</h2>
+          <p>Student leaders helping bring Checkmating Alzheimer's to their own communities across South Carolina.</p>
+        </div>
+        <div class="officer-grid">
+          <div class="card officer-card reveal">
+            <div class="team-initial">WH</div>
+            <h3>Will Howard</h3>
+            <div class="team-role">Regional Officer</div>
+            <div class="team-school">Greenville, SC</div>
+          </div>
+          <div class="card officer-card reveal d1">
+            <div class="team-initial">NW</div>
+            <h3>Nikolai Webb</h3>
+            <div class="team-role">Regional Officer</div>
+            <div class="team-school">Greenville, SC</div>
+          </div>
+          <div class="card officer-card reveal d2">
+            <div class="team-initial">TM</div>
+            <h3>Tyler Murrah</h3>
+            <div class="team-role">Regional Officer</div>
+            <div class="team-school">Columbia, SC</div>
+          </div>
+          <div class="card officer-card reveal d3">
+            <div class="team-initial">SH</div>
+            <h3>Shikhar Haldia</h3>
+            <div class="team-role">Regional Officer</div>
+            <div class="team-school">Greenville, SC</div>
+          </div>
+          <div class="card officer-card reveal d4">
+            <div class="team-initial">JG</div>
+            <h3>Jonathan Gao</h3>
+            <div class="team-role">Regional Officer</div>
+            <div class="team-school">Greenville, SC</div>
+          </div>
         </div>
       </div>
     </section>
@@ -196,7 +248,7 @@
           <strong>Checkmating Alzheimer's</strong>
           <p>A youth-led initiative using chess to fight Alzheimer's disease, one move at a time.</p>
           <div class="footer-social">
-            <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
+            <a href="https://www.instagram.com/checkmatingalzheimers/" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
             <a href="#" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg></a>
             <a href="mailto:checkmatingalzs@gmail.com" aria-label="Email"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg></a>
           </div>

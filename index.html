@@ -13,35 +13,41 @@
     /* ── Home hero ── */
     .home-hero {
       position: relative; overflow: hidden;
-      background: radial-gradient(ellipse 130% 90% at 50% -15%, var(--bg-dark-2), var(--bg-dark) 65%);
+      background:
+        radial-gradient(1000px 500px at 12% -12%, var(--wash-65), transparent 65%),
+        radial-gradient(800px 460px at 92% 4%, var(--wash-40), transparent 60%),
+        var(--bg);
+      border-bottom: 1px solid var(--border-soft);
       padding: clamp(4.25rem, 8.5vw, 6.75rem) 0 clamp(3.5rem, 7vw, 5.5rem);
       text-align: center;
     }
-    .home-hero::before, .home-hero::after { content: ''; position: absolute; border-radius: 50%; filter: blur(80px); pointer-events: none; }
-    .home-hero::before { width: 600px; height: 600px; top: -280px; left: -180px; background: radial-gradient(circle, var(--glow-1), transparent 70%); }
-    .home-hero::after  { width: 520px; height: 520px; top: -80px; right: -160px; background: radial-gradient(circle, var(--glow-2), transparent 70%); }
+    .home-hero::before, .home-hero::after {
+      content: ''; position: absolute; border-radius: 50%; filter: blur(80px); pointer-events: none;
+      animation: orbFloat 15s ease-in-out infinite;
+    }
+    .home-hero::before { width: 480px; height: 480px; top: -240px; left: -160px; background: radial-gradient(circle, var(--glow-1), transparent 70%); }
+    .home-hero::after  { width: 420px; height: 420px; top: -60px; right: -140px; background: radial-gradient(circle, var(--glow-2), transparent 70%); animation-delay: -7.5s; }
     .home-hero .container { position: relative; z-index: 1; }
     .hero-badge {
       display: inline-flex; align-items: center; gap: .55rem;
-      font-size: .74rem; font-weight: 700; color: var(--ink-on-dark);
-      background: var(--glass-bg); border: 1px solid var(--glass-border);
-      backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+      font-size: .74rem; font-weight: 700; color: var(--acc-ink);
+      background: #fff; border: 1px solid var(--border-soft);
       padding: .42rem 1.1rem; border-radius: var(--rp);
-      margin-bottom: 1.7rem;
+      box-shadow: var(--shadow); margin-bottom: 1.9rem;
     }
-    .hero-badge .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--acc); box-shadow: 0 0 8px var(--acc); }
+    .hero-badge .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--acc); animation: pulseRing 2s ease-in-out infinite; }
     .home-hero h1 {
       font-size: clamp(2.75rem, 6.5vw, 5rem);
       font-weight: 800; letter-spacing: -.045em; line-height: 1.04;
-      max-width: 17ch; margin: 0 auto 1.4rem; color: var(--ink-on-dark);
+      max-width: 17ch; margin: 0 auto 1.4rem;
     }
     .home-hero h1 em {
       font-style: italic; font-weight: 300;
-      background: linear-gradient(120deg, #cdc6ff, var(--acc) 55%, #b7aeff);
+      background: linear-gradient(120deg, var(--acc-ink), var(--acc-light));
       -webkit-background-clip: text; background-clip: text;
       -webkit-text-fill-color: transparent; color: transparent;
     }
-    .home-hero .lead { margin: 0 auto 2.1rem; text-align: center; max-width: 56ch; color: var(--ink-on-dark-2); }
+    .home-hero .lead { margin: 0 auto 2.1rem; text-align: center; max-width: 56ch; }
     .hero-actions { display: flex; gap: .8rem; justify-content: center; flex-wrap: wrap; margin-bottom: 2.3rem; }
 
     /* ── Partner marquee ── */
@@ -99,10 +105,8 @@
 
     /* ── Founder quote ── */
     .founder-quote { max-width: 780px; margin: 0 auto; text-align: center; }
-    .founder-quote blockquote { font-size: clamp(1.25rem, 2.8vw, 1.8rem); font-weight: 500; letter-spacing: -.02em; line-height: 1.55; color: var(--ink-on-dark); margin-bottom: 1.75rem; }
-    .founder-quote blockquote em { color: #cdc6ff; font-style: normal; }
-    .founder-quote .q-meta strong { color: var(--ink-on-dark); }
-    .founder-quote .q-meta span { color: var(--ink-on-dark-3); }
+    .founder-quote blockquote { font-size: clamp(1.25rem, 2.8vw, 1.8rem); font-weight: 500; letter-spacing: -.02em; line-height: 1.55; color: var(--ink); margin-bottom: 1.75rem; }
+    .founder-quote blockquote em { color: var(--acc-ink); font-style: normal; }
 
     /* ── Supporters strip ── */
     .supporters-row { text-align: center; max-width: 760px; margin: 0 auto; }
@@ -165,7 +169,7 @@
           <p class="lead">We're a student-founded movement using the world's oldest strategy game to protect minds, through community tournaments and free chess programs for seniors.</p>
           <div class="hero-actions">
             <a href="/involved" class="btn btn-primary btn-lg">Get Involved</a>
-            <a href="/story" class="btn btn-ghost btn-lg">Our Story &rarr;</a>
+            <a href="/story" class="btn btn-outline btn-lg">Our Story &rarr;</a>
           </div>
           <div class="hero-meta-row">
             <span class="meta-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg> Alzheimer's Association partner</span>
@@ -179,7 +183,7 @@
     <div class="statband" aria-label="Impact statistics">
       <div class="statband-in">
         <div class="stat reveal">
-          <div class="stat-n ac counter" data-t="2510.64" data-pre="$">$0</div>
+          <div class="stat-n ac counter" data-t="2500" data-pre="$" data-suf="+">$0</div>
           <div class="stat-l">Raised for the Alzheimer's Association</div>
         </div>
         <div class="stat reveal d1">
@@ -240,7 +244,7 @@
           <a href="/programs" class="card prog-card reveal">
             <div class="num-ghost">01</div>
             <h3>Tournaments for a Cause</h3>
-            <p>USCF-rated tournaments across South Carolina where every entry fee goes to the Alzheimer's Association's #TheLongestDay campaign. All skill levels welcome.</p>
+            <p>USCF-rated tournaments across South Carolina where every entry fee goes to the Alzheimer's Association's "Do What You Love to End Alz" campaign. All skill levels welcome.</p>
             <span class="prog-link">Explore tournaments &rarr;</span>
           </a>
           <a href="/programs" class="card prog-card reveal d1">
@@ -291,7 +295,7 @@
             <div class="press-body">
               <div class="press-src">Alzheimer's Association SC</div>
               <h3>Upstate Students Aim to "Checkmate Alzheimer's"</h3>
-              <p>Caton and Allen host community tournaments raising funds for the Association's #TheLongestDay campaign across Upstate and Midlands South Carolina.</p>
+              <p>Caton and Allen host community tournaments raising funds for the Association's "Do What You Love to End Alz" campaign across Upstate and Midlands South Carolina.</p>
               <div class="press-date">Jul 2025 · alz.org/sc</div>
             </div>
           </a>
@@ -318,7 +322,7 @@
           </figure>
           <figure class="gallery-item reveal d2">
             <div class="gallery-img-wrap"><img src="images/tournament-winners.jpg" alt="A group of student chess tournament winners holding trophies" loading="lazy" width="1600" height="1200"></div>
-            <figcaption>Winners at one of our community charity tournaments</figcaption>
+            <figcaption>Winners at one of our community and scholastic chess tournaments</figcaption>
           </figure>
           <figure class="gallery-item reveal d3">
             <div class="gallery-img-wrap"><img src="images/fundraiser-check-presentation.jpg" alt="Co-founders Caton Tsao and Allen Hong presenting a fundraising check to the Alzheimer's Association" loading="lazy" width="1600" height="1200"></div>
@@ -329,7 +333,7 @@
     </section>
 
     <!-- FOUNDER QUOTE -->
-    <section class="section section-dark" aria-label="Founder quote">
+    <section class="section section-feature" aria-label="Founder quote">
       <div class="container">
         <div class="founder-quote reveal">
           <div class="eyebrow" style="justify-content:center;">From Our Founder</div>
@@ -372,6 +376,7 @@
             <span class="slogo"><img src="https://www.google.com/s2/favicons?domain=scchess.org&#38;sz=64" alt="" loading="lazy">SC Chess Association</span>
             <span class="slogo"><img src="https://www.google.com/s2/favicons?domain=columbiachess.org&#38;sz=64" alt="" loading="lazy">Columbia Chess Club</span>
             <span class="slogo"><img src="https://www.google.com/s2/favicons?domain=greenvillechessclub.org&#38;sz=64" alt="" loading="lazy">Greenville Chess Club</span>
+            <span class="slogo">Anderson Chess Club</span>
           </div>
           <a href="/sponsors" class="btn btn-primary">Partner With Us</a>
         </div>
@@ -388,7 +393,7 @@
           <strong>Checkmating Alzheimer's</strong>
           <p>A youth-led initiative using chess to fight Alzheimer's disease, one move at a time.</p>
           <div class="footer-social">
-            <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
+            <a href="https://www.instagram.com/checkmatingalzheimers/" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
             <a href="#" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg></a>
             <a href="mailto:checkmatingalzs@gmail.com" aria-label="Email"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg></a>
           </div>
@@ -439,6 +444,7 @@
     { name:'Greenville Chess Club',         logo:'https://www.google.com/s2/favicons?domain=greenvillechessclub.org&sz=64' },
     { name:'Clemson University Chess Club', logo:'https://www.google.com/s2/favicons?domain=clemson.edu&sz=64' },
     { name:'Furman University Chess Club',  logo:'https://www.google.com/s2/favicons?domain=furman.edu&sz=64' },
+    { name:'Anderson Chess Club',           logo:null },
     { name:'Alzheimer\'s Association',      logo:'https://www.google.com/s2/favicons?domain=alz.org&sz=64' },
     { name:'SC Chess Association',          logo:'https://www.google.com/s2/favicons?domain=scchess.org&sz=64' },
   ];

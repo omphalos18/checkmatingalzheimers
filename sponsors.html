@@ -19,14 +19,28 @@
     .sponsor-logo span { font-weight: 800; color: var(--acc-ink); font-size: .95rem; }
     .sponsor-card h3 { font-size: 1.05rem; margin-bottom: .5rem; }
     .sponsor-card p { font-size: .88rem; color: var(--ink-3); line-height: 1.6; }
-    .sponsor-card.pending { border-style: dashed; }
-    .sponsor-tag {
-      display: inline-block; font-size: .68rem; font-weight: 700; letter-spacing: .08em;
-      text-transform: uppercase; color: var(--ink-3); background: var(--wash-40);
-      border-radius: var(--rp); padding: .3rem .8rem; margin-bottom: .8rem;
+
+    /* ── Sponsorship tier table ── */
+    .tier-table-wrap { overflow-x: auto; background: #fff; border-radius: var(--rl); box-shadow: var(--shadow-2); }
+    .tier-table { width: 100%; min-width: 640px; border-collapse: collapse; }
+    .tier-table th, .tier-table td { padding: 1rem 1.15rem; border-bottom: 1px solid var(--border-soft); }
+    .tier-table th:first-child, .tier-table td:first-child { text-align: left; width: 40%; }
+    .tier-table th:not(:first-child), .tier-table td:not(:first-child) { text-align: center; }
+    .tier-table thead th {
+      font-family: var(--f); font-weight: 800; font-size: .98rem; color: var(--ink);
+      background: var(--wash-40); white-space: nowrap;
     }
-    .tier-card h3 { font-size: 1.1rem; margin-bottom: .5rem; }
-    .tier-card p { font-size: .9rem; color: var(--ink-2); line-height: 1.7; }
+    .tier-table thead th.pioneer { background: linear-gradient(135deg, var(--acc-ink), var(--acc)); color: #fff; }
+    .tier-price { display: block; font-size: .78rem; font-weight: 700; color: var(--acc-ink); margin-top: .25rem; }
+    .tier-table thead th.pioneer .tier-price { color: rgba(255,255,255,.85); }
+    .tier-table tbody td:first-child { font-size: .88rem; font-weight: 600; color: var(--ink-2); }
+    .tier-table tbody tr:last-child td { border-bottom: none; }
+    .tier-check {
+      display: inline-block; width: 24px; height: 24px; border-radius: 50%;
+      background: var(--acc-ink) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='3.6' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M20 6L9 17l-5-5'/%3E%3C/svg%3E") center/12px no-repeat;
+    }
+    .tier-note { text-align: center; max-width: 620px; margin: 1.75rem auto 0; font-size: .9rem; color: var(--ink-3); }
+    @media (max-width: 640px) { .tier-table th, .tier-table td { padding: .85rem .9rem; } }
   </style>
   <script type="module">
     import { inject } from 'https://cdn.jsdelivr.net/npm/@vercel/speed-insights/+esm';
@@ -117,59 +131,94 @@
             <h3>Greenville Chess Club</h3>
             <p>Our home-base club in the Upstate, supporting weekly play and tournaments.</p>
           </div>
+          <div class="card sponsor-card reveal">
+            <div class="sponsor-logo"><span>AC</span></div>
+            <h3>Anderson Chess Club</h3>
+            <p>One of our longest-running weekly chess sessions for senior residents and student volunteers.</p>
+          </div>
         </div>
       </div>
     </section>
 
-    <!-- Business & law firm partner -->
-    <section class="section section-wash">
+    <!-- Sponsorship Levels -->
+    <section class="section section-feature">
       <div class="container">
         <div class="section-head center reveal">
-          <div class="eyebrow">Business Partners</div>
-          <h2>Local businesses supporting our work.</h2>
-          <p>We're also proud to be supported by local businesses, including a law firm partner. We're finalizing that listing, check back soon for the full details.</p>
+          <div class="eyebrow">Sponsorship Levels</div>
+          <h2>How to become a sponsor.</h2>
+          <p>By sponsoring our initiatives, you support the development of chess statewide and Alzheimer's care and research through the Alzheimer's Association. We're working toward raising $10,000 by the end of 2026, every level of sponsorship moves us closer.</p>
         </div>
-        <div class="card sponsor-card pending reveal" style="max-width:340px; margin:0 auto;">
-          <span class="sponsor-tag">Coming soon</span>
-          <h3>Our Law Firm Partner</h3>
-          <p>We're putting the finishing touches on this partnership announcement. Details coming soon.</p>
+
+        <div class="tier-table-wrap reveal">
+          <table class="tier-table">
+            <thead>
+              <tr>
+                <th scope="col"></th>
+                <th scope="col">Supporter<span class="tier-price">$50</span></th>
+                <th scope="col">Advocate<span class="tier-price">$250</span></th>
+                <th scope="col" class="pioneer">Pioneer<span class="tier-price">$500+</span></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Social media recognition on our Instagram</td>
+                <td><span class="tier-check" aria-label="Included"></span></td>
+                <td><span class="tier-check" aria-label="Included"></span></td>
+                <td><span class="tier-check" aria-label="Included"></span></td>
+              </tr>
+              <tr>
+                <td>Website feature (size &amp; placement varies by tier)</td>
+                <td><span class="tier-check" aria-label="Included"></span></td>
+                <td><span class="tier-check" aria-label="Included"></span></td>
+                <td><span class="tier-check" aria-label="Included"></span></td>
+              </tr>
+              <tr>
+                <td>Company featured at #CheckAlz events</td>
+                <td></td>
+                <td><span class="tier-check" aria-label="Included"></span></td>
+                <td><span class="tier-check" aria-label="Included"></span></td>
+              </tr>
+              <tr>
+                <td>Online meeting with project leaders (Q&amp;A)</td>
+                <td></td>
+                <td><span class="tier-check" aria-label="Included"></span></td>
+                <td><span class="tier-check" aria-label="Included"></span></td>
+              </tr>
+              <tr>
+                <td>Logo on the Checkmating Alzheimer's t-shirt</td>
+                <td></td>
+                <td></td>
+                <td><span class="tier-check" aria-label="Included"></span></td>
+              </tr>
+              <tr>
+                <td>Alzheimer's Association certificate &amp; customized plaque</td>
+                <td></td>
+                <td></td>
+                <td><span class="tier-check" aria-label="Included"></span></td>
+              </tr>
+              <tr>
+                <td>Optional: speak at the introduction of a tournament</td>
+                <td></td>
+                <td></td>
+                <td><span class="tier-check" aria-label="Included"></span></td>
+              </tr>
+            </tbody>
+          </table>
         </div>
+
+        <p class="tier-note reveal">Sponsoring at any level aligns you with a cause that's moving chess, and Alzheimer's awareness, forward across South Carolina.</p>
       </div>
     </section>
 
-    <!-- How to become a sponsor -->
+    <!-- Donate -->
     <section class="section">
       <div class="container">
-        <div class="section-head center reveal">
-          <div class="eyebrow">Get Involved</div>
-          <h2>How to become a sponsor.</h2>
-          <p>Local businesses, firms, and individuals help us keep tournaments free to enter, cover venue costs, and bring chess to more retirement communities. Sponsorships are simple and flexible.</p>
-        </div>
-        <div class="grid-3">
-          <div class="card tier-card reveal">
-            <h3>Tournament Sponsor</h3>
-            <p>Put your name on an upcoming tournament and help cover venue, trophy, and prize costs.</p>
-          </div>
-          <div class="card tier-card reveal d1">
-            <h3>In-Kind Support</h3>
-            <p>Donate chess sets, clocks, meeting space, or printing to support our events and senior chess sessions.</p>
-          </div>
-          <div class="card tier-card reveal d2">
-            <h3>Ongoing Partner</h3>
-            <p>Support us year-round through recurring giving, employer matching, or a standing community partnership.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- CTA -->
-    <section class="section-tight">
-      <div class="container">
         <div class="cta-panel reveal">
-          <h2>Want to partner with us?</h2>
-          <p>Reach out and tell us a bit about your business or organization, we'd love to talk.</p>
+          <h2>Ready to sponsor or donate?</h2>
+          <p>Online donations and sponsorships are accepted through the Alzheimer's Association's Do What You Love platform for Checkmating Alzheimer's. Company matches are encouraged, just list your employer when you give.</p>
           <div class="cta-actions">
-            <a href="/involved#contact-form" class="btn btn-white btn-lg">Get in Touch</a>
+            <a href="https://tinyurl.com/34hyuxut" target="_blank" rel="noopener" class="btn btn-white btn-lg">Donate or Sponsor Online</a>
+            <a href="/involved#contact-form" class="btn btn-ghost btn-lg">Get in Touch</a>
           </div>
         </div>
       </div>
@@ -185,7 +234,7 @@
           <strong>Checkmating Alzheimer's</strong>
           <p>A youth-led initiative using chess to fight Alzheimer's disease, one move at a time.</p>
           <div class="footer-social">
-            <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
+            <a href="https://www.instagram.com/checkmatingalzheimers/" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
             <a href="#" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg></a>
             <a href="mailto:checkmatingalzs@gmail.com" aria-label="Email"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg></a>
           </div>
